@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Transaction extends Model
+class Borrower extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,7 +15,7 @@ class Transaction extends Model
      * 
      * @var string
      */
-    protected $table = 'transactions';
+    protected $table = 'borrowers';
 
     /**
      * The primary key associated with the table.

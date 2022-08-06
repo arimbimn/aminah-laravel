@@ -15,7 +15,7 @@ class BusinessType extends Model
      * 
      * @var string
      */
-    protected $table = 'business_type';
+    protected $table = 'business_types';
 
     /**
      * The primary key associated with the table.

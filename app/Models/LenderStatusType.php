@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class StatusType extends Model
+class LenderStatusType extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,7 +15,7 @@ class StatusType extends Model
      * 
      * @var string
      */
-    protected $table = 'status_type';
+    protected $table = 'lender_status_types';
 
     /**
      * The primary key associated with the table.

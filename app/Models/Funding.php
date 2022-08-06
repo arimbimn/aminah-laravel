@@ -15,7 +15,7 @@ class Funding extends Model
      * 
      * @var string
      */
-    protected $table = 'funding_data';
+    protected $table = 'fundings';
 
     /**
      * The primary key associated with the table.

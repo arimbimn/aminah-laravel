@@ -15,7 +15,7 @@ class BankAccount extends Model
      * 
      * @var string
      */
-    protected $table = 'bank_account';
+    protected $table = 'bank_accounts';
 
     /**
      * The primary key associated with the table.

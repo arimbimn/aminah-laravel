@@ -15,7 +15,7 @@ class TransactionType extends Model
      * 
      * @var string
      */
-    protected $table = 'transaction_type';
+    protected $table = 'transaction_types';
 
     /**
      * The primary key associated with the table.
