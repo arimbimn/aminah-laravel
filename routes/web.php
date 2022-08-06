@@ -29,6 +29,9 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/borrower/register', [RegisterController::class, 'registerBorrower']);
+Route::post('/borrower/register', [RegisterController::class, 'storeBorrower']);
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tentang-kami', [HomeController::class, 'about']);
 Route::get('/cara-kerja', [HomeController::class, 'how_to_work']);
@@ -41,7 +44,7 @@ Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
 Route::get('/borrower/profile', [BorrowerController::class, 'index']);
 Route::get('/register', [RegisterController::class, 'index']);
-Route::get('/borrower/register', [RegisterController::class, 'register_borrower']);
+
 Route::get('/dashboard', [AdminController::class, 'index']);
 Route::get('/data-pengajuan-masuk', [AdminController::class, 'data_pengajuan_masuk']);
 Route::get('/data-pengajuan-masuk/detail', [AdminController::class, 'detail_pengajuan_masuk']);
