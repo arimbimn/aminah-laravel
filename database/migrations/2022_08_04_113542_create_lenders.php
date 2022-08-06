@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLenderData extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLenderData extends Migration
      */
     public function up()
     {
-        Schema::create('lender_data', function (Blueprint $table) {
-            $table->id('lender_id');
+        Schema::create('lenders', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
             $table->string('status')->nullable();
-            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('hp_number')->nullable();
             $table->string('lender_image')->nullable();
@@ -26,7 +26,9 @@ class CreateLenderData extends Migration
             $table->string('account_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('bank_name')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -37,6 +39,6 @@ class CreateLenderData extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lender_data');
+        Schema::dropIfExists('lenders');
     }
-}
+};

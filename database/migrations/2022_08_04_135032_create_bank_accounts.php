@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('funding_lender', function (Blueprint $table) {
+        Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('funding_id');
-            $table->foreignId('lender_id');
-            $table->string('transaction_type')->nullable();
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->string('bank_name');
+            $table->boolean('is_active');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funding_lender');
+        Schema::dropIfExists('bank_accounts');
     }
 };

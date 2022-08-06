@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBorrowerData extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,27 @@ class CreateBorrowerData extends Migration
      */
     public function up()
     {
-        Schema::create('borrower_data', function (Blueprint $table) {
-            $table->id('borrower_id');
+        Schema::create('borrowers', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('nik')->nullable();
+            $table->text('address')->nullable();
             $table->string('status')->nullable();
-            $table->string('borrower_name')->nullable();
-            $table->string('borrower_email')->nullable();
-            $table->string('borrower_hp_number')->nullable();
-            $table->string('borrower_nik')->nullable();
             $table->string('ktp_image')->nullable();
-            $table->string('borrower_address')->nullable();
             $table->string('business_name')->nullable();
             $table->string('business_image')->nullable();
-            $table->string('business_address')->nullable();
+            $table->text('business_address')->nullable();
             $table->string('siu_image')->nullable();
             $table->integer('borrower_monthly_income')->nullable();
             $table->integer('borrower_first_submission')->nullable();
             $table->string('account_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('bank_name')->nullable();
-            $table->string('funding_data')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -43,6 +44,6 @@ class CreateBorrowerData extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('borrower_data');
+        Schema::dropIfExists('borrowers');
     }
-}
+};

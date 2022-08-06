@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBankAccount extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBankAccount extends Migration
      */
     public function up()
     {
-        Schema::create('bank_account', function (Blueprint $table) {
+        Schema::create('business_types', function (Blueprint $table) {
             $table->id();
-            $table->string('account_name');
-            $table->string('account_number');
-            $table->string('bank_name');
-            $table->boolean('is_active');
+            $table->string('name');
+            $table->string('slug')->unique()->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ class CreateBankAccount extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_account');
+        Schema::dropIfExists('business_types');
     }
-}
+};

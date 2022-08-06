@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFundingData extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateFundingData extends Migration
      */
     public function up()
     {
-        Schema::create('funding_data', function (Blueprint $table) {
+        Schema::create('fundings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('borrower_id');
-            $table->string('status')->nullable();
             $table->string('accepted_fund')->nullable();
             $table->date('funding_start_date')->nullable();
             $table->date('due_date')->nullable();
@@ -24,6 +23,7 @@ class CreateFundingData extends Migration
             $table->integer('profit_sharing_estimate')->nullable();
             $table->integer('payment_amount')->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_finished')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +36,6 @@ class CreateFundingData extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funding_data');
+        Schema::dropIfExists('fundings');
     }
-}
+};

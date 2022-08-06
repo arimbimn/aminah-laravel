@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionType extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTransactionType extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_type', function (Blueprint $table) {
+        Schema::create('borrower_status_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('code')->nullable();
             $table->string('slug')->unique()->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +31,6 @@ class CreateTransactionType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_type');
+        Schema::dropIfExists('borrower_status_types');
     }
-}
+};
