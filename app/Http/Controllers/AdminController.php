@@ -60,4 +60,10 @@ class AdminController extends Controller
             "title" => "Aminah | Detail Keuangan Aminah",
         ]);
     }
+    public function data_admin()
+    {
+        return view('pages/admin/data_admin', [
+            "title" => "Aminah | Data Admin Aminah",
+        ]);
+    }
 }

@@ -82,6 +82,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/admin/data" class="nav-link {{ ($title === "Aminah | Data Admin Aminah") ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Data Admin
+
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/dashboard" class="nav-link">
                         <i class="nav-icon fas fa-sign-out"></i>
                         <p>
