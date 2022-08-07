@@ -4,7 +4,7 @@
     @if ($active == 1)
         {{ $title }}
     @endif
-    @if (!$active == 0)
+    @if ($active == 0)
         <a href="{{ $href }}">{{ $title }}</a>
     @endif
 </li>
