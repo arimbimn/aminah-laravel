@@ -1,5 +1,5 @@
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
 
     <a href="/dashboard" class="brand-link">
@@ -9,16 +9,16 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{{ asset('') }}/img/testimonials.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">*nama admin*</a>
-                </div>
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('') }}/img/testimonials.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
-        
+            <div class="info">
+                <a href="#" class="d-block">*nama admin*</a>
+            </div>
+        </div>
+
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -37,7 +37,7 @@
                 <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link {{ ($title === "Aminah | Dashboard") ? 'active' : '' }}">
+                    <a href="/dashboard" class="nav-link {{ $title === 'Aminah | Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Dashboard
@@ -45,19 +45,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-pengajuan-masuk" class="nav-link {{ ($title === "Aminah | Data Pengajuan Masuk") ? 'active' : '' }}">
+                    <a href="/data-pengajuan-masuk" class="nav-link {{ $title === 'Aminah | Data Pengajuan Masuk' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Data Pengajuan
 
-                             
+
                             <span class="badge badge-info right"> 10 </span>
-                        
+
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/rincian-pendanaan" class="nav-link {{ ($title === "Aminah | Rincian Pendanaan Aminah") ? 'active' : '' }}">
+                    <a href="/rincian-pendanaan" class="nav-link {{ $title === 'Aminah | Rincian Pendanaan Aminah' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Data Rincian Pendanaan
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-mitra" class="nav-link {{ ($title === "Aminah | Data Mitra Aminah") ? 'active' : '' }}">
+                    <a href="/data-mitra" class="nav-link {{ $title === 'Aminah | Data Mitra Aminah' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Mitra
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-keuangan" class="nav-link {{ ($title === "Aminah | Data Keuangan Aminah") ? 'active' : '' }}">
+                    <a href="/data-keuangan" class="nav-link {{ $title === 'Aminah | Data Keuangan Aminah' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Data Keuangan Aminah
