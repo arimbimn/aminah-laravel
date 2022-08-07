@@ -54,3 +54,4 @@ Route::get('/data-mitra', [AdminController::class, 'data_mitra']);
 Route::get('/data-mitra/detail', [AdminController::class, 'detail_data_mitra']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+Route::get('/admin/data', [AdminController::class, 'data_admin']);
