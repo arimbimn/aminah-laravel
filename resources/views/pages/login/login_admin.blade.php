@@ -44,10 +44,11 @@
                         <h4 class="login-box-msg">LOGIN ADMIN</h4>
                     </a>
                 </div>
-                <form action="/login_admin" method="post">
-                    <label for="username">Username</label>
+                <form action="/login" method="post">
+                    @csrf
+                    <label for="email">Email</label>
                     <div class="input-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="masukkan username anda">
+                        <input type="text" name="email" id="email" class="form-control" placeholder="masukkan email anda">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-at"></span>
@@ -67,9 +68,7 @@
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Ingatkan Saya
-                                </label>
+                                <label for="remember">Ingatkan Saya</label>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -85,11 +84,11 @@
         <!-- /.login-box -->
 
         <!-- jQuery -->
-        <script src="{{ asset('') }}/admin/plugins/jquery/jquery.min.js"></script>
+        <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
-        <script src="{{ asset('') }}/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="{{ asset('') }}/admin/dist/js/adminlte.min.js"></script>
+        <script src="{{ asset('admin') }}/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>
