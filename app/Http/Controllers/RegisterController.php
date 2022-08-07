@@ -3,23 +3,63 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Borrower;
 use App\Models\BorrowerStatusType;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function registerLender()
     {
         $data = array(
-            'title' => 'Aminah | Register',
+            'title' => 'Aminah | Daftar Lender',
         );
         return view('pages/register/register_lender', $data);
+    }
+
+    public function storeLender(Request $request)
+    {
+
+        $this->validate($request, [
+            'fullName' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password'  => 'required|min:6|confirmed',
+            'agreeTerms' => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->input('fullName');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->role = 'lender';
+        $saving = $user->save();
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        if ($saving) {
+            return redirect()
+                ->route('lender')
+                ->with([
+                    'success' => 'Berhasil daftar'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
     }
 
     public function registerBorrower()
     {
         $data = array(
-            'title' => 'Aminah | Register Calon Mitra',
+            'title' => 'Aminah | Daftar Calon Mitra',
         );
         return view('pages/register/register_borrower', $data);
     }
@@ -34,7 +74,7 @@ class RegisterController extends Controller
             'homeAddress' => 'required',
             'nik' => 'required',
             'phoneNumber' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email',
             'accountNumber' => 'required',
             'income' => 'required',
             'amount' => 'required',
