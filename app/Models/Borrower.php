@@ -30,4 +30,22 @@ class Borrower extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    // cari data borrower denagn status pending
+    public function scopePending($query)
+    {
+        $query->where('status', 'Pending');
+    }
+
+    // cari data borrower dengan status accepted
+    public function scopeAccepted($query)
+    {
+        $query->where('status', 'Accepted');
+    }
+
+    // cari data borrower dengan status rejected
+    public function scopeRejected($query)
+    {
+        $query->where('status', 'rejected');
+    }
 }
