@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             LenderStatusTypeSeeder::class,
             BusinessTypeSeeder::class,
             TransactionTypeSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
