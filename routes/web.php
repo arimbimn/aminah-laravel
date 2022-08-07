@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LenderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,13 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
+// login admin
+Route::get('/admin/login', [LoginController::class, 'login_admin']);
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+// admin
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
 Route::get('/borrower/register', [RegisterController::class, 'registerBorrower']);
 Route::post('/borrower/register', [RegisterController::class, 'storeBorrower']);
 
@@ -39,13 +47,13 @@ Route::get('/home', [LenderController::class, 'index']);
 Route::get('/mitra', [LenderController::class, 'mitra']);
 Route::get('/profile', [LenderController::class, 'profile']);
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/admin/login', [LoginController::class, 'login_admin']);
+
 Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
 Route::get('/borrower/profile', [BorrowerController::class, 'index']);
 Route::get('/register', [RegisterController::class, 'index']);
 
-Route::get('/dashboard', [AdminController::class, 'index']);
+
 Route::get('/data-pengajuan-masuk', [AdminController::class, 'data_pengajuan_masuk']);
 Route::get('/data-pengajuan-masuk/detail', [AdminController::class, 'detail_pengajuan_masuk']);
 Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
