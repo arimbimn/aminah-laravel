@@ -7,8 +7,8 @@
 
         {{-- Preloader --}}
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="assets/img/Aminah1.png" alt="AminahLogo" width="100">
-            <h2 class="brand-text font-weight-light">Aminah</h2>
+            <img class="animation__wobble" src="{{ asset('img/Aminah1.png') }}" alt="AminahLogo" width="150">
+            {{-- <h2 class="brand-text font-weight-light">Aminah</h2> --}}
         </div>
 
         {{-- Navbar --}}
@@ -54,6 +54,17 @@
     <script src="{{ asset('admin') }}/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="{{ asset('admin') }}/plugins/chart.js/Chart.min.js"></script>
+
+    {{-- SweetAlert2 --}}
+    <script src="{{ asset('admin') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    @yield('third_party_scripts')
+    @stack('page_scripts')
+    <script>
+        $(window).on("load", function() {
+            $(".loader-wrapper").fadeOut("slow");
+        })
+    </script>
 
 </body>
 

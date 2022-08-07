@@ -1,9 +1,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-
     <a href="/dashboard" class="brand-link">
-        <img src="assets/img/Aminah1.png" alt="Aminah Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('img/Aminah1.png') }}" alt="Aminah Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Aminah</span>
     </a>
 
@@ -12,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('') }}/img/testimonials.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">*nama admin*</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -34,8 +33,6 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link {{ $title === 'Aminah | Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
@@ -45,14 +42,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-pengajuan-masuk" class="nav-link {{ $title === 'Aminah | Data Pengajuan Masuk' ? 'active' : '' }}">
+                    <a href="/admin/pengajuan" class="nav-link {{ isset($active) && $active == 'pengajuan' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Data Pengajuan
-
-
-                            <span class="badge badge-info right"> 10 </span>
-
+                            <span class="badge badge-info right"> {{ isset($totalPengajuan) ? $totalPengajuan : '0' }}</span>
                         </p>
                     </a>
                 </li>
@@ -65,7 +59,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-mitra" class="nav-link {{ $title === 'Aminah | Data Mitra Aminah' ? 'active' : '' }}">
+                    <a href="/admin/mitra" class="nav-link {{ isset($active) && $active == 'mitra' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Mitra
@@ -82,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/data" class="nav-link {{ ($title === "Aminah | Data Admin Aminah") ? 'active' : '' }}">
+                    <a href="/admin/user" class="nav-link {{ isset($active) && $active == 'user' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Admin

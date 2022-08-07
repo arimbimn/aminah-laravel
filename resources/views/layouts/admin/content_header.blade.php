@@ -1,10 +1,10 @@
-@if (isset($title) || isset($breadcrumbs))
+@if (isset($page) || isset($breadcrumbs))
     <div class="container-fluid">
         <div class="row mb-2">
             {{-- BEGIN TITLE --}}
-            @isset($title)
+            @isset($page)
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ $title }}</h1>
+                    <h1 class="m-0">{{ $page }}</h1>
                 </div>
             @endisset
             {{-- END TITLE --}}
