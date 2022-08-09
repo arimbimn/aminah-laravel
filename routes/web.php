@@ -59,6 +59,11 @@ Route::middleware('admin')->group(function () {
     // data mitra
     Route::get('/admin/mitra', [MitraController::class, 'index'])->name('admin.partner');
     Route::get('/admin/mitra/detail/{borrower}', [MitraController::class, 'detail'])->name('admin.partner.detail');
+
+    Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
+    Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
+    Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
+    Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
 });
 
 // mitra
@@ -79,8 +84,3 @@ Route::get('/cara-kerja', [HomeController::class, 'how_to_work']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
-
-Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
-Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
-Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
-Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
