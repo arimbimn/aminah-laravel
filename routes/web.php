@@ -34,8 +34,8 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 // login admin
-Route::get('admin/login', [LoginController::class, 'login_admin'])->name('admin.login');
-Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
+Route::get('/admin/login', [LoginController::class, 'login_admin'])->name('admin.login');
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
 
 // register borrower
 Route::get('/mitra/daftar', [RegisterController::class, 'registerBorrower']);
@@ -43,19 +43,19 @@ Route::post('/mitra/daftar', [RegisterController::class, 'storeBorrower']);
 
 // register lender
 Route::get('/register', [RegisterController::class, 'registerLender']);
-Route::post('lender/daftar', [RegisterController::class, 'storeLender']);
+Route::post('/lender/daftar', [RegisterController::class, 'storeLender']);
 
 // admin
 Route::middleware('admin')->group(function () {
     // dashboard
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // user
-    Route::get('admin/user', [UserController::class, 'index'])->name('admin.user');
+    Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
     // pengajuan
-    Route::get('admin/pengajuan', [PengajuanController::class, 'index'])->name('admin.borrower');
-    Route::get('admin/pengajuan/detail/{borrower}', [PengajuanController::class, 'detail'])->name('admin.borrower.detail');
-    Route::post('admin/pengajuan/terima', [PengajuanController::class, 'approve'])->name('admin.borrower.approve');
-    Route::post('admin/pengajuan/tolak', [PengajuanController::class, 'reject'])->name('admin.borrower.reject');
+    Route::get('/admin/pengajuan', [PengajuanController::class, 'index'])->name('admin.borrower');
+    Route::get('/admin/pengajuan/detail/{borrower}', [PengajuanController::class, 'detail'])->name('admin.borrower.detail');
+    Route::post('/admin/pengajuan/terima', [PengajuanController::class, 'approve'])->name('admin.borrower.approve');
+    Route::post('/admin/pengajuan/tolak', [PengajuanController::class, 'reject'])->name('admin.borrower.reject');
     // data mitra
     Route::get('/admin/mitra', [MitraController::class, 'index'])->name('admin.partner');
     Route::get('/admin/mitra/detail/{borrower}', [MitraController::class, 'detail'])->name('admin.partner.detail');
