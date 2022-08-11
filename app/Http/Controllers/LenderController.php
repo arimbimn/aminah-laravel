@@ -20,6 +20,14 @@ class LenderController extends Controller
             'active' => 'mitra',
         ]);
     }
+    public function detail_mitra()
+    {
+        return view('pages/lender/mitra/detail', [
+            "title" => "Aminah | Detail Mitra",
+            'active' => 'mitra',
+        ]);
+    }
+
     public function profile()
     {
         return view('pages/lender/profile_lender', [

@@ -15,8 +15,6 @@
 <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
-            
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="course-item">
                         <img src="{{ asset('') }}/img/aminahImg.jpg" class="img-fluid" alt="Silkysip">
@@ -25,7 +23,7 @@
                                 <h4>Minuman</h4>
                                 <p class="price">12 bulan</p>
                             </div>
-                            <h3><a href="/mitra/detail">Silkysip</a></h3>
+                            <h3><a href="/lender/mitra/detail">Silkysip</a></h3>
                             <div class="row">
                                 <dl>
                                     <dt class="col-sm-6">Harga</dt>
@@ -41,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-           
             <!-- End Course Item-->
         </div>
     </div>

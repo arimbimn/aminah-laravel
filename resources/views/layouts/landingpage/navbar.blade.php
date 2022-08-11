@@ -13,7 +13,7 @@
                 <li><a class="<?php echo (isset($active) && $active == 'cara-kerja') ? 'active' : '' ?>" href="/cara-kerja">Cara Kerja</a></li>
         </nav><!-- .navbar -->
 
-        <a href="/login" class="get-started-btn">Masuk sebagai pendana</a>
+        <a href="/login" class="get-started-btn">Masuk</a>
 
     </div>
 </header><!-- End Header -->

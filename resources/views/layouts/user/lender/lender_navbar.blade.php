@@ -8,9 +8,9 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="<?php echo (isset($active) && $active == 'home') ? 'active' : '' ?>" href="/home">Home</a></li>
-                <li><a class="<?php echo (isset($active) && $active == 'mitra') ? 'active' : '' ?>" href="/mitra">Mitra</a></li>
-                <li><a class="<?php echo (isset($active) && $active == 'profile') ? 'active' : '' ?>" href="/profile">Profile</a></li>
+                <li><a class="<?php echo (isset($active) && $active == 'home') ? 'active' : '' ?>" href="lender/home">Home</a></li>
+                <li><a class="<?php echo (isset($active) && $active == 'mitra') ? 'active' : '' ?>" href="lender/mitra">Mitra</a></li>
+                <li><a class="<?php echo (isset($active) && $active == 'profile') ? 'active' : '' ?>" href="lender/profile">Profile</a></li>
 
                 <a href="#" class="notification"><i class="bx bxs-bell"></i></a>
                 <a href="#" class="cart"><i class="bx bxs-cart"></i></a>

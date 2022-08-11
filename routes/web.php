@@ -84,3 +84,6 @@ Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+
+// route detail mitra
+Route::get('/lender/mitra/detail', [LenderController::class, 'detail_mitra']);

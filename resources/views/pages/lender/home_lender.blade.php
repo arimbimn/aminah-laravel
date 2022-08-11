@@ -6,7 +6,7 @@
 <div class="breadcrumbs" data-aos="fade-in">
     <div class="container">
         <h2>Beranda</h2>
-        <p>Ini merupakan halaman Beranda anda.</p>
+        <p>Selamat datang di beranda kamu, *nama lender* !</p>
     </div>
 </div><!-- End Breadcrumbs -->
 
@@ -55,7 +55,7 @@
                                 <h4>Jenis Minumah</h4>
                                 <p class="price">Jangka waktu</p>
                             </div>
-                            <h3><a href="/detailMitra">Nama usaha</a></h3>
+                            <h3><a href="/lender/mitra/detail">Nama usaha</a></h3>
                             <div class="row">
                                 <dl>
                                     <dt class="col-sm-6">Harga</dt>

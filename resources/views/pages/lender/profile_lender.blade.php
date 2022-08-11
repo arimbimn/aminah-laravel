@@ -6,7 +6,7 @@
 <div class="breadcrumbs" data-aos="fade-in">
     <div class="container">
         <h2>Dashboard</h2>
-        <p>Hai, selamat datang di dashboard kamu!</p>
+        <p>Hai, selamat datang di dashboard kamu *nama lender* !</p>
     </div>
 </div>
 <!-- End Breadcrumbs -->
