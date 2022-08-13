@@ -30,4 +30,14 @@ class Lender extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'email', 'email');
+    }
+
+    public function funding()
+    {
+        return $this->hasMany(FundingLender::class, 'lender_id', 'id');
+    }
 }

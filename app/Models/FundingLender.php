@@ -30,4 +30,9 @@ class FundingLender extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function lender()
+    {
+        return $this->belongsTo(Lender::class, 'id', 'lender_id');
+    }
 }

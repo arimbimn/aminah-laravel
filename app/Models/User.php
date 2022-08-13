@@ -42,6 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function lender()
+    {
+        return $this->belongsTo(Lender::class, 'email', 'email');
+    }
+
     public function scopeAdmin($query)
     {
         $query->where('role', 'admin');
