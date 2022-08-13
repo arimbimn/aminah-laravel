@@ -84,9 +84,11 @@ Route::get('/cara-kerja', [HomeController::class, 'how_to_work']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
-<<<<<<< HEAD
 
 Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+
+// route detail mitra
+Route::get('/lender/mitra/detail', [LenderController::class, 'detail_mitra']);
