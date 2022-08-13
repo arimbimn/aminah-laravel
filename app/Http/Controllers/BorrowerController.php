@@ -12,4 +12,11 @@ class BorrowerController extends Controller
             "title" => "Aminah | Home",
         ]);
     }
+
+    public function pengajuan_pendanaan()
+    {
+        return view('pages/borrower/pengajuan_pendanaan', [
+            "title" => "Aminah | Form Pengajuan Pendanaan",
+        ]);
+    }
 }
