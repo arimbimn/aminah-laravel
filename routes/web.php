@@ -84,9 +84,28 @@ Route::get('/cara-kerja', [HomeController::class, 'how_to_work']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
-<<<<<<< HEAD
 
 Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+
+Route::any('captcha-test', function () {
+    if (request()->getMethod() == 'POST') {
+        $rules = ['captcha' => 'required|captcha'];
+        $validator = validator()->make(request()->all(), $rules);
+        if ($validator->fails()) {
+            echo '<p style="color: #ff0000;">Incorrect!</p>';
+        } else {
+            echo '<p style="color: #00ff30;">Matched :)</p>';
+        }
+    }
+
+    $form = '<form method="post" action="captcha-test">';
+    $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+    $form .= '<p>' . captcha_img('flat') . '</p>';
+    $form .= '<p><input type="text" name="captcha"></p>';
+    $form .= '<p><button type="submit" name="check">Check</button></p>';
+    $form .= '</form>';
+    return $form;
+});
