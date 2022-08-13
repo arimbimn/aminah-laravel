@@ -59,6 +59,14 @@
                 </dl>
             </div>
         </div>
+        <div class="card">
+            <div class="card-body">
+                <label for="accepted_funding">Jumlah dana yang disetujui</label>
+                <div class="input-group mb-1">
+                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="masukkan nama lengkap disini">
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col mb-4">
                 <button type="button" value="{{ $borrower->id }}" class="btn btn-danger col-lg-12 reject-button">Tolak</button>
@@ -82,6 +90,7 @@
                 var titleTextSuccess = 'Anda berhasil menerima pengajuan pendanaan'
                 var iconTypeFailed = 'error'
                 var titleTextFailed = 'Gagal menerima pengajuan pendanaan'
+                var redirectTo = '/admin/pengajuan'
                 Swal.fire({
                     title: titleText,
                     icon: iconType,
@@ -105,7 +114,7 @@
                                     icon: iconTypeSuccess,
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        window.location.reload();
+                                        window.location.href = redirectTo
                                     };
                                 });
                             },

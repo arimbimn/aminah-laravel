@@ -5,9 +5,12 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title><?= $title; ?></title>
+    <title><?= $title ?></title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
 
     <!-- Favicons -->
     <link href="{{ asset('') }}/img/Logo-Aminah-03.png" rel="icon">
@@ -37,9 +40,9 @@
 </head>
 
 <body>
-@include('layouts.user.borrower.borrower_navbar')
+    @include('layouts.user.borrower.borrower_navbar')
 
-@yield('content')
+    @yield('content')
 
     <footer id="footer">
 

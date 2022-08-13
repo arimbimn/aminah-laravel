@@ -1,20 +1,19 @@
-@extends('layouts.user.lender.lender_template')
+@extends('layouts.user.lender.template')
 
 @section('content')
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Mitra</h2>
+            <p>Ini merupakan halaman kumpulan dari mitra Aminah yang telah melewati proses seleksi dari admin.
+                Kamu dapat memilih mitra yang ingin kamu danai disini.
+            </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
 
-<!-- ======= Breadcrumbs ======= -->
-<div class="breadcrumbs" data-aos="fade-in">
-    <div class="container">
-        <h2>Mitra</h2>
-        <p>Ini merupakan halaman kumpulan dari mitra Aminah yang telah melewati proses seleksi dari admin.
-            Kamu dapat memilih mitra yang ingin kamu danai disini.
-        </p>
-    </div>
-</div><!-- End Breadcrumbs -->
-
-<section id="popular-courses" class="courses">
-    <div class="container" data-aos="fade-up">
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="course-item">
                         <img src="{{ asset('') }}/img/aminahImg.jpg" class="img-fluid" alt="Silkysip">
@@ -39,9 +38,8 @@
                         </div>
                     </div>
                 </div>
-            <!-- End Course Item-->
+                <!-- End Course Item-->
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
 @endsection
