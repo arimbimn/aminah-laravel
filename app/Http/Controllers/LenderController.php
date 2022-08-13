@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LenderController extends Controller
 {
@@ -30,9 +32,16 @@ class LenderController extends Controller
 
     public function profile()
     {
-        return view('pages/lender/profile_lender', [
-            "title" => "Aminah | Profile",
+        $id = Auth::user()->id;
+        $user = User::with('lender')->find($id);
+        // dd($user->lender);
+
+        $data = array(
+            'title' => "Aminah | Profile",
             'active' => 'profile',
-        ]);
+            'user' => $user,
+        );
+
+        return view('pages/lender/profile_lender', $data);
     }
 }
