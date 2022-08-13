@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             BusinessTypeSeeder::class,
             TransactionTypeSeeder::class,
             UserSeeder::class,
+            BorrowerSeeder::class,
         ]);
     }
 }
