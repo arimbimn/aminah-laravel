@@ -92,3 +92,6 @@ Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan'])
 
 // route detail mitra
 Route::get('/lender/mitra/detail', [LenderController::class, 'detail_mitra']);
+
+// route mitra ajukan akun
+Route::get('/mitra/ajukan-pendanaan', [BorrowerController::class, 'pengajuan_pendanaan']);

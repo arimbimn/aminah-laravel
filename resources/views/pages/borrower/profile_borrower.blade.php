@@ -17,37 +17,37 @@
     <div class="row">
         <div class="col-lg-3 pt-4 pt-lg-0 order-1 order-lg-1 content">
             <img src="{{ asset('') }}/img/aminahImg1.jpg" class="img-thumbnail" alt="lender" width="200">
-            <h4><b>SilkySip</b></h4>
-            <h5>nama pemilik usaha</h5>
-            <h5>email pemilik usaha</h5>
-            <h5>no hp pemilik usaha</h5>
+            <h4><b>Nama UMKM : *SilkySip*</b></h4>
+            <h5>Nama Pemilik : *nama pemilik umkm*</h5>
+            <h5>Email : *email pemilik umkm*</h5>
+            <h5>HP : *nomor hp pemilik usaha*</h5>
         </div>
         <div class="card col-lg-5 order-2 order-lg-2 border-dark mb-3" style="max-width: 50rem;">
             <div class="card-header">Ringkasan</div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card-body text-dark">
-                        <h5 class="card-title">Total Dana Pengajuan</h5>
+                        <h5 class="card-title">Dana Pengajuan Awal</h5>
                         <p class="card-text">Rp 0</p>
 
-                        <h5 class="card-title">Lunas</h5>
+                        <h5 class="card-title">Pendanan Lunas</h5>
                         <p class="card-text">Rp 0</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card-body text-dark">
-                        <h5 class="card-title">Total Dana Disetujui</h5>
+                        <h5 class="card-title">Dana Disetujui</h5>
                         <p class="card-text">Rp 0</p>
 
-                        <h5 class="card-title">Belum Lunas</h5>
+                        <h5 class="card-title">Pendanaan Belum Lunas</h5>
                         <p class="card-text">Rp 0</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 pt-4 pt-lg-0 order-3 order-lg-3 content">
+        <div class="col-lg-4 pt-4 pt-lg-0 order-3 order-lg-3 content mb-4">
             <dl class="row">
-                <dt class="col-sm-6">Nama Pemilik Rek</dt>
+                <dt class="col-sm-6">Nama Pemilik Rekening</dt>
                 <dd class="col-sm-6">*nama pemilik rekening*</dd>
 
                 <dt class="col-sm-6">Nama Bank</dt>
@@ -55,13 +55,18 @@
 
                 <dt class="col-sm-6">No. Rekening</dt>
                 <dd class="col-sm-6">*nomor rekening*</dd>
-
-                <div class="col-12 mt-5">
-                    <button class="get-started-btn">Tarik Saldo</button>
+                <hr>
+                <div class="col mt-5">
+                    <button class="btn btn-success">Tarik Saldo</button>
+                </div>
+        
+                <div class="col mt-5">
+                    <a href="/mitra/ajukan-pendanaan" class="btn btn-warning"> Ajukan Pendanaan</a>
                 </div>
             </dl>
         </div>
     </div>
+    <hr>
     <div class="row mt-4">
         <div class="col">
             <table class="table">
