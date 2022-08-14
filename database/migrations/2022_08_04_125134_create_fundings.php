@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('payment_amount')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_finished')->default(0);
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

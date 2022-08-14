@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('account_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('bank_name')->nullable();
+            $table->text('purpose')->nullable();
+            $table->string('duration')->nullable();
+            $table->integer('profit_sharing_estimate')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
