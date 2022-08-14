@@ -40,4 +40,14 @@ class Funding extends Model
     {
         return $this->hasMany(FundingLender::class, 'funding_id');
     }
+
+    public function scopeActive($query)
+    {
+        $query->where('status', 'Active');
+    }
+
+    public function scopeInactive($query)
+    {
+        $query->where('status', 'Inactive');
+    }
 }
