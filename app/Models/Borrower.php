@@ -48,4 +48,9 @@ class Borrower extends Model
     {
         $query->where('status', 'rejected');
     }
+
+    public function fundings()
+    {
+        return $this->hasMany(Funding::class, 'borrower_id', 'id');
+    }
 }
