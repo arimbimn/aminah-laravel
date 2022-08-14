@@ -48,14 +48,14 @@
                 @if (isset($mitra) && $mitra != null)
                     @foreach ($mitra as $index => $mitra)
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                            <div class="course-item">
+                            <div class="course-item" id="{{ $mitra->id }}">
                                 <img src="{{ isset($mitra->borrower) ? asset('pendaftaran/' . $mitra->borrower->business_image) : asset('img/testimonials.jpg') }}" class="img-fluid" alt="gambar">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Jenis Minuman</h4>
                                         <p class="price">{{ isset($mitra->borrower) && !is_null($mitra->borrower->duration) ? $mitra->borrower->duration . ' Bulan' : 'Jangka Waktu: -' }}</p>
                                     </div>
-                                    <h3><a href="/lender/mitra/detail">{{ isset($mitra->borrower) ? $mitra->borrower->business_name : 'Usaha' }}</a></h3>
+                                    <h3><a href="/lender/mitra/detail/{{ $mitra->id }}">{{ isset($mitra->borrower) ? $mitra->borrower->business_name : 'Usaha' }}</a></h3>
                                     <div class="row">
                                         <dl>
                                             <dt class="col-sm-6">{{ 'Harga: Rp100.000' }}</dt>
@@ -75,7 +75,7 @@
                                             <input type="hidden" value="100000" name="price">
                                             <input type="hidden" value="{{ $mitra->borrower->business_image }}" name="image">
                                             <input type="hidden" value="1" name="quantity">
-                                            <button type="submit" class="btn btn-outline-success col-12" {{ $mitra->dana_terkumpul_persen == 100 ? 'disabled' : '' }}><i class="fa fa-plus"></i> Tambah ke keranjang</button>
+                                            <button type="submit" class="btn btn-outline-success col-12 cart-button" {{ $mitra->dana_terkumpul_persen == 100 ? 'disabled' : '' }}><i class="fa fa-plus"></i> Tambah ke keranjang</button>
                                         </form>
                                     </div>
                                 </div>
@@ -99,3 +99,22 @@
         </div>
     </section>
 @endsection
+
+@push('page_scripts')
+    <script>
+        $('.course-item').on('click', function(e) {
+            var id = $(this).attr("id");
+            window.location.href = '/lender/mitra/detail/' + id;
+            // $('.course-item a').click();
+        });
+        $('.cart-button, a').on('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+@endpush
+
+@push('page_scripts')
+    <script>
+        $('.course-item').css('cursor', 'pointer');
+    </script>
+@endpush
