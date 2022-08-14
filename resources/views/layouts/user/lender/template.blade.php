@@ -38,7 +38,7 @@
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
@@ -86,6 +86,12 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('template') }}/js/main.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    @yield('third_party_scripts')
+    @stack('page_scripts')
 
 </body>
 
