@@ -11,9 +11,11 @@ class LenderController extends Controller
 {
     public function index()
     {
-        $fundings = Funding::where('is_finished', '0')->get();
+        $fundings = Funding::where('is_finished', '0')->limit(2)->latest()->get();
         foreach ($fundings as $funding) {
-            $dana_terkumpul = 7100000;
+            $totalUnitTerjual = $funding->fundinglenders->count();
+            $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
+            $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;
             $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
         }
@@ -28,10 +30,22 @@ class LenderController extends Controller
     }
     public function mitra()
     {
-        return view('pages/lender/mitra', [
-            "title" => "Aminah | Mitra",
+        $fundings = Funding::where('is_finished', '0')->latest()->get();
+        foreach ($fundings as $funding) {
+            $totalUnitTerjual = $funding->fundinglenders->count();
+            $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
+            $dana_terkumpul = $danaTerkumpul;
+            $funding->dana_terkumpul = $dana_terkumpul;
+            $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
+        }
+
+        $data = array(
+            'title' => "Aminah | Mitra",
             'active' => 'mitra',
-        ]);
+            'mitra' => $fundings,
+        );
+
+        return view('pages.lender.mitra', $data);
     }
     public function detail_mitra()
     {
