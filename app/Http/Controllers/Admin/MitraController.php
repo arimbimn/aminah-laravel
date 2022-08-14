@@ -90,4 +90,41 @@ class MitraController extends Controller
         );
         return view('pages.admin.mitra.detail', $data);
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        if (!$id) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Provide an id'
+            ], 400);
+        }
+
+        $borrower = Borrower::find($id);
+
+        if ($borrower) {
+            $fundings = $borrower->fundings;
+            if ($fundings) {
+                foreach ($fundings as $funding) {
+                    $funding->status = 'Inactive';
+                    $funding->save();
+                }
+            }
+
+            $borrower->status = 'Nonaktif';
+            $borrower->is_active = '0';
+            $borrower->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully updated',
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found',
+            ], 404);
+        }
+    }
 }
