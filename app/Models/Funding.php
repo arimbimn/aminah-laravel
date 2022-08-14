@@ -35,4 +35,9 @@ class Funding extends Model
     {
         return $this->belongsTo(Borrower::class, 'borrower_id', 'id');
     }
+
+    public function fundinglenders()
+    {
+        return $this->hasMany(FundingLender::class, 'funding_id');
+    }
 }
