@@ -24,6 +24,7 @@ class BorrowerSeeder extends Seeder
             'status' => 'Pending',
             'ktp_image' => '20220812064922100_ktp.JPG',
             'business_name' => 'WEW Coklat',
+            'business_image' => '20220812064922100_foto.JPG',
             'business_address' => 'Jakarta',
             'siu_image' => '20220812064922100_siu.JPG',
             'borrower_monthly_income' => '10000000',
