@@ -127,6 +127,7 @@ class PengajuanController extends Controller
             $funding = new Funding();
             $funding->borrower_id = $borrower->id;
             $funding->accepted_fund = $acceptedFunding;
+            $funding->status = 'Active';
             $funding->save();
 
             // $user = new User();
