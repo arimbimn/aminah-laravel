@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Funding;
+use App\Models\Borrower;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LenderController extends Controller
 {
     public function index()
     {
-        $fundings = Funding::where('is_finished', '0')->limit(2)->latest()->get();
+        $fundings = Funding::where('is_finished', '0')->active()->limit(2)->latest()->get();
         foreach ($fundings as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->count();
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
@@ -30,7 +32,7 @@ class LenderController extends Controller
     }
     public function mitra()
     {
-        $fundings = Funding::where('is_finished', '0')->latest()->get();
+        $fundings = Funding::where('is_finished', '0')->active()->latest()->get();
         foreach ($fundings as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->count();
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
@@ -47,12 +49,24 @@ class LenderController extends Controller
 
         return view('pages.lender.mitra', $data);
     }
-    public function detail_mitra()
+    public function detailMitra(Funding $funding)
     {
-        return view('pages/lender/mitra/detail', [
+        // dd($funding);
+        // dd($borrower->fundings[0]->accepted_fund);
+        if ($funding) {
+            $totalUnitTerjual = $funding->fundinglenders->count();
+            $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
+            $dana_terkumpul = $danaTerkumpul;
+            $funding->dana_terkumpul = $dana_terkumpul;
+            $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
+        }
+        $data = array(
             "title" => "Aminah | Detail Mitra",
             'active' => 'mitra',
-        ]);
+            'funding' => $funding,
+        );
+
+        return view('pages.lender.mitra.detail', $data);
     }
 
     public function profile()
