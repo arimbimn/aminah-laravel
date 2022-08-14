@@ -30,6 +30,9 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('') }}/template/css/style.css" rel="stylesheet">
 
+    @yield('third_party_stylesheets')
+    @stack('page_css')
+
     <!-- =======================================================
   * Template Name: Mentor - v4.7.0
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/

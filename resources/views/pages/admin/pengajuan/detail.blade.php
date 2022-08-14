@@ -115,9 +115,9 @@
                                     title: titleTextSuccess,
                                     icon: iconTypeSuccess,
                                 }).then((result) => {
-                                    // if (result.isConfirmed) {
-                                    //     window.location.href = redirectTo
-                                    // };
+                                    if (result.isConfirmed) {
+                                        window.location.href = redirectTo
+                                    };
                                 });
                             },
                             error: function(XMLHttpRequest, textStatus, errorThrown) {

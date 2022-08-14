@@ -12,8 +12,8 @@
                 <li><a class="{{ isset($active) && $active == 'mitra' ? 'active' : '' }}" href="/lender/mitra">Mitra</a></li>
                 <li><a class="{{ isset($active) && $active == 'profile' ? 'active' : '' }}" href="/lender/profile">Profile</a></li>
 
-                <a href="#" class="notification">2<i class="fa fa-bell"></i></a>
-                <a href="#" class="cart">1<i class="fa fa-shopping-cart"></i></a>
+                <a href="#" class="notification"><i class="fa fa-bell"></i></a>
+                <a href="/lender/keranjang" class="cart {{ isset($active) && $active == 'cart' ? 'active' : '' }}">{{ \Cart::session(Auth::user()->id)->getContent()->count() >= 0? \Cart::session(Auth::user()->id)->getContent()->count(): '' }}<i class="fa fa-shopping-cart"></i></a>
 
         </nav><!-- .navbar -->
 
