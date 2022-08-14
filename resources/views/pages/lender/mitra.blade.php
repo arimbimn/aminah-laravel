@@ -14,31 +14,36 @@
     <section id="popular-courses" class="courses">
         <div class="container" data-aos="fade-up">
             <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="course-item">
-                        <img src="{{ asset('') }}/img/aminahImg.jpg" class="img-fluid" alt="Silkysip">
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>Minuman</h4>
-                                <p class="price">12 bulan</p>
-                            </div>
-                            <h3><a href="/lender/mitra/detail">Silkysip</a></h3>
-                            <div class="row">
-                                <dl>
-                                    <dt class="col-sm-6">Harga</dt>
-                                    <dd class="col-sm-6">10000000</dd>
 
-                                    <dt class="col-sm-6">Terkumpul</dt>
-                                    <dd class="col-sm-6">Rp100000</dd>
-                                </dl>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width:10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">10 %</div>
+                @if (isset($borrowers) && $borrowers != null)
+                    @foreach ($borrowers as $index => $borrower)
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="course-item">
+                                <img src="{{ asset('') }}/img/aminahImg.jpg" class="img-fluid" alt="Silkysip">
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Minuman</h4>
+                                        <p class="price">12 bulan</p>
+                                    </div>
+                                    <h3><a href="/lender/mitra/detail">Silkysip</a></h3>
+                                    <div class="row">
+                                        <dl>
+                                            <dt class="col-sm-6">Harga</dt>
+                                            <dd class="col-sm-6">10000000</dd>
+                                            <dt class="col-sm-6">Terkumpul</dt>
+                                            <dd class="col-sm-6">Rp100000</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width:10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">10 %</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- End Course Item-->
+                    @endforeach
+                @else
+                    <p class="text text-center">belum ada data mitra.</p>
+                @endif
             </div>
         </div>
     </section>

@@ -18,49 +18,45 @@
                             </div>
                             {{-- END CARD HEADER --}}
                             {{-- BEGIN CARD BODY --}}
+
                             <div class="card-body register-card-body mb-0 mt-0">
-                                <label for="fullName">Nama Lengkap</label>
+                                {{-- BEGIN NAMA LENGKAP --}}
+                                <x-basic.label for="fullName" required="true">Nama Lengkap</x-basic.label>
                                 <div class="input-group mb-1">
-                                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="masukkan nama lengkap disini">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-user"></span>
-                                        </div>
-                                    </div>
+                                    <x-basic.input type="text" name="fullName" icon="fa-user" :error="$errors->first('fullName')" placeholder="masukkan nama lengkap disini..." />
                                 </div>
-                                <label for="email">Email</label>
+                                {{-- END NAMA LENGKAP --}}
+                                {{-- BEGIN EMAIL --}}
+                                <x-basic.label for="email" required="true">Email</x-basic.label>
                                 <div class="input-group mb-1">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="masukkan email kamu disini">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-envelope"></span>
-                                        </div>
-                                    </div>
+                                    <x-basic.input type="email" name="email" icon="fa-envelope" :error="$errors->first('email')" placeholder="masukkan email kamu disini..." />
                                 </div>
-                                <label for="password">Password</label>
+                                {{-- END EMAIL --}}
+                                {{-- BEGIN PASSWORD --}}
+                                <x-basic.label for="password" required="true">Password</x-basic.label>
                                 <div class="input-group mb-1">
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="masukkan password kamu disini">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
-                                        </div>
-                                    </div>
+                                    <x-basic.input type="password" name="password" icon="fa-lock" :error="$errors->first('password')" placeholder="masukkan password kamu disini..." />
                                 </div>
-                                <label for="password_confirmation">Masukkan Ulang Password</label>
+                                {{-- END PASSWORD --}}
+                                {{-- BEGIN PASSWORD CONF --}}
+                                <x-basic.label for="password_confirmation" required="true">Masukkan Ulang Password</x-basic.label>
                                 <div class="input-group mb-1">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="masukkan ulang password kamu disini">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
-                                        </div>
-                                    </div>
+                                    <x-basic.input type="password" name="password_confirmation" icon="fa-lock" :error="$errors->first('password')" placeholder="masukkan ulang password kamu disini..." />
                                 </div>
+                                {{-- END PASSWORD CONF --}}
+                                {{-- BEGIN APPROVE --}}
                                 <div class="form-group mb-0">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" value="agree">
                                         <label class="form-check-label" for="agreeTerms">Saya yakin bahwa data yang saya masukkan benar</label>
                                     </div>
+                                    @error('agreeTerms')
+                                        <div class="text text-danger">
+                                            <small>{{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
+                                {{-- END APPROVE --}}
                             </div>
                             {{-- END CARD BODY --}}
                             {{-- BEGIN CARD FOOTER --}}

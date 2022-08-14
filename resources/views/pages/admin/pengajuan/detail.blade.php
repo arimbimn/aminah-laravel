@@ -61,9 +61,9 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <label for="accepted_funding">Jumlah dana yang disetujui</label>
+                <x-basic.label for="accepted_funding" required="true">Jumlah dana yang disetujui</x-basic.label>
                 <div class="input-group mb-1">
-                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="masukkan nama lengkap disini">
+                    <x-basic.input type="text" name="accepted_funding" :error="$errors->first('accepted_funding')" placeholder="masukkan jumlah dana yang disetujui..." />
                 </div>
             </div>
         </div>
@@ -90,6 +90,63 @@
                 var titleTextSuccess = 'Anda berhasil menerima pengajuan pendanaan'
                 var iconTypeFailed = 'error'
                 var titleTextFailed = 'Gagal menerima pengajuan pendanaan'
+                var redirectTo = '/admin/pengajuan'
+                Swal.fire({
+                    title: titleText,
+                    icon: iconType,
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: confText,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var id = jQuery(this).val();
+                        var acceptedFunding = jQuery('#accepted_funding').val();
+                        jQuery.ajax({
+                            url: urlTarget,
+                            method: "post",
+                            dataType: 'json',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                'id': id,
+                                'acceptedFunding': acceptedFunding,
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: titleTextSuccess,
+                                    icon: iconTypeSuccess,
+                                }).then((result) => {
+                                    // if (result.isConfirmed) {
+                                    //     window.location.href = redirectTo
+                                    // };
+                                });
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                var text = jQuery.parseJSON(XMLHttpRequest.responseText);
+                                Swal.fire({
+                                    title: titleTextFailed,
+                                    icon: iconTypeFailed,
+                                });
+                            },
+                        });
+                    };
+                });
+            });
+        });
+    </script>
+@endpush
+
+@push('page_scripts')
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('.reject-button').on('click', function() {
+                var titleText = '<p class="text text-light">Tolak Pengajuan Pendanaan?</p>'
+                var iconType = 'question'
+                var confText = 'Tolak'
+                var urlTarget = "{{ url('admin/pengajuan/tolak') }}"
+                var iconTypeSuccess = 'success'
+                var titleTextSuccess = 'Anda berhasil menolak pengajuan pendanaan'
+                var iconTypeFailed = 'error'
+                var titleTextFailed = 'Gagal menolak pengajuan pendanaan'
                 var redirectTo = '/admin/pengajuan'
                 Swal.fire({
                     title: titleText,
@@ -133,56 +190,46 @@
     </script>
 @endpush
 
+{{-- Format on 'Salary' field --}}
 @push('page_scripts')
     <script>
-        jQuery(document).ready(function() {
-            jQuery('.reject-button').on('click', function() {
-                var titleText = '<p class="text text-light">Tolak Pengajuan Pendanaan?</p>'
-                var iconType = 'question'
-                var confText = 'Tolak'
-                var urlTarget = "{{ url('admin/pengajuan/tolak') }}"
-                var iconTypeSuccess = 'success'
-                var titleTextSuccess = 'Anda berhasil menolak pengajuan pendanaan'
-                var iconTypeFailed = 'error'
-                var titleTextFailed = 'Gagal menolak pengajuan pendanaan'
-                Swal.fire({
-                    title: titleText,
-                    icon: iconType,
-                    showCancelButton: true,
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: confText,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var id = jQuery(this).val();
-                        jQuery.ajax({
-                            url: urlTarget,
-                            method: "post",
-                            dataType: 'json',
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                                'id': id,
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: titleTextSuccess,
-                                    icon: iconTypeSuccess,
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.reload();
-                                    };
-                                });
-                            },
-                            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                var text = jQuery.parseJSON(XMLHttpRequest.responseText);
-                                Swal.fire({
-                                    title: titleTextFailed,
-                                    icon: iconTypeFailed,
-                                });
-                            },
-                        });
-                    };
-                });
-            });
+        var rupiah_field = "accepted_funding";
+        var rupiah = document.getElementById(rupiah_field);
+        rupiah.addEventListener("keyup", function(e) {
+            // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            rupiah.value = formatRupiah(this.value, "Rp. ");
         });
+
+        rupiah.addEventListener("focusout", function(e) {
+            // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            rupiah.value = formatRupiah(this.value, "Rp. ");
+        });
+
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                split = number_string.split(","),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+        }
+    </script>
+@endpush
+
+@push('page_scripts')
+    <script>
+        var acceptedFunding = formatRupiah('{{ $borrower->borrower_first_submission }}', "Rp. ");
+        $('#accepted_funding').val(acceptedFunding);
     </script>
 @endpush

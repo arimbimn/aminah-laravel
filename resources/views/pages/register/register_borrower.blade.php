@@ -2,7 +2,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-8 col-12">
+                <div class="col-lg-6 col-12">
                     <form action="/mitra/daftar" method="post" enctype="multipart/form-data">
                         @csrf
                         {{-- BEGIN CARD --}}
@@ -22,47 +22,12 @@
                             <div class="card-body">
                                 <p class="login-box-msg">Harap isi data dibawah ini dengan benar</p>
 
-                                {{-- BEGIN NAMA-UMKM --}}
-                                {{-- <div class="form-group">
-                                    <x-basic.label for="umkmName" value="Nama UMKM" required="true" />
-                                    <x-basic.input type="text" name="umkmName" :error="$errors->first('umkmName')" placeholder="masukkan nama usaha anda disini..." />
-                                </div> --}}
-                                {{-- END NAMA-UMKM --}}
-
                                 {{-- BEGIN NAMA PEMILIK --}}
                                 <div class="form-group">
                                     <x-basic.label for="fullName" value="Nama Pemilik UMKM (sesuai KTP)" required="true" />
                                     <x-basic.input type="text" name="fullName" :error="$errors->first('fullName')" placeholder="masukkan nama lengkap anda disini..." />
                                 </div>
                                 {{-- END NAMA PEMILIK --}}
-
-                                {{-- BEGIN ALAMAT UMKM --}}
-                                {{-- <div class="form-group">
-                                    <x-basic.label for="alamat-umkm" value="Alamat UMKM" required="true" />
-                                    <x-basic.input type="text" name="umkmAddress" :error="$errors->first('umkmAddress')" placeholder="masukkan alamat usaha anda disini..." />
-                                </div> --}}
-                                {{-- END ALAMAT UMKM--}}
-
-                                {{-- BEGIN ALAMAT PEMILIK --}}
-                                <div class="form-group">
-                                    <x-basic.label for="alamat-rumah" value="Alamat Rumah (sesuai KTP)" required="true" />
-                                    <x-basic.input type="text" name="homeAddress" :error="$errors->first('homeAddress')" placeholder="masukkan alamat rumah anda disini..." />
-                                </div>
-                                {{-- END ALAMAT PEMILIK --}}
-
-                                {{-- BEGIN NIK PEMILIK --}}
-                                <div class="form-group">
-                                    <x-basic.label for="input-nik" value="NIK (Nomor Induk Kependudukan)" required="true" />
-                                    <x-basic.input type="text" name="nik" :error="$errors->first('nik')" placeholder="masukkan nomor NIK anda disini..." />
-                                </div>
-                                {{-- END NIK PEMILIK --}}
-
-                                {{-- BEGIN NOMOR HP PEMILIK --}}
-                                <div class="form-group">
-                                    <x-basic.label for="phoneNumber" value="Nomor Telpon/HP Aktif" required="true" />
-                                    <x-basic.input type="text" name="phoneNumber" :error="$errors->first('phoneNumber')" placeholder="masukkan no. telpon/hp anda yang aktif disini..." />
-                                </div>
-                                {{-- END NOMOR HP PEMILIK --}}
 
                                 {{-- BEGIN EMAIL PEMILIK --}}
                                 <div class="form-group">
@@ -71,11 +36,60 @@
                                 </div>
                                 {{-- END EMAIL PEMILIK --}}
 
-                                {{-- BEGIN NOMOR REKENING PEMILIK --}}
+                                {{-- BEGIN PASSWORD --}}
                                 <div class="form-group">
+                                    <x-basic.label for="password" value="Password" required="true" />
+                                    <x-basic.input type="password" name="password" :error="$errors->first('password')" placeholder="masukkan password kamu disini..." />
+                                </div>
+                                {{-- END PASSWORD --}}
+
+                                {{-- BEGIN PASSWORD CONF --}}
+                                <div class="form-group">
+                                    <x-basic.label for="password_confirmation" value="Konfirmasi Password" required="true" />
+                                    <x-basic.input type="password" name="password_confirmation" :error="$errors->first('password_confirmation')" placeholder="masukkan konfirmasi password kamu disini..." />
+                                </div>
+                                {{-- END PASSWORD CONF --}}
+
+                                {{-- BEGIN NAMA-UMKM --}}
+                                {{-- <div class="form-group">
+                                    <x-basic.label for="umkmName" value="Nama UMKM" required="true" />
+                                    <x-basic.input type="text" name="umkmName" :error="$errors->first('umkmName')" placeholder="masukkan nama usaha anda disini..." />
+                                </div> --}}
+                                {{-- END NAMA-UMKM --}}
+
+                                {{-- BEGIN ALAMAT UMKM --}}
+                                {{-- <div class="form-group">
+                                    <x-basic.label for="alamat-umkm" value="Alamat UMKM" required="true" />
+                                    <x-basic.input type="text" name="umkmAddress" :error="$errors->first('umkmAddress')" placeholder="masukkan alamat usaha anda disini..." />
+                                </div> --}}
+                                {{-- END ALAMAT UMKM --}}
+
+                                {{-- BEGIN ALAMAT PEMILIK --}}
+                                {{-- <div class="form-group">
+                                    <x-basic.label for="alamat-rumah" value="Alamat Rumah (sesuai KTP)" required="true" />
+                                    <x-basic.input type="text" name="homeAddress" :error="$errors->first('homeAddress')" placeholder="masukkan alamat rumah anda disini..." />
+                                </div> --}}
+                                {{-- END ALAMAT PEMILIK --}}
+
+                                {{-- BEGIN NIK PEMILIK --}}
+                                {{-- <div class="form-group">
+                                    <x-basic.label for="input-nik" value="NIK (Nomor Induk Kependudukan)" required="true" />
+                                    <x-basic.input type="text" name="nik" :error="$errors->first('nik')" placeholder="masukkan nomor NIK anda disini..." />
+                                </div> --}}
+                                {{-- END NIK PEMILIK --}}
+
+                                {{-- BEGIN NOMOR HP PEMILIK --}}
+                                {{-- <div class="form-group">
+                                    <x-basic.label for="phoneNumber" value="Nomor Telpon/HP Aktif" required="true" />
+                                    <x-basic.input type="text" name="phoneNumber" :error="$errors->first('phoneNumber')" placeholder="masukkan no. telpon/hp anda yang aktif disini..." />
+                                </div> --}}
+                                {{-- END NOMOR HP PEMILIK --}}
+
+                                {{-- BEGIN NOMOR REKENING PEMILIK --}}
+                                {{-- <div class="form-group">
                                     <x-basic.label for="accountNumber" value="Nomor Rekening" required="true" />
                                     <x-basic.input type="text" name="accountNumber" :error="$errors->first('accountNumber')" placeholder="masukkan nomor rekening anda disini..." />
-                                </div>
+                                </div> --}}
                                 {{-- END NOMOR REKENING PEMILIK --}}
 
                                 {{-- BEGIN PENDAPATAN UMKM --}}
@@ -104,7 +118,7 @@
                                 </div> --}}
                                 {{-- END FOTO KTP --}}
 
-                                {{-- BEGIN FOTO SIU--}}
+                                {{-- BEGIN FOTO SIU --}}
                                 {{-- <div class="form-group">
                                     <label for="file-siu" class="form-label">Foto Surat Izin Usaha (SIU) (unggah foto siu disini)</label>
                                     <input class="form-control" name="file-siu" type="file" id="file-siu">
@@ -131,9 +145,7 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="approvedCheck" name="approvedCheck">
-                                        <label class="form-check-label" for="approvedCheck">
-                                            Saya menyatakan bahwa data yang saya masukan adalah benar
-                                        </label>
+                                        <x-basic.label for="approvedCheck" class="form-check-label" required="true">Saya menyatakan bahwa data yang saya masukan adalah benar</x-basic.label>
                                     </div>
                                     @error('approvedCheck')
                                         <div class="text text-danger">
@@ -151,7 +163,8 @@
                                     </div>
                                     <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block">
                                         <a href="{{ url()->previous() }}" class="btn btn-outline-secondary col-12"><i class="fa fa-undo"></i>
-                                            Kembali</a>
+                                            Kembali
+                                        </a>
                                     </div>
                                 </div>
                             </div>
