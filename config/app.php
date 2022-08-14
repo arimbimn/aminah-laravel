@@ -196,7 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // custom providers
-        Mews\Captcha\CaptchaServiceProvider::class, //captcha
+        Mews\Captcha\CaptchaServiceProvider::class, // captcha
+        Darryldecode\Cart\CartServiceProvider::class, // cart
 
     ],
 
@@ -215,7 +216,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
 
         // custom aliases
-        'Captcha' => Mews\Captcha\Facades\Captcha::class, //captcha
+        'Captcha' => Mews\Captcha\Facades\Captcha::class, // captcha
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class, // cart
     ])->toArray(),
 
 ];
