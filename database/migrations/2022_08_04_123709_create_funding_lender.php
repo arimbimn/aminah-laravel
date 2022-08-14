@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('funding_id');
             $table->foreignId('lender_id');
-            $table->string('transaction_type')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
