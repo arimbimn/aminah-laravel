@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PengajuanController;
 use App\Http\Controllers\Admin\MitraController;
+use App\Http\Controllers\Admin\PendanaanController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -60,8 +61,9 @@ Route::middleware('admin')->group(function () {
     // data mitra
     Route::get('/admin/mitra', [MitraController::class, 'index'])->name('admin.partner');
     Route::get('/admin/mitra/detail/{borrower}', [MitraController::class, 'detail'])->name('admin.partner.detail');
+    Route::delete('/admin/mitra/hapus', [MitraController::class, 'destroy'])->name('admin.partner.destroy');
 
-    Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
+    Route::get('/admin/pendanaan', [PendanaanController::class, 'index'])->name('admin.funding');
     Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
     Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
     Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
@@ -77,6 +79,7 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/home', [LenderController::class, 'index'])->name('lender');
     Route::get('/lender/profile', [LenderController::class, 'profile'])->name('lender.profile');
     Route::get('/lender/mitra', [LenderController::class, 'mitra'])->name('lender.mitra');
+    Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
 
     Route::get('/lender/keranjang', [CartController::class, 'cartList'])->name('cart.list');
     Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.store');
@@ -93,7 +96,6 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::get('/forgot-password', [LoginController::class, 'forgot_password']);
 Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
 
-Route::get('/rincian-pendanaan', [AdminController::class, 'rincian_pendanaan']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
