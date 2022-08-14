@@ -3,7 +3,7 @@
 @section('content')
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
-            <h2>*nama mitra*</h2>
+            <h2>{{ $funding->borrower->business_name }}</h2>
             <p>*jenis mitra*</p>
         </div>
     </div>
@@ -13,18 +13,18 @@
         <div class="row">
             <div class="col-6">
                 <img src="{{ asset('') }}/img/aminahImg1.jpg" class="img-thumbnail" alt="lender">
-                <h4><b>*nama UMKM*</b></h4>
-                <h5>*alamat UMKM*</h5>
+                <h4><b>{{ $funding->borrower->business_name }}</b></h4>
+                <h5>{{ $funding->borrower->business_address }}</h5>
                 <h5>Deskripsi & Jenis UMKM</h5>
-                <p>ini merupakan umkm jenis minuman</p>
+                <p>{{ $funding->borrower->description }}</p>
             </div>
             <div class="col-6">
-                <h3><b>Rincian Pendanaan dari *nama umkm*</b></h3>
+                <h3><b>Rincian Pendanaan dari {{ $funding->borrower->business_name }}</b></h3>
                 <h5><small>*x* hari lagi</small></h5>
-                <h5>terkumpul *x* %</h5>
-                <h5>terkumpul Rp *xxxxxxxx* dari Rp *xxxxxxxxx*</h5>
+                <h5>terkumpul {{ $funding->dana_terkumpul_persen }}%</h5>
+                <h5>terkumpul Rp.{{ $funding->dana_terkumpul }} dari Rp. {{ $funding->accepted_fund }}</h5>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">10 %</div>
+                    <div class="progress-bar" role="progressbar" style="width:{{ $funding->dana_terkumpul_persen }}%;" aria-valuenow="{{ $funding->dana_terkumpul_persen }}" aria-valuemin="0" aria-valuemax="100">{{ $funding->dana_terkumpul_persen }} %</div>
                 </div>
                 <hr>
                 <dl class="row">
