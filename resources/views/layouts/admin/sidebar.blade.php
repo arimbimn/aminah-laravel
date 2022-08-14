@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/rincian-pendanaan" class="nav-link {{ $title === 'Aminah | Rincian Pendanaan Aminah' ? 'active' : '' }}">
+                    <a href="/admin/pendanaan" class="nav-link {{ isset($active) && $active == 'pendanaan' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Data Rincian Pendanaan
