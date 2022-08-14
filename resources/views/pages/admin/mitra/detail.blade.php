@@ -61,11 +61,66 @@
         </div>
         <div class="row">
             <div class="col mb-4">
-                <button type="button" value="{{ $borrower->id }}" class="btn btn-danger col-lg-12 delete-button">Hapus Akun</button>
+                <button type="button" value="{{ $borrower->id }}" class="btn btn-danger col-lg-12 delete-button"><i class="fa fa-trash"></i> Nonaktifkan</button>
             </div>
             <div class="col mb-4">
-                <button type="button" value="{{ $borrower->id }}" class="btn btn-warning col-lg-12 cancel-button">Batal</button>
+                <button type="button" value="{{ $borrower->id }}" class="btn btn-secondary col-lg-12 cancel-button"><i class="fa fa-undo"></i> Kembali</button>
             </div>
         </div>
     </div>
 @endsection
+
+@push('page_scripts')
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('.delete-button').on('click', function() {
+                var titleText = '<p class="text text-light">Nonaktifkan Akun Mitra?</p>'
+                var iconType = 'question'
+                var confText = 'Hapus'
+                var urlTarget = "{{ url('admin/mitra/hapus') }}"
+                var iconTypeSuccess = 'success'
+                var titleTextSuccess = 'Anda berhasil menonaktifkan akun mitra'
+                var iconTypeFailed = 'error'
+                var titleTextFailed = 'Gagal menonaktifkan mitra'
+                var redirectTo = '/admin/mitra'
+                Swal.fire({
+                    title: titleText,
+                    icon: iconType,
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: confText,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var id = jQuery(this).val();
+                        jQuery.ajax({
+                            url: urlTarget,
+                            method: "delete",
+                            dataType: 'json',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                'id': id,
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: titleTextSuccess,
+                                    icon: iconTypeSuccess,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = redirectTo
+                                    };
+                                });
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                var text = jQuery.parseJSON(XMLHttpRequest.responseText);
+                                Swal.fire({
+                                    title: titleTextFailed,
+                                    icon: iconTypeFailed,
+                                });
+                            },
+                        });
+                    };
+                });
+            });
+        });
+    </script>
+@endpush
