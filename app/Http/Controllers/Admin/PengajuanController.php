@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrower;
+use App\Models\Funding;
 use App\Models\User;
 
 class PengajuanController extends Controller
@@ -93,6 +94,8 @@ class PengajuanController extends Controller
 
     public function approve(Request $request)
     {
+        $acceptedFunding = $request->input('acceptedFunding');
+        $acceptedFunding = preg_replace("/[^0-9]/", "", $acceptedFunding);
         $id = $request->input('id');
         if (!$id) {
             return response()->json([
@@ -101,18 +104,37 @@ class PengajuanController extends Controller
             ], 400);
         }
 
+        if ($acceptedFunding % 100000 != 0) {
+            return response()->json([
+                'status' => false,
+                'message' => 'False accepted funding format'
+            ], 400);
+        }
+
         $borrower = Borrower::find($id);
 
         if ($borrower) {
+            if ($acceptedFunding > $borrower->borrower_first_submission) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Accepted funding more than first submission'
+                ], 400);
+            }
+
             $borrower->status = 'Accepted';
             $borrower->save();
 
-            $user = new User();
-            $user->name = $borrower->name;
-            $user->email = $borrower->email;
-            $user->password = bcrypt('123456');
-            $user->role = 'borrower';
-            $user->save();
+            $funding = new Funding();
+            $funding->borrower_id = $borrower->id;
+            $funding->accepted_fund = $acceptedFunding;
+            $funding->save();
+
+            // $user = new User();
+            // $user->name = $borrower->name;
+            // $user->email = $borrower->email;
+            // $user->password = bcrypt('123456');
+            // $user->role = 'borrower';
+            // $user->save();
 
             return response()->json([
                 'status' => true,

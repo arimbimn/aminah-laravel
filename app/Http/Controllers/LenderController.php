@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Funding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,10 +11,20 @@ class LenderController extends Controller
 {
     public function index()
     {
-        return view('pages/lender/home_lender', [
-            "title" => "Aminah | Home",
+        $fundings = Funding::where('is_finished', '0')->get();
+        foreach ($fundings as $funding) {
+            $dana_terkumpul = 7100000;
+            $funding->dana_terkumpul = $dana_terkumpul;
+            $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
+        }
+
+        $data = array(
+            'title' => "Aminah | Home",
             'active' => 'home',
-        ]);
+            'mitra' => $fundings,
+        );
+
+        return view('pages.lender.home', $data);
     }
     public function mitra()
     {
