@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('status')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('email')->unique();
             $table->string('hp_number')->nullable();
             $table->string('lender_image')->nullable();
