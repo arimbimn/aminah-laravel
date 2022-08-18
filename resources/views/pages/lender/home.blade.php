@@ -5,7 +5,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
             <h2>Beranda</h2>
-            <p>Selamat datang di beranda kamu, *nama lender* !</p>
+            <p>Selamat datang di beranda kamu, {{ Auth::user()->name }} !</p>
         </div>
     </div><!-- End Breadcrumbs -->
 
