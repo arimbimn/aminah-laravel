@@ -81,6 +81,16 @@ class LenderController extends Controller
             'user' => $user,
         );
 
-        return view('pages/lender/profile_lender', $data);
+        return view('pages.lender.profile_lender', $data);
+    }
+
+    public function input_profile()
+    {
+        $data = array(
+            'title' => "Aminah | Form Lengkapi Profile",
+            'active' => 'profile',
+        );
+
+        return view('pages.lender.input_profile', $data);
     }
 }

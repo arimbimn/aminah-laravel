@@ -32,14 +32,17 @@
 
                     <dt class="col-sm-6">No. Rekening</dt>
                     <dd class="col-sm-6">{{ isset($user->lender) ? $user->lender->account_number : '-' }}</dd>
-
-                    <div class="col-6 mt-5">
-                        <button class="get-started-btn">Tarik Saldo</button>
-                    </div>
-                    <div class="col-6 mt-5">
-                        <button class="get-started-btn">Isi Saldo</button>
-                    </div>
                 </dl>
+                    <div class="col-12 mt-5">
+                        <a href="/lender/profile/lengkapi-profile" class="btn btn-outline-success col-12"><i class="fa fa-edit"></i> Edit Profil</a> 
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-outline-danger col-12"><i class="fa fa-download"></i> Tarik Saldo</button>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</button>
+                    </div>
+                
             </div>
         </div>
 
