@@ -10,7 +10,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah Data Pengajuan Masuk</span>
                         <span class="info-box-number">
-                            10
+                            -
                             <small>berkas</small>
                         </span>
                     </div>
@@ -24,7 +24,7 @@
                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tasks"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah pendanaan</span>
-                        <span class="info-box-number">50</span>
+                        <span class="info-box-number">- <small>pendanaan</small></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -39,7 +39,7 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah Lender</span>
-                        <span class="info-box-number">5 lender</span>
+                        <span class="info-box-number">- <small>lender</small></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -53,7 +53,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah Mitra</span>
-                        <span class="info-box-number">5 Mitra</span>
+                        <span class="info-box-number">- <small>mitra</small></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -87,13 +87,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; ?>
+                                    @php
+                                    $i = 1;
+                                @endphp
                                     <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td>*nama lender</td>
-                                        <td>*nomor rekening lender</td>
-                                        <td>*nomor hp lender</td>
-                                        <td>*email lender*</td>
+                                        <td>@php $i++ @endphp</td>
+                                        <td>{{ isset($user->lender) ? $user->lender->name : '-'  }}</td>
+                                        <td>{{ isset($user->lender) ? $user->lender->account_number : '-' }}</td>
+                                        <td>{{ isset($user->lender) ? $user->lender->hp_number : '-' }}</td>
+                                        <td>{{ isset($user->lender) ? $user->lender->email : '-' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -128,9 +130,11 @@
                                 </thead>
                                 <tbody>
 
-                                    <?php $i = 1; ?>
+                                    @php
+                                    $i = 1;
+                                @endphp
                                     <tr>
-                                        <td><?= $i++ ?></td>
+                                        <td>@php $i++ @endphp</td>
                                         <td>*nama usaha*</td>
                                         <td>*nama pemilik usaha*</td>
                                         <td>*nomor rekening pemilik usaha*</td>
