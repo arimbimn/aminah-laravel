@@ -67,30 +67,69 @@
         </div>
     </div>
     <hr>
+
     <div class="row mt-4">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Tanggal Jatuh Tempo</th>
-                        <th scope="col">Rincian Lender/Pendana</th>
-                        <th scope="col">Jumlah Pengembalian</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td>Rp -</td>
-                        <td><a class="btn btn-success" href="/bayar"> Bayar</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            {{-- TABEL PENGAJUAN --}}
+                <div class="col">
+                    <h4>Tabel Data Pengajuan</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Status Pengajuan</th>
+                                <th scope="col">Nama Barang</th>
+                                <th scope="col">Harga Barang</th>
+                                <th scope="col">Jangka Waktu Pengajuan</th>
+                                <th scope="col">Estimasi Bagi Hasil</th>
+                                <th scope="col">Nama Lender</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $i = 1; @endphp
+                            <tr>
+                                <th>@php $i++ @endphp</th>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {{-- TABEL PENDANAAN --}}
+                <div class="col">
+                    <h4>Tabel Data Pendanaan</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Status Pendanaan</th>
+                                <th scope="col">Tanggal Jatuh Tempo</th>
+                                <th scope="col">Nama - Nama Lender</th>
+                                <th scope="col">Jumlah Pengembalian</th>
+                                <th scope="col">Sisa Periode Pendanaan</th>
+                                <th scope="col">Pengembalian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $i = 1; @endphp
+                            <tr>
+                                <th>@php $i++ @endphp</th>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td><a class="btn btn-success" href="/bayar"> Bayar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
