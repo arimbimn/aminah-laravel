@@ -43,4 +43,20 @@ class PendanaanController extends Controller
 
         return view('pages.admin.pendanaan.index', $data);
     }
+
+    public function detail($id)
+    {
+        $funding = Funding::find($id);
+
+        $data = array(
+            'title' => "Aminah | Detail Rincian Pendanaan Aminah",
+            'active' => 'pendanaan',
+            'page' => 'Detail Rincian Pendanaan Aminah',
+            'tableName' => 'Tabel Detail Pendanaan',
+            'records' => isset($records) ? $records : array(),
+            'funding' => $funding,
+        );
+
+        return view('pages.admin.pendanaan.detail', $data);
+    }
 }

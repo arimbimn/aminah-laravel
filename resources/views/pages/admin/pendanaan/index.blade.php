@@ -29,7 +29,7 @@
                                         <td>{{ $record->borrower->status }}</td>
                                         <td>*sisa Periode Pendanaan*</td>
                                         <td>Rp.{{ number_format($record->dana_terkumpul, 0, ',', '.') }},-</td>
-                                        <td><a href="/rincian-pendanaan/detail" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
+                                        <td><a href="/admin/rincian-pendanaan/detail/{{ $record->id }}" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
