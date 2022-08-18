@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\KeuanganController as AdminKeuanganController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\PengajuanController;
 use App\Http\Controllers\Admin\MitraController;
 use App\Http\Controllers\Admin\PendanaanController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\KeuanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,14 +66,15 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/mitra/hapus', [MitraController::class, 'destroy'])->name('admin.partner.destroy');
 
     Route::get('/admin/pendanaan', [PendanaanController::class, 'index'])->name('admin.funding');
-    Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
-    Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
-    Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+    Route::get('/admin/rincian-pendanaan/detail/{funding}', [PendanaanController::class, 'detail']);
+    Route::get('/admin/data-keuangan', [KeuanganController::class, 'index']);
+    Route::get('/admin/data-keuangan/detail', [KeuanganController::class, 'detail']);
 });
 
 // mitra
 Route::middleware('borrower')->group(function () {
     Route::get('/mitra/profile', [BorrowerController::class, 'index'])->name('borrower.profile');
+    Route::get('/mitra/profile/ajukan-pendanaan', [BorrowerController::class, 'pengajuan_pendanaan'])->name('borrower.profile.ajukan-pendanaan');
 });
 
 // lender
