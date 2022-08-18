@@ -16,7 +16,7 @@ class TransactionTypeSeeder extends Seeder
     public function run()
     {
         TransactionType::create([
-            'name' => 'Pembayaran Pendanaan',
+            'name' => 'Pengisian Saldo Lender',
             'code' => '1',
         ]);
 
