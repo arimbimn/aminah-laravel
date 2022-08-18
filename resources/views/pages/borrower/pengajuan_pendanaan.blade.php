@@ -57,6 +57,23 @@
                                 </div>
                                 {{-- END NAMA-UMKM --}}
 
+                                {{-- BEGIN JENIS UMKM --}}
+                                <div class="form-group">
+                                    <x-basic.label for="jenisUmkm" value="Jenis UMKM" required="true" />
+                                    <select class="form-select col-12" aria-label="Default select example">
+                                        <option selected>Pilih jenis UMKM disini... </option>
+                                        <option value="1">Makanan</option>
+                                        <option value="2">Minuman</option>
+                                        <option value="3">Jasa</option>
+                                        <option value="3">Sembako</option>
+                                        <option value="3">Jajanan</option>
+                                        <option value="3">Elektronik</option>
+                                        <option value="3">Material</option>
+                                        <option value="3">Lainnya</option>
+                                      </select>
+                                </div>
+                                {{-- END JENISUMKM --}}
+
                                 {{-- BEGIN ALAMAT UMKM --}}
                                 <div class="form-group">
                                     <x-basic.label for="alamat-umkm" value="Alamat UMKM" required="true" />
@@ -116,7 +133,38 @@
                                 {{-- BEGIN ESTIMASI BAGI HASIL --}}
                                 <div class="form-group">
                                     <x-basic.label for="estimate" class="form-label" value="Estimasi Bagi Hasil" required="true" />
-                                    <x-basic.input type="text" name="estimate" :error="$errors->first('estimate')" placeholder="masukan jumlah estimasi bagi hasil kamu disini..." />
+                                    <select class="form-select col-12" aria-label="Default select example">
+                                        <option selected>Pilih Estimasi Bagi Hasil Disini...</option>
+                                        <option value="1">2%</option>
+                                        <option value="2">3%</option>
+                                        <option value="3">4%</option>
+                                        <option value="3">5%</option>
+                                        <option value="3">6%</option>
+                                        <option value="3">7%</option>
+                                        <option value="3">8%</option>
+                                        <option value="3">9%</option>
+                                        <option value="3">10%</option>
+                                        <option value="3">11%</option>
+                                        <option value="3">12%</option>
+                                        <option value="3">13%</option>
+                                        <option value="3">14%</option>
+                                        <option value="3">15%</option>
+                                        <option value="3">16%</option>
+                                        <option value="3">17%</option>
+                                        <option value="3">18%</option>
+                                        <option value="3">19%</option>
+                                        <option value="3">20%</option>
+                                        <option value="3">21%</option>
+                                        <option value="3">22%</option>
+                                        <option value="3">23%</option>
+                                        <option value="3">24%</option>
+                                        <option value="3">25%</option>
+                                        <option value="3">26%</option>
+                                        <option value="3">27%</option>
+                                        <option value="3">28%</option>
+                                        <option value="3">29%</option>
+                                        <option value="3">30%</option>
+                                      </select>
                                 </div>
                                 {{-- END ESTIMASI BAGI HASIL --}}
 
