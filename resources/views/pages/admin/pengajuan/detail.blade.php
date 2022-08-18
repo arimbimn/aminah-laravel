@@ -21,20 +21,35 @@
                     <dt class="col-sm-5">Alamat Tempat Tinggal</dt>
                     <dd class="col-sm-7">{{ $borrower->address }}</dd>
 
-                    <dt class="col-sm-5">Nomor Rekening Pemilik UMKM</dt>
-                    <dd class="col-sm-7">{{ $borrower->account_number }}</dd>
-
                     <dt class="col-sm-5">Nomor Telepon/HP Pemilik UMKM</dt>
                     <dd class="col-sm-7">{{ $borrower->phone_number }}</dd>
 
                     <dt class="col-sm-5">Email Pemilik UMKM</dt>
                     <dd class="col-sm-7">{{ $borrower->email }}</dd>
 
+                    <dt class="col-sm-5">Nomor Rekening Pemilik UMKM</dt>
+                    <dd class="col-sm-7">{{ $borrower->account_number }}</dd>
+
+                    <dt class="col-sm-5">Nama Pemilik Rekening</dt>
+                    <dd class="col-sm-7">{{ $borrower->account_name }}</dd>
+
+                    <dt class="col-sm-5">Nama Bank</dt>
+                    <dd class="col-sm-7">{{ $borrower->bank_name}}</dd>
+
                     <dt class="col-sm-5">Pendapatan per bulan UMKM</dt>
                     <dd class="col-sm-7">{{ $borrower->borrower_monthly_income }}</dd>
 
                     <dt class="col-sm-5">Jumlah Pengajuan Pendanaan</dt>
                     <dd class="col-sm-7">{{ $borrower->borrower_first_submission }}</dd>
+
+                    <dt class="col-sm-5">Tujuan Pengajuan Pendanaan</dt>
+                    <dd class="col-sm-7">{{ $borrower->purpose}}</dd>
+
+                    <dt class="col-sm-5">Jangka Waktu Pendanaan</dt>
+                    <dd class="col-sm-7">{{ $borrower->duration }}</dd>
+
+                    <dt class="col-sm-5">Estimasi Bagi Hasil (dalam %)</dt>
+                    <dd class="col-sm-7">{{ $borrower->profit_sharing_estimate}}</dd>
 
                     <dt class="col-sm-5">Foto KTP Pemilik UMKM</dt>
                     <dd class="col-sm-7">
