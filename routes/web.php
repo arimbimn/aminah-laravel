@@ -83,6 +83,8 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/profile', [LenderController::class, 'profile'])->name('lender.profile');
     Route::get('/lender/mitra', [LenderController::class, 'mitra'])->name('lender.mitra');
     Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
+    Route::get('/lender/profile/lengkapi-profile', [LenderController::class, 'input_profile'])->name('lender.profile.lengkapi-profile');
+
 
     Route::get('/lender/keranjang', [CartController::class, 'cartList'])->name('cart.list');
     Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.store');
