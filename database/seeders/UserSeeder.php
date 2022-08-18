@@ -36,6 +36,20 @@ class UserSeeder extends Seeder
             'role' => 'lender',
         ]);
 
+        User::create([
+            'name' => 'Arimbi Mega N',
+            'email' => 'arimbimegan@gmail.com',
+            'password' => bcrypt('123456'),
+            'role' => 'lender',
+        ]);
+
+        User::create([
+            'name' => 'Arimbi',
+            'email' => 'arimbimega@gmail.com',
+            'password' => bcrypt('12345678'),
+            'role' => 'borrower',
+        ]);
+
         // User::create([
         //     'name' => 'Razka Agniatara',
         //     'email' => 'razka19alpha@gmail.com',
