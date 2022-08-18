@@ -40,7 +40,7 @@
                         <button class="btn btn-outline-danger col-12"><i class="fa fa-download"></i> Tarik Saldo</button>
                     </div>
                     <div class="col-12 mt-2">
-                        <button class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</button>
+                        <a href="/lender/profile/invoice" class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</a>
                     </div>
                 
             </div>
