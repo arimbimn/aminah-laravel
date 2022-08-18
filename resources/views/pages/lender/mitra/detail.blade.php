@@ -13,10 +13,10 @@
         <div class="row">
             <div class="col-6">
                 <img src="{{ asset('') }}/img/aminahImg1.jpg" class="img-thumbnail" alt="lender">
-                <h4><b>{{ $funding->borrower->business_name }}</b></h4>
-                <h5>{{ $funding->borrower->business_address }}</h5>
+                <h4><b>{{ isset($funding->borrower) ? $funding->borrower->business_name : '-' }}</b></h4>
+                <h5>Alamat UMKM : {{ isset($funding->borrower) ?  $funding->borrower->business_address :'-' }}</h5>
                 <h5>Deskripsi & Jenis UMKM</h5>
-                <p>{{ $funding->borrower->description }}</p>
+                <p> Jenis UMKM : {{ isset($funding->borrower) ?  $funding->borrower->description : '-' }}</p>
             </div>
             <div class="col-6">
                 <h3><b>Rincian Pendanaan dari {{ $funding->borrower->business_name }}</b></h3>
@@ -29,35 +29,41 @@
                 <hr>
                 <dl class="row">
                     <dt class="col-sm-6">Nilai per unit pendanaan</dt>
-                    <dd class="col-sm-6">Rp *xxxxxxxx*</dd>
+                    <dd class="col-sm-6">Rp 100.000</dd>
 
                     <dt class="col-sm-6">Estimasi Bagi hasil</dt>
-                    <dd class="col-sm-6">Rp *xxxxxxxx*</dd>
+                    <dd class="col-sm-6">{{ $funding->borrower->profit_sharing_estimate}}%</dd>
 
                     <dt class="col-sm-6">Lama pendanaan</dt>
-                    <dd class="col-sm-6">*12 bulan*</dd>
+                    <dd class="col-sm-6">{{ $funding->borrower->duration }}</dd>
 
                     <dt class="col-sm-6">Siklus bagi hasil</dt>
-                    <dd class="col-sm-6">*Per 1 bulan (12 kali)*</dd>
+                    <dd class="col-sm-6">Per 1 bulan</dd>
 
                     <dt class="col-sm-6">Periode bagi hasil</dt>
-                    <dd class="col-sm-6">*12 bulan*</dd>
+                    <dd class="col-sm-6">{{ $funding->borrower->duration }}</dd>
 
                     <dt class="col-sm-6">Jaminan</dt>
                     <dd class="col-sm-6">*BPKB Motor*</dd>
 
                     <dt class="col-sm-6">Akad</dt>
-                    <dd class="col-sm-6">*Mudharabah*</dd>
+                    <dd class="col-sm-6">-</dd>
                 </dl>
 
                 <hr>
 
                 <h4>Danai sebesar:</h4>
-                <h3><b>Rp *xxx.xxx*</b></h3>
-                <p>Estimasi bagi hasil: Rp *xx.xxx*. Sisa *x* unit</p>
-                <p>*gambar form yg angka nya nambah*</p>
+                <h3><b>Rp100.000</b></h3>
+                <p>Estimasi bagi hasil: {{ $funding->borrower->profit_sharing_estimate}} %. Sisa *x* unit</p>
                 <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block mb-2">
-                    <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-check-square"></i> Danai mitra sekarang!</button>
+                    <form action="/cart" method="post">
+                        <input type="hidden" value="{{ $funding->borrower->id }}" name="id">
+                        <input type="hidden" value="{{ $funding->borrower->business_name }}" name="name">
+                        <input type="hidden" value="100000" name="price">
+                        <input type="hidden" value="{{ $funding->borrower->business_image }}" name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-check-square" {{ $funding->borrower->dana_terkumpul_persen == 100 ? 'disabled' : '' }}></i> Danai mitra sekarang!</button>
+                    </form>
                 </div>
             </div>
         </div>
