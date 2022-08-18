@@ -10,9 +10,9 @@
                             {{-- BEGIN CARD HEADER --}}
                             <div class="card-header">
                                 <div class="register-logo mt-0 mb-0">
-                                    <a href="/">
+                                    <a href="/mitra/profile">
                                         <img src="{{ asset('img') }}/Aminah2.png" width="150" alt="">
-                                        <h4 class="register-box-msg">SELAMAT DATANG CALON MITRA!</h4>
+                                        <h4 class="register-box-msg">FORMULIR PENGAJUAN PENDANAAN</h4>
                                     </a>
                                 </div>
                             </div>
@@ -21,6 +21,34 @@
                             {{-- BEGIN CARD BODY --}}
                             <div class="card-body">
                                 <p class="login-box-msg">Harap isi data dibawah ini dengan benar</p>
+                                
+                                {{-- BEGIN NAMA PEMILIK UMKM --}}
+                                <div class="form-group">
+                                    <x-basic.label for="pemilikName" value="Nama Pemilik UMKM" required="true" />
+                                    <x-basic.input type="text" name="pemilikName" :error="$errors->first('pemilikName')" placeholder="masukkan nama anda disini..." />
+                                </div>
+                                {{-- END NAMA PEMILIK UMKM --}}
+
+                                {{-- BEGIN NO HP PEMILIK UMKM --}}
+                                <div class="form-group">
+                                    <x-basic.label for="noHp" value="Nomor Hp Pemilik UMKM" required="true" />
+                                    <x-basic.input type="text" name="noHp" :error="$errors->first('noHp')" placeholder="masukkan nomor HP anda disini..." />
+                                </div>
+                                {{-- END NO HP PEMILIK UMKM --}}
+
+                                {{-- BEGIN NIK PEMILIK UMKM --}}
+                                <div class="form-group">
+                                    <x-basic.label for="nik" value="NIK Pemilik UMKM" required="true" />
+                                    <x-basic.input type="text" name="nik" :error="$errors->first('nik')" placeholder="masukkan NIK anda disini..." />
+                                </div>
+                                {{-- END NIK PEMILIK UMKM --}}
+
+                                {{-- BEGIN ALAMAT PEMILIK UMKM --}}
+                                <div class="form-group">
+                                    <x-basic.label for="alamat" value="Alamat Pemilik UMKM" required="true" />
+                                    <x-basic.input type="text" name="alamat" :error="$errors->first('alamat')" placeholder="masukkan alamat anda disini..." />
+                                </div>
+                                {{-- END ALAMAT PEMILIK UMKM --}}
 
                                 {{-- BEGIN NAMA-UMKM --}}
                                 <div class="form-group">
@@ -43,31 +71,52 @@
                                 </div>
                                 {{-- END PENDAPATAN UMKM --}}
 
+                                {{-- BEGIN NAMA PEMILIK REKENING --}}
+                                <div class="form-group">
+                                    <x-basic.label for="pemilikRekeningName" value="Nama Pemilik Rekening" required="true" />
+                                    <x-basic.input type="text" name="pemilikRekeningName" :error="$errors->first('pemilikRekeningName')" placeholder="masukkan nama pemilik rekening anda disini..." />
+                                </div>
+                                {{-- END NAMA PEMILIK REKENING --}}
+
+                                {{-- BEGIN NOMOR REKENING --}}
+                                <div class="form-group">
+                                    <x-basic.label for="nomorRekening" value="Nomor Rekening" required="true" />
+                                    <x-basic.input type="text" name="nomorRekening" :error="$errors->first('nomorRekening')" placeholder="masukkan nomor rekening anda disini..." />
+                                </div>
+                                {{-- END NOMOR REKENING --}}
+
+                                {{-- BEGIN NAMA BANK --}}
+                                <div class="form-group">
+                                    <x-basic.label for="bankName" value="Nama Bank" required="true" />
+                                    <x-basic.input type="text" name="bankName" :error="$errors->first('bankName')" placeholder="masukkan nama bank dari rekening anda disini..." />
+                                </div>
+                                {{-- END NAMA BANK --}}
+
                                 {{-- BEGIN JUMLAH PENGAJUAN --}}
                                 <div class="form-group">
-                                    <x-basic.label for="amount" class="form-label" value="Jumlah Pengajuan" required="true" />
-                                    <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. mis : 10000" />
+                                    <x-basic.label for="amount" class="form-label" value="Jumlah Pengajuan Pendanaan" required="true" />
+                                    <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. harus kelipatan 100000 mis : 1000000" />
                                 </div>
                                 {{-- END JUMLAH PENGAJUAN --}}
                                 
                                 {{-- BEGIN LAMA PENDANAAN --}}
                                 <div class="form-group">
-                                    <x-basic.label for="amount" class="form-label" value="Jumlah Pengajuan" required="true" />
-                                    <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. mis : 10000" />
+                                    <x-basic.label for="duration" class="form-label" value="Jangka Waktu Pendanaan" required="true" />
+                                    <x-basic.input type="text" name="duration" :error="$errors->first('duration')" placeholder="masukkan jangka waktu pendanaan kamu disin. mis :  12 bulan" />
                                 </div>
                                 {{-- END LAMA PENDANAAN --}}
                                 
                                 {{-- BEGIN TUJUAN PENDANAAN --}}
                                 <div class="form-group">
-                                    <x-basic.label for="amount" class="form-label" value="Jumlah Pengajuan" required="true" />
-                                    <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. mis : 10000" />
+                                    <x-basic.label for="purpose" class="form-label" value="Tujuan Pengajuan" required="true" />
+                                    <x-basic.input type="text" name="purpose" :error="$errors->first('purpose')" placeholder="masukkan nama, jumlah, dan harga barang yang ingin kami bantu beli secara detail" />
                                 </div>
                                 {{-- END TUJUAN PENDANAAN --}}
                                 
                                 {{-- BEGIN ESTIMASI BAGI HASIL --}}
                                 <div class="form-group">
-                                    <x-basic.label for="amount" class="form-label" value="Jumlah Pengajuan" required="true" />
-                                    <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. mis : 10000" />
+                                    <x-basic.label for="estimate" class="form-label" value="Estimasi Bagi Hasil" required="true" />
+                                    <x-basic.input type="text" name="estimate" :error="$errors->first('estimate')" placeholder="masukan jumlah estimasi bagi hasil kamu disini..." />
                                 </div>
                                 {{-- END ESTIMASI BAGI HASIL --}}
 
