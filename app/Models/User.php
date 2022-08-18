@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo(Lender::class, 'email', 'email');
     }
 
+    public function borrower()
+    {
+        return $this->belongsTo(Borrower::class, 'email', 'email');
+    }
+
     public function scopeAdmin($query)
     {
         $query->where('role', 'admin');
