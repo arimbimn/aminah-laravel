@@ -5,7 +5,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
             <h2>Beranda</h2>
-            <p>Selamat datang di beranda kamu, *nama lender* !</p>
+            <p>Selamat datang di beranda kamu, {{ Auth::user()->name }} !</p>
         </div>
     </div><!-- End Breadcrumbs -->
 
@@ -38,11 +38,18 @@
                     </div>
                     {{-- BEGIN CARD BODY --}}
                     <div class="card-body">
+                        
                         <table class="table table-responsive" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th class="text-left">Nama</th>
+                                    <th class="pl-5 text-left lg:text-right lg:pl-0">
+                                        <span class="hidden lg:inline">Tujuan Pengajuan</span>
+                                    </th>
+                                    <th class="pl-5 text-left lg:text-right lg:pl-0">
+                                        <span class="hidden lg:inline">Rincian</span>
+                                    </th>
                                     <th class="pl-5 text-left lg:text-right lg:pl-0">
                                         <span class="hidden lg:inline">Jumlah Unit</span>
                                     </th>
@@ -59,9 +66,37 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="#">
+                                            <a href="/admin/mitra/detail/{{ $item->id }}">
                                                 <p class="mb-2 md:ml-4">{{ $item->name }}</p>
                                             </a>
+                                        </td>
+                                        <td>
+                                            <p class=" mb-2 md:ml-4">*isinya tujuan pengajuan yg ada 
+                                                di form waktu borrower isi buat ajukan pendanaan*</p>
+                                        </td>
+                                        <td>
+                                            <p class=" mb-2 md:ml-4">
+                                                <dl class="row">
+                                
+                                                    <dt class="col-sm-6"><small>Estimasi Bagi hasil</small></dt>
+                                                    <dd class="col-sm-6">5 %</dd>
+                                
+                                                    <dt class="col-sm-6"><small>Lama pendanaan</small></dt>
+                                                    <dd class="col-sm-6">12 bulan</dd>
+                                
+                                                    <dt class="col-sm-6"><small>Siklus bagi hasil</small></dt>
+                                                    <dd class="col-sm-6">Per 1 bulan</dd>
+                                
+                                                    <dt class="col-sm-6"><small>Periode bagi hasil</small></dt>
+                                                    <dd class="col-sm-6">12 bulan</dd>
+                                
+                                                    <dt class="col-sm-6"><small>Jaminan</small></dt>
+                                                    <dd class="col-sm-6">*BPKB Motor*</dd>
+                                
+                                                    <dt class="col-sm-6"><small>Akad</small></dt>
+                                                    <dd class="col-sm-6">-</dd>
+                                                </dl>
+                                            </p>
                                         </td>
                                         <td class="justify-center mt-6 md:justify-end md:flex">
                                             <div class="h-10 w-28">
@@ -70,7 +105,7 @@
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $item->id }}">
                                                         <input min="1" type="number" name="quantity" value="{{ $item->quantity }}" class="text-center form-inline" />
-                                                        <button type="submit" class="btn btn-primary"><i class="fa fa-refresh"></i> Update</button>
+                                                        <button type="submit" class="btn btn-primary mt-3"><i class="fa fa-refresh"></i> Update</button>
                                                     </form>
                                                 </div>
                                             </div>
