@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data-keuangan" class="nav-link {{ $title === 'Aminah | Data Keuangan Aminah' ? 'active' : '' }}">
+                    <a href="/admin/data-keuangan" class="nav-link {{ $title === 'keuangan' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Data Keuangan Aminah
@@ -85,11 +85,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
                         <i class="nav-icon fas fa-sign-out"></i>
                         <p>
                             Logout
                         </p>
+                        <form id="logout-form" action="@if (Route::has('logout')) {{ route('logout') }} @endif" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </a>
                 </li>
             </ul>
