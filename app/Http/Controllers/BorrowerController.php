@@ -14,7 +14,7 @@ class BorrowerController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::with('borrower')->find($id);
-        // dd($user->borrower);
+        // dd($user->borrower->phone_number);
 
         $data = array(
             'title' => "Aminah | Profile",
@@ -22,7 +22,7 @@ class BorrowerController extends Controller
             'user' => $user,
         );
 
-        return view('pages/borrower/profile_borrower', $data);
+        return view('pages.borrower.profile_borrower', $data);
     }
 
     public function pengajuan_pendanaan()
@@ -36,7 +36,6 @@ class BorrowerController extends Controller
 
     public function storeBorrower(Request $request)
     {
-
         $this->validate($request, [
             'pemilikName'           => 'required',
             'noHp'                  => 'required',
@@ -78,6 +77,7 @@ class BorrowerController extends Controller
 
         $borrower = new Borrower();
         $borrower->name = $request->input('pemilikName');
+        $borrower->email = isset(Auth::user()->email) ? Auth::user()->email : null;
         $borrower->phone_number = $request->input('noHp');
         $borrower->nik = $request->input('nik');
         $borrower->address = $request->input('alamat');
