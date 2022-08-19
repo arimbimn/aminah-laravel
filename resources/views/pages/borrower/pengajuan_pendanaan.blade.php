@@ -21,11 +21,11 @@
                             {{-- BEGIN CARD BODY --}}
                             <div class="card-body">
                                 <p class="login-box-msg">Harap isi data dibawah ini dengan benar</p>
-                                
+
                                 {{-- BEGIN NAMA PEMILIK UMKM --}}
                                 <div class="form-group">
                                     <x-basic.label for="pemilikName" value="Nama Pemilik UMKM" required="true" />
-                                    <x-basic.input type="text" name="pemilikName" :error="$errors->first('pemilikName')" placeholder="masukkan nama anda disini..." />
+                                    <x-basic.input exist="{{ Auth::user()->name }}" type="text" name="pemilikName" :error="$errors->first('pemilikName')" placeholder="masukkan nama anda disini..." />
                                 </div>
                                 {{-- END NAMA PEMILIK UMKM --}}
 
@@ -60,17 +60,12 @@
                                 {{-- BEGIN JENIS UMKM --}}
                                 <div class="form-group">
                                     <x-basic.label for="jenisUmkm" value="Jenis UMKM" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example" name="jenisUmkm">
+                                    <select class="form-select col-12 form-control" aria-label="Default select example" name="jenisUmkm">
                                         <option selected>Pilih jenis UMKM disini... </option>
-                                        <option value="1">Makanan</option>
-                                        <option value="2">Minuman</option>
-                                        <option value="3">Jasa</option>
-                                        <option value="4">Sembako</option>
-                                        <option value="5">Jajanan</option>
-                                        <option value="6">Elektronik</option>
-                                        <option value="7">Material</option>
-                                        <option value="8">Lainnya</option>
-                                      </select>
+                                        @foreach ($jenis as $index => $item)
+                                            <option value="{{ $index + 1 }}" @if (old('jenisUmkm') == $index + 1) selected @endif>{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 {{-- END JENISUMKM --}}
 
@@ -79,7 +74,7 @@
                                     <x-basic.label for="umkmAddress" value="Alamat UMKM" required="true" />
                                     <x-basic.input type="text" name="umkmAddress" :error="$errors->first('umkmAddress')" placeholder="masukkan alamat usaha anda disini..." />
                                 </div>
-                                {{-- END ALAMAT UMKM--}}
+                                {{-- END ALAMAT UMKM --}}
 
                                 {{-- BEGIN PENDAPATAN UMKM --}}
                                 <div class="form-group">
@@ -115,70 +110,35 @@
                                     <x-basic.input type="text" name="amount" :error="$errors->first('amount')" placeholder="masukkan jumlah pengajuan kamu. harus kelipatan 100000 mis : 1000000" />
                                 </div>
                                 {{-- END JUMLAH PENGAJUAN --}}
-                                
+
                                 {{-- BEGIN LAMA PENDANAAN --}}
                                 <div class="form-group">
                                     <x-basic.label for="duration" class="form-label" value="Jangka Waktu Pendanaan" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example" name="duration">
+                                    <select class="form-select col-12 form-control" aria-label="Default select example" name="duration">
                                         <option selected>Pilih jangka waktu pendanaan</option>
-                                        <option value="1">1 bulan</option>
-                                        <option value="2">2 bulan</option>
-                                        <option value="3">3 bulan</option>
-                                        <option value="4">4 bulan</option>
-                                        <option value="5">5 bulan</option>
-                                        <option value="6">6 bulan</option>
-                                        <option value="7">7 bulan</option>
-                                        <option value="8">8 bulan</option>
-                                        <option value="9">9 bulan</option>
-                                        <option value="10">10 bulan</option>
-                                        <option value="11">11 bulan</option>
-                                        <option value="12">12 bulan</option>
-                                      </select>
+                                        @for ($i = 1; $i <= 12; $i++)
+                                            <option value="{{ $i }}" @if (old('duration') == $i) selected @endif>{{ $i }} bulan</option>
+                                        @endfor
+                                    </select>
                                 </div>
                                 {{-- END LAMA PENDANAAN --}}
-                                
+
                                 {{-- BEGIN TUJUAN PENDANAAN --}}
                                 <div class="form-group">
                                     <x-basic.label for="purpose" class="form-label" value="Tujuan Pengajuan" required="true" />
                                     <x-basic.input type="text" name="purpose" :error="$errors->first('purpose')" placeholder="masukkan nama, jumlah, dan harga barang yang ingin kami bantu beli secara detail" />
                                 </div>
                                 {{-- END TUJUAN PENDANAAN --}}
-                                
+
                                 {{-- BEGIN ESTIMASI BAGI HASIL --}}
                                 <div class="form-group">
                                     <x-basic.label for="estimate" class="form-label" value="Estimasi Bagi Hasil" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example" name="estimate">
+                                    <select class="form-select col-12 form-control" aria-label="Default select example" name="estimate">
                                         <option selected>Pilih Estimasi Bagi Hasil Disini...</option>
-                                        <option value="2">2%</option>
-                                        <option value="3">3%</option>
-                                        <option value="4">4%</option>
-                                        <option value="5">5%</option>
-                                        <option value="6">6%</option>
-                                        <option value="7">7%</option>
-                                        <option value="8">8%</option>
-                                        <option value="9">9%</option>
-                                        <option value="10">10%</option>
-                                        <option value="11">11%</option>
-                                        <option value="12">12%</option>
-                                        <option value="14">13%</option>
-                                        <option value="15">14%</option>
-                                        <option value="15">15%</option>
-                                        <option value="16">16%</option>
-                                        <option value="17">17%</option>
-                                        <option value="18">18%</option>
-                                        <option value="19">19%</option>
-                                        <option value="20">20%</option>
-                                        <option value="21">21%</option>
-                                        <option value="22">22%</option>
-                                        <option value="23">23%</option>
-                                        <option value="24">24%</option>
-                                        <option value="25">25%</option>
-                                        <option value="26">26%</option>
-                                        <option value="27">27%</option>
-                                        <option value="28">28%</option>
-                                        <option value="29">29%</option>
-                                        <option value="30">30%</option>
-                                      </select>
+                                        @for ($i = 2; $i <= 30; $i++)
+                                            <option value="{{ $i }}" @if (old('estimate') == $i) selected @endif>{{ $i }}%</option>
+                                        @endfor
+                                    </select>
                                 </div>
                                 {{-- END ESTIMASI BAGI HASIL --}}
 
@@ -194,7 +154,7 @@
                                 </div>
                                 {{-- END FOTO KTP --}}
 
-                                {{-- BEGIN FOTO SIU--}}
+                                {{-- BEGIN FOTO SIU --}}
                                 <div class="form-group">
                                     <label for="file-siu" class="form-label">Foto Surat Izin Usaha (SIU) (unggah foto siu disini)</label>
                                     <input class="form-control" name="file-siu" type="file" id="file-siu">
@@ -217,7 +177,7 @@
                                     @enderror
                                 </div>
                                 {{-- END FOTO UMKM --}}
-                                
+
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="approvedCheck" name="approvedCheck">
