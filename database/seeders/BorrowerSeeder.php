@@ -37,5 +37,11 @@ class BorrowerSeeder extends Seeder
             'profit_sharing_estimate' => '10',
             'is_active' => '1',
         ]);
+
+        Borrower::factory()
+            ->count(50)
+            // ->state(['role' => 'borrower'])
+            // ->has(Borrower::factory()->count(1), 'borrower')
+            ->create();
     }
 }

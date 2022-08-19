@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Borrower;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -65,6 +66,8 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->count(50)
+            // ->state(['role' => 'borrower'])
+            // ->has(Borrower::factory()->count(1), 'borrower')
             ->create();
     }
 }
