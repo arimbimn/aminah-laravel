@@ -33,7 +33,7 @@ class BorrowerSeeder extends Seeder
             'account_number' => '1234534311',
             'bank_name' => 'Mandiri',
             'purpose' => 'Membeli sebuah 2 kulkas seharga Rp5.000.000, sebuah kompor dengan harga Rp2.000.000, dan membeli sebuah peralatan masak seharga Rp3.000.000',
-            'duration' => '10 bulan',
+            'duration' => '10',
             'profit_sharing_estimate' => '10',
             'is_active' => '1',
         ]);
