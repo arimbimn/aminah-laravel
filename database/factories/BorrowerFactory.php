@@ -19,51 +19,32 @@ class BorrowerFactory extends Factory
         $name = fake()->name();
         $email = fake()->safeEmail();
         $city = fake()->city();
+        $phone_number = fake()->randomElement(['0812', '0838', '0856']) . fake()->randomNumber(8, true);
+        $bank_name = fake()->randomElement(['BNI', 'Mandiri', 'BCA', 'BSI', 'BRI']);
+        $account_number = fake()->randomNumber(9, true);
+        $business_name = fake()->company();
         return [
             'name' => $name,
             'email' => $email,
-            'phone_number' => '081284951176',
+            'phone_number' => $phone_number,
             'nik' => '3172031904980002',
             'address' => $city,
             'status' => 'Pending',
             'ktp_image' => '20220812064922100_ktp.JPG',
-            'business_name' => 'Coklat',
+            'business_name' => $business_name,
             'business_image' => 'aminahImg4.JPG',
             'business_address' => $city,
             'siu_image' => '20220812064922100_siu.JPG',
-            'borrower_monthly_income' => '100000',
-            'borrower_first_submission' => '100000',
+            'borrower_monthly_income' => fake()->randomElement([1000000, 2000000, 300000, 4000000, 5000000]),
+            'borrower_first_submission' => fake()->randomElement([1000000, 2000000, 300000, 4000000, 5000000]),
             'account_name' =>  $name,
-            'account_number' => '123456789',
-            'bank_name' => fake()->randomElement(['BNI', 'Mandiri', 'BCA', 'BSI', 'BRI']),
+            'account_number' => $account_number,
+            'bank_name' => $bank_name,
             'purpose' => 'Membeli sebuah 2 kulkas seharga Rp5.000.000, sebuah kompor dengan harga Rp2.000.000, dan membeli sebuah peralatan masak seharga Rp3.000.000',
-            'duration' => '1',
-            'profit_sharing_estimate' => '10',
+            'duration' => strval(fake()->numberBetween(1, 12)),
+            'profit_sharing_estimate' => fake()->numberBetween(3, 30),
             'is_active' => '1',
             'created_at' => now(),
         ];
-
-        // return [
-        //     'name' => 'Razka Agniatara',
-        //     'email' => 'razka19alpha@gmail.com',
-        //     'phone_number' => '081284951176',
-        //     'nik' => '3172031904980002',
-        //     'address' => 'Jakarta',
-        //     'status' => 'Pending',
-        //     'ktp_image' => '20220812064922100_ktp.JPG',
-        //     'business_name' => 'WEW Coklat',
-        //     'business_image' => 'aminahImg4.JPG',
-        //     'business_address' => 'Jakarta',
-        //     'siu_image' => '20220812064922100_siu.JPG',
-        //     'borrower_monthly_income' => '2000000',
-        //     'borrower_first_submission' => '10000000',
-        //     'account_name' => 'Razka Agniatara',
-        //     'account_number' => '1234534311',
-        //     'bank_name' => 'Mandiri',
-        //     'purpose' => 'Membeli sebuah 2 kulkas seharga Rp5.000.000, sebuah kompor dengan harga Rp2.000.000, dan membeli sebuah peralatan masak seharga Rp3.000.000',
-        //     'duration' => '10 bulan',
-        //     'profit_sharing_estimate' => '10',
-        //     'is_active' => '1',
-        // ];
     }
 }

@@ -65,9 +65,16 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory()
-            ->count(50)
-            // ->state(['role' => 'borrower'])
-            // ->has(Borrower::factory()->count(1), 'borrower')
+            ->count(500)
+            ->state(['role' => 'borrower'])
+            ->has(
+                Borrower::factory()
+                    ->count(1)
+                    ->state(function (array $attributes, User $user) {
+                        return ['name' => $user->name, 'account_name' => $user->name];
+                    }),
+                'borrower'
+            )
             ->create();
     }
 }
