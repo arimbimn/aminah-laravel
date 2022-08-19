@@ -77,8 +77,7 @@
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">Status Pengajuan</th>
-                                <th scope="col">Nama Barang</th>
-                                <th scope="col">Harga Barang</th>
+                                <th scope="col">Tujuan Pengajuan</th>
                                 <th scope="col">Jangka Waktu Pengajuan</th>
                                 <th scope="col">Estimasi Bagi Hasil</th>
                                 <th scope="col">Nama Lender</th>
@@ -88,11 +87,10 @@
                             @php $i = 1; @endphp
                             <tr>
                                 <th>@php $i++ @endphp</th>
-                                <td> - </td>
-                                <td> - </td>
-                                <td> - </td>
-                                <td> - </td>
-                                <td> - </td>
+                                <td>{{ isset($user->borrower) ? $user->borrower->status :'-' }}</td>
+                                <td>{{ isset($user->borrower) ? $user->borrower->purpose :'-' }}</td>
+                                <td>{{ isset($user->borrower) ? $user->borrower->duration :'-' }}</td>
+                                <td>{{ isset($user->borrower) ? $user->borrower->profit_sharing_estimate :'-' }}</td>
                                 <td> - </td>
                             </tr>
                         </tbody>
