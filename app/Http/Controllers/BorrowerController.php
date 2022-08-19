@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Borrower;
 use App\Models\BorrowerStatusType;
+use App\Models\BusinessType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,11 +28,13 @@ class BorrowerController extends Controller
 
     public function pengajuan_pendanaan()
     {
+        $jenis = BusinessType::all();
 
         $data = array(
             'title' => "Aminah | Form Pengajuan Pendanaan",
+            'jenis' => $jenis,
         );
-        return view('pages/borrower/pengajuan_pendanaan', $data);
+        return view('pages.borrower.pengajuan_pendanaan', $data);
     }
 
     public function storeBorrower(Request $request)

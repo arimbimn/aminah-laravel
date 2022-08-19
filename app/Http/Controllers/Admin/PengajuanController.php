@@ -12,7 +12,7 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        $records = Borrower::pending()->paginate(50);
+        $records = Borrower::pending()->latest()->paginate(50);
 
         $breadcrumbs = [
             [
