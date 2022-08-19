@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-12">
-                    <form action="/mitra/daftar" method="post" enctype="multipart/form-data">
+                    <form action="/mitra/pengajuan" method="post" enctype="multipart/form-data">
                         @csrf
                         {{-- BEGIN CARD --}}
                         <div class="card card-yellow">
@@ -60,23 +60,23 @@
                                 {{-- BEGIN JENIS UMKM --}}
                                 <div class="form-group">
                                     <x-basic.label for="jenisUmkm" value="Jenis UMKM" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example">
+                                    <select class="form-select col-12" aria-label="Default select example" name="jenisUmkm">
                                         <option selected>Pilih jenis UMKM disini... </option>
                                         <option value="1">Makanan</option>
                                         <option value="2">Minuman</option>
                                         <option value="3">Jasa</option>
-                                        <option value="3">Sembako</option>
-                                        <option value="3">Jajanan</option>
-                                        <option value="3">Elektronik</option>
-                                        <option value="3">Material</option>
-                                        <option value="3">Lainnya</option>
+                                        <option value="4">Sembako</option>
+                                        <option value="5">Jajanan</option>
+                                        <option value="6">Elektronik</option>
+                                        <option value="7">Material</option>
+                                        <option value="8">Lainnya</option>
                                       </select>
                                 </div>
                                 {{-- END JENISUMKM --}}
 
                                 {{-- BEGIN ALAMAT UMKM --}}
                                 <div class="form-group">
-                                    <x-basic.label for="alamat-umkm" value="Alamat UMKM" required="true" />
+                                    <x-basic.label for="umkmAddress" value="Alamat UMKM" required="true" />
                                     <x-basic.input type="text" name="umkmAddress" :error="$errors->first('umkmAddress')" placeholder="masukkan alamat usaha anda disini..." />
                                 </div>
                                 {{-- END ALAMAT UMKM--}}
@@ -119,7 +119,21 @@
                                 {{-- BEGIN LAMA PENDANAAN --}}
                                 <div class="form-group">
                                     <x-basic.label for="duration" class="form-label" value="Jangka Waktu Pendanaan" required="true" />
-                                    <x-basic.input type="text" name="duration" :error="$errors->first('duration')" placeholder="masukkan jangka waktu pendanaan kamu disin. mis :  12 bulan" />
+                                    <select class="form-select col-12" aria-label="Default select example" name="duration">
+                                        <option selected>Pilih jangka waktu pendanaan</option>
+                                        <option value="1">1 bulan</option>
+                                        <option value="2">2 bulan</option>
+                                        <option value="3">3 bulan</option>
+                                        <option value="4">4 bulan</option>
+                                        <option value="5">5 bulan</option>
+                                        <option value="6">6 bulan</option>
+                                        <option value="7">7 bulan</option>
+                                        <option value="8">8 bulan</option>
+                                        <option value="9">9 bulan</option>
+                                        <option value="10">10 bulan</option>
+                                        <option value="11">11 bulan</option>
+                                        <option value="12">12 bulan</option>
+                                      </select>
                                 </div>
                                 {{-- END LAMA PENDANAAN --}}
                                 
@@ -133,37 +147,37 @@
                                 {{-- BEGIN ESTIMASI BAGI HASIL --}}
                                 <div class="form-group">
                                     <x-basic.label for="estimate" class="form-label" value="Estimasi Bagi Hasil" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example">
+                                    <select class="form-select col-12" aria-label="Default select example" name="estimate">
                                         <option selected>Pilih Estimasi Bagi Hasil Disini...</option>
-                                        <option value="1">2%</option>
-                                        <option value="2">3%</option>
-                                        <option value="3">4%</option>
-                                        <option value="3">5%</option>
-                                        <option value="3">6%</option>
-                                        <option value="3">7%</option>
-                                        <option value="3">8%</option>
-                                        <option value="3">9%</option>
-                                        <option value="3">10%</option>
-                                        <option value="3">11%</option>
-                                        <option value="3">12%</option>
-                                        <option value="3">13%</option>
-                                        <option value="3">14%</option>
-                                        <option value="3">15%</option>
-                                        <option value="3">16%</option>
-                                        <option value="3">17%</option>
-                                        <option value="3">18%</option>
-                                        <option value="3">19%</option>
-                                        <option value="3">20%</option>
-                                        <option value="3">21%</option>
-                                        <option value="3">22%</option>
-                                        <option value="3">23%</option>
-                                        <option value="3">24%</option>
-                                        <option value="3">25%</option>
-                                        <option value="3">26%</option>
-                                        <option value="3">27%</option>
-                                        <option value="3">28%</option>
-                                        <option value="3">29%</option>
-                                        <option value="3">30%</option>
+                                        <option value="2">2%</option>
+                                        <option value="3">3%</option>
+                                        <option value="4">4%</option>
+                                        <option value="5">5%</option>
+                                        <option value="6">6%</option>
+                                        <option value="7">7%</option>
+                                        <option value="8">8%</option>
+                                        <option value="9">9%</option>
+                                        <option value="10">10%</option>
+                                        <option value="11">11%</option>
+                                        <option value="12">12%</option>
+                                        <option value="14">13%</option>
+                                        <option value="15">14%</option>
+                                        <option value="15">15%</option>
+                                        <option value="16">16%</option>
+                                        <option value="17">17%</option>
+                                        <option value="18">18%</option>
+                                        <option value="19">19%</option>
+                                        <option value="20">20%</option>
+                                        <option value="21">21%</option>
+                                        <option value="22">22%</option>
+                                        <option value="23">23%</option>
+                                        <option value="24">24%</option>
+                                        <option value="25">25%</option>
+                                        <option value="26">26%</option>
+                                        <option value="27">27%</option>
+                                        <option value="28">28%</option>
+                                        <option value="29">29%</option>
+                                        <option value="30">30%</option>
                                       </select>
                                 </div>
                                 {{-- END ESTIMASI BAGI HASIL --}}
