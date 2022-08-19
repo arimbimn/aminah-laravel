@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Razka Agniatara',
             'email' => 'razka173@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'role' => 'admin',
         ]);
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Arimbi Mega Ningrum',
             'email' => 'arimbimega1@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'role' => 'admin',
         ]);
@@ -32,6 +34,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Razka Agniatara',
             'email' => 'razka19beta@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'role' => 'lender',
         ]);
@@ -39,6 +42,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Arimbi Mega N',
             'email' => 'arimbimegan@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'role' => 'lender',
         ]);
@@ -46,15 +50,21 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Arimbi',
             'email' => 'arimbimega@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
             'role' => 'borrower',
         ]);
 
-        // User::create([
-        //     'name' => 'Razka Agniatara',
-        //     'email' => 'razka19alpha@gmail.com',
-        //     'password' => bcrypt('123456'),
-        //     'role' => 'borrower',
-        // ]);
+        User::create([
+            'name' => 'Razka Agniatara',
+            'email' => 'razka19alpha@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'role' => 'borrower',
+        ]);
+
+        User::factory()
+            ->count(50)
+            ->create();
     }
 }
