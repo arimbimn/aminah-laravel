@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('ktp_image')->nullable();
             $table->string('business_name')->nullable();
+            $table->string('business_type')->nullable();
             $table->string('business_image')->nullable();
             $table->text('business_address')->nullable();
             $table->string('siu_image')->nullable();
@@ -32,7 +33,7 @@ return new class extends Migration
             $table->string('account_number')->nullable();
             $table->string('bank_name')->nullable();
             $table->text('purpose')->nullable();
-            $table->string('duration')->nullable();
+            $table->integer('duration')->nullable();
             $table->integer('profit_sharing_estimate')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
