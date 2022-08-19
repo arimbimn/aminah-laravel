@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function borrower()
     {
-        return $this->belongsTo(Borrower::class, 'email', 'email');
+        return $this->hasOne(Borrower::class, 'email', 'email');
     }
 
     public function scopeAdmin($query)
