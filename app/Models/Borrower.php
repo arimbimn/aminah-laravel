@@ -54,6 +54,11 @@ class Borrower extends Model
         return $this->hasMany(Funding::class, 'borrower_id', 'id');
     }
 
+    public function funding()
+    {
+        return $this->hasOne(Funding::class, 'borrower_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'email', 'email');
