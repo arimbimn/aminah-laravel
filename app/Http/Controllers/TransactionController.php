@@ -10,9 +10,9 @@ class TransactionController extends Controller
     {
 
         $data = array(
-            'title' => 'Aminah | Form Invoice Transaksi',
+            'title' => 'Aminah | Detail Transaksi',
             'active' => 'profile',
-            'page' => 'Form Invoice Transaksi',
+            'page' => 'Detail Transaksi',
         );
         return view('pages.transaction.invoice', $data);
     }

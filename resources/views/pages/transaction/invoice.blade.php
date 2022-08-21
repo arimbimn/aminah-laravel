@@ -1,162 +1,182 @@
-<x-registration-layout title="{{ isset($title) ? $title : 'Aminah' }}">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-12">
-                    <form action="/mitra/daftar" method="post" enctype="multipart/form-data">
+@extends('layouts.user.lender.template')
+
+@section('content')
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Checkout</h2>
+            <p>Detail transaksi dari {{ Auth::user()->name }}!</p>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Checkout</h2>
+                <p>business_name</p>
+            </div>
+            <div class="card col-lg-12 mb-3">
+                <div class="card-header">
+                  Rincian Usaha
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="card-body text-dark">
+                                <img src="{{ asset('') }}/img/testimonials.jpg" class="img-thumbnail" alt="" width="50" onerror="this.onerror=null;this.scr='https://via.placeholder.com/1080x720.png?text=Business%20Image';">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-body text-dark">
+                              <p class="card-title"><b>Nama Usaha</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="card-body text-dark">
+                              <p class="card-title"><b>Harga per Unit</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="card-body text-dark">
+                              <p class="card-title"><b>Jumlah Unit</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card-body text-dark">
+                              <p class="card-title"><b>Total Harga Unit</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="card-body text-dark">
+                              <p class="card-title">business_name</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="card-body text-dark">
+                              <p class="card-title">*harga per unit*</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="card-body text-dark">
+                              <p class="card-title">*jumlah unit*</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card-body text-dark">
+                              <p class="card-title">*total harga unit*</p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="col-lg-12">
+                            <div class="card-body text-dark">
+                              <p class="card-title"><b>Tujuan Pendanaan</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card-body text-dark">
+                              <p class="card-title">purpose</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-lg-12 mb-3">
+                <div class="card-header">
+                Rincian Pembayaran
+                </div>
+                <div class="card-body">
+                    <form class="row g-3" action="/lender/check" method="post" enctype="multipart/form-data">
                         @csrf
-                        {{-- BEGIN CARD --}}
-                        <div class="card card-yellow">
-                            {{-- BEGIN CARD HEADER --}}
-                            <div class="card-header">
-                                <div class="register-logo mt-0 mb-0">
-                                    <a href="/lender/profile">
-                                        <img src="{{ asset('img') }}/Aminah2.png" width="150" alt="">
-                                        <h4 class="register-box-msg">FORMULIR TRANSAKSI</h4>
-                                    </a>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <p class="card-title"><b>No. Rekening Pembayaran</b></p>
                                 </div>
                             </div>
-                            {{-- END CARD HEADER --}}
 
-                            {{-- BEGIN CARD BODY --}}
-                            <div class="card-body">
-                                <p class="login-box-msg">Harap isi data dibawah ini dengan benar</p>
-                                
-                                {{-- BEGIN NAMA --}}
-                                <div class="form-group">
-                                    <x-basic.label for="nama" value="Nama Lengkap Pengirim" required="true" />
-                                    <x-basic.input type="text" name="nama" :error="$errors->first('nama')" placeholder="masukkan nama kamu disini..." />
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <p class="card-title"><b>Total Jumlah Pendanaan</b></p>
                                 </div>
-                                {{-- END NAMA --}}
+                            </div>
 
-                                {{-- BEGIN TANGGAL TRANSAKSI --}}
-                                <div class="form-group">
-                                    <x-basic.label for="tanggalTransaksi" value="Tanggal Transaksi" required="true" />
-                                    <x-basic.input type="date" name="tanggalTransaksi" :error="$errors->first('tanggalTransaksi')" />
+                            <div class="col-lg-3">
+                                <div class="card-body text-dark">
+                                    <p class="card-title"><b>Metode Pembayaran</b></p>
                                 </div>
-                                {{-- END TANGGAL TRANSAKSI --}}
+                            </div>
 
-                                {{-- BEGIN JENIS TRANSAKSI --}}
-                                <div class="form-group">
-                                    <x-basic.label for="jenistransaksi" value="Jenis Transaksi" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example">
-                                        <option selected>Pilih jenis transaksi </option>
-                                        <option value="1">Pengisian Saldo Lender</option>
-                                        <option value="2">Pembayaran Bagi Hasil</option>
-                                      </select>
+                            <div class="col-lg-3">
+                                <div class="card-body text-dark">
+                                    <p class="card-title"><b>Unggah Bukti Transaksi</b></p>
                                 </div>
-                                {{-- END JENIS TRANSAKSI --}}
+                            </div>
 
-                                {{-- BEGIN NAMA PEMILIK REKENING PENGIRIM --}}
-                                <div class="form-group">
-                                    <x-basic.label for="pengirimName" value="Nama Pemilik Rekening (Pengirim)" required="true" />
-                                    <x-basic.input type="text" name="pengirimName" :error="$errors->first('pengirimName')" placeholder="masukkan nama pemilik rekening anda disini..." />
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <p class="card-title">aksi</p>
                                 </div>
-                                {{-- END NAMA PEMILIK REKENING PENGIRIM --}}
+                            </div>
 
-                                {{-- BEGIN NOMOR REKENING PENGIRIM --}}
-                                <div class="form-group">
-                                    <x-basic.label for="nomorRekening" value="Nomor Rekening" required="true" />
-                                    <x-basic.input type="text" name="nomorRekening" :error="$errors->first('nomorRekening')" placeholder="masukkan nomor rekening anda disini..." />
+                        
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <p class="card-title"><b>AMINAH</b></p>
+                                    <p class="card-title"><small>Rekening : 123456</small></p>
                                 </div>
-                                {{-- END NOMOR REKENING PENGIRIM --}}
+                            </div>
 
-                                {{-- BEGIN NAMA BANK PENGIRIM --}}
-                                <div class="form-group">
-                                    <x-basic.label for="bankName" value="Nama Bank" required="true" />
-                                    <x-basic.input type="text" name="bankName" :error="$errors->first('bankName')" placeholder="masukkan nama bank dari rekening anda disini..." />
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <p class="card-title">*total jumlah pendanaan*</p>
                                 </div>
-                                {{-- END NAMA BANK PENGIRIM --}}
+                            </div>
 
-                                <hr class="mt-5 mb-2">
-                                <p>Kirim ke data berikut:</p>
-                                {{-- BEGIN NAMA PEMILIK REKENING PENERIMA --}}
-                                <h2><b>AMINAH</h2>
-                                {{-- END NAMA PEMILIK REKENING PENERIMA --}}
-                                
-                                {{-- BEGIN NOMOR REKENING PENERIMA --}}
-                                <p>Nomor Rekening : 12345678 </b> </p>
-                                {{-- END NOMOR REKENING PENERIMA --}}
-
-                                {{-- BEGIN NAMA BANK PENERIMA --}}
-                                <p><small>BRI</small></p>
-                                {{-- END NAMA BANK PENERIMA --}}
-
-                                <hr class="mt-2 mb-5">
-
-                                {{-- BEGIN FOTO STRUK PEMBAYARAN --}}
-                                <div class="form-group">
-                                    <label for="file-bayar" class="form-label">Foto Bukti Pembayaran (unggah foto bukti transaksi anda disini) </label>
-                                    <input class="form-control" name="file-bayar" type="file" id="file-bayar">
-                                    @error('file-diri')
-                                        <div class="text text-danger">
-                                            <small>{{ $message }}</small>
-                                        </div>
-                                    @enderror
+                            <div class="col-3">
+                                <div class="card-body text-dark">
+                                    <select class="form-select col-3 form-control" aria-label="Default select example" name="jenisKelamin">
+                                        <option selected>Pilih metode pembayaran</option>
+                                        <option value="1">Transfer Bank</option>
+                                    </select>
                                 </div>
-                                {{-- END FOTO STRUK PEMBAYARAN --}}
-                                
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="approvedCheck" name="approvedCheck">
-                                        <label class="form-check-label" for="approvedCheck">
-                                            Saya menyatakan bahwa data yang saya masukan adalah benar
-                                        </label>
-                                    </div>
-                                    @error('approvedCheck')
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="card-body text-dark">
+                                    <input class="form-control" name="file-bukti-transaksi" type="file" id="file-bukti-transaksi">
+                                    @error('file-bukti-transaksi')
                                         <div class="text text-danger">
                                             <small>{{ $message }}</small>
                                         </div>
                                     @enderror
                                 </div>
                             </div>
-                            {{-- END CARD BODY --}}
-                            {{-- BEGIN CARD FOOTER --}}
-                            <div class="card-footer">
-                                <div class="row d-flex justify-content-start mb-2">
-                                    <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block mb-2">
-                                        <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-upload"></i> Isi Saldo Saya Sekarang!</button>
-                                    </div>
-                                    <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block">
-                                        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary col-12"><i class="fa fa-undo"></i>
-                                            Kembali</a>
-                                    </div>
+
+                            <div class="col-lg-2">
+                                <div class="card-body text-dark">
+                                    <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-check-square-o"></i> Bayar Sekarang!</button>
                                 </div>
                             </div>
-                            {{-- END CARD FOOTER --}}
+
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
     </section>
+    {{-- END MITRA CONTENT --}}
 
-    @push('page_css')
-        <style>
-            .content-wrapper {
-                background-color: lightgreen;
-                background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-                background-size: cover;
-                background-repeat: no-repeat;
-                position: relative;
-            }
 
-            .register-card-body,
-            .card {
-                border-top-left-radius: 40px;
-                border-top-right-radius: 40px;
-                border-bottom-left-radius: 40px;
-                border-bottom-right-radius: 40px;
-                margin-top: 50px;
-                margin-bottom: 50px;
-                padding-bottom: 30px;
-            }
-
-            .card-header {
-                border-top-left-radius: 30px;
-                border-top-right-radius: 30px;
-            }
-        </style>
-    @endpush
-
-</x-registration-layout>
+@endsection
