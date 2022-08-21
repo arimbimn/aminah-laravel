@@ -49,10 +49,10 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Arimbi',
-            'email' => 'arimbimega@gmail.com',
+            'name' => 'Arimbi Mega Ningrum',
+            'email' => 'arimbimega123@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('123456'),
             'role' => 'borrower',
         ]);
 
