@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Funding;
 use App\Models\Borrower;
+use App\Models\Lender;
+use App\Models\LenderStatusType;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -92,5 +94,69 @@ class LenderController extends Controller
         );
 
         return view('pages.lender.input_profile', $data);
+    }
+
+    public function storeLender(Request $request)
+    {
+        $this->validate($request, [
+            'nama'                  => 'required',
+            'jenisKelamin'          => 'required',
+            'tempatLahir'           => 'required',
+            'tanggalLahir'          => 'required',
+            'noHp'                  => 'required',
+            'nik'                   => 'required',
+            'alamat'                => 'required',
+            'pemilikRekeningName'   => 'required',
+            'nomorRekening'         => 'required',
+            'bankName'              => 'required',
+            'file-diri'             => 'required|file|mimes:jpg,jpeg,png,pdf',
+            'file-ktp'              => 'required|file|mimes:jpg,jpeg,png,pdf',
+            'approvedCheck'         => 'required',
+        ]);
+
+        $status = LenderStatusType::where('name', 'Verified')->first();
+
+        $current = date('Ymdhis');
+        $rand = rand(1, 100);
+        $fileName = $current . $rand;
+
+        $fileDiri = $request->file('file-diri');
+        $fileKTP = $request->file('file-ktp');
+
+        $fileNameDiri = $fileName . '_diri.' . $fileDiri->getClientOriginalExtension();
+        $fileNameKTP = $fileName . '_ktp.' . $fileKTP->getClientOriginalExtension();
+        $fileDiri->move('profile', $fileNameDiri);
+        $fileKTP->move('profile', $fileNameKTP);
+
+        $lender = new lender();
+        $lender->name = $request->input('nama');
+        $lender->jenis_kelamin = $request->input('jenisKelamin');
+        $lender->tempat_lahir = $request->input('tempatLahir');
+        $lender->tanggal_lahir = $request->input('tanggalLahir');
+        $lender->status = isset($status) ? $status->name : 'Verified';
+        $lender->hp_number = $request->input('noHp');
+        $lender->nik = $request->input('nik');
+        $lender->address = $request->input('alamat');
+        $lender->account_name = $request->input('pemilikRekeningName');
+        $lender->account_number = $request->input('nomorRekening');
+        $lender->bank_name = $request->input('bankName');
+        $lender->lender_image = isset($fileNameDiri) ? $fileNameDiri : null;
+        $lender->ktp_image = isset($fileNameKTP) ? $fileNameKTP : null;
+        $saving = $lender->save();
+
+        if ($saving) {
+            return redirect()
+                ->to('/lender/profile')
+                ->with([
+                    'success' => 'Berhasil mengajukan pendanaan'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
     }
 }

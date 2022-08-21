@@ -46,6 +46,7 @@
             </div>
         </div>
 
+        @if ($user->lender)
         <div class="row mt-4">
             <div class="col">
                 <table class="table">
@@ -75,5 +76,6 @@
                 </table>
             </div>
         </div>
+        @endif
     </div>
 @endsection

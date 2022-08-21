@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-12">
-                    <form action="/mitra/daftar" method="post" enctype="multipart/form-data">
+                    <form action="/lender/data" method="post" enctype="multipart/form-data">
                         @csrf
                         {{-- BEGIN CARD --}}
                         <div class="card card-yellow">
@@ -25,14 +25,14 @@
                                 {{-- BEGIN NAMA LENDER --}}
                                 <div class="form-group">
                                     <x-basic.label for="nama" value="Nama Lengkap (Sesuai KTP)" required="true" />
-                                    <x-basic.input type="text" name="nama" :error="$errors->first('nama')" placeholder="masukkan nama kamu disini..." />
+                                    <x-basic.input exist="{{ Auth::user()->name }}" type="text" name="nama" :error="$errors->first('nama')" placeholder="masukkan nama kamu disini..." />
                                 </div>
                                 {{-- END NAMA LENDER --}}
 
                                 {{-- BEGIN JENIS KELAMIN LENDER --}}
                                 <div class="form-group">
                                     <x-basic.label for="jenisKelamin" value="Jenis Kelamin" required="true" />
-                                    <select class="form-select col-12" aria-label="Default select example">
+                                    <select class="form-select col-12 form-control" aria-label="Default select example" name="jenisKelamin">
                                         <option selected>Pilih jenis kelamin </option>
                                         <option value="1">Laki - laki</option>
                                         <option value="2">Perempuan</option>
@@ -50,7 +50,7 @@
                                 {{-- BEGIN TANGGAL LAHIR LENDER --}}
                                 <div class="form-group">
                                     <x-basic.label for="tanggalLahir" value="Tanggal Lahir (Sesuai KTP)" required="true" />
-                                    <x-basic.input type="date" name="tanggalLahir" :error="$errors->first('tanggalLahir')" />
+                                    <x-basic.input class="form-select col-12 form-control" type="date" name="tanggalLahir" :error="$errors->first('tanggalLahir')" />
                                 </div>
                                 {{-- END TANGGAL LAHIR LENDER --}}
 
