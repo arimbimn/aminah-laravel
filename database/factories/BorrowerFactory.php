@@ -34,6 +34,7 @@ class BorrowerFactory extends Factory
             'business_name' => $business_name,
             'business_image' => 'aminahImg4.JPG',
             'business_address' => $city,
+            'business_type' => 'Lainnya',
             'siu_image' => '20220812064922100_siu.JPG',
             'borrower_monthly_income' => fake()->randomElement([1000000, 2000000, 300000, 4000000, 5000000]),
             'borrower_first_submission' => fake()->randomElement([1000000, 2000000, 300000, 4000000, 5000000]),
