@@ -49,7 +49,12 @@ class User extends Authenticatable
 
     public function borrower()
     {
-        return $this->hasOne(Borrower::class, 'email', 'email');
+        return $this->hasMany(Borrower::class, 'email', 'email');
+    }
+
+    public function latestBorrower()
+    {
+        return $this->hasOne(Borrower::class, 'email', 'email')->latest();
     }
 
     public function scopeAdmin($query)

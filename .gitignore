@@ -15,4 +15,6 @@ yarn-error.log
 /.idea
 /.vscode
 
-/public/pendaftaran
+/public/pendaftaran/*.jpg
+/public/pendaftaran/*.png
+/public/pendaftaran/*.jpeg

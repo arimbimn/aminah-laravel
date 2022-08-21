@@ -14,13 +14,14 @@ class BorrowerController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $user = User::with('borrower')->find($id);
-        // dd($user->borrower->phone_number);
+        $user = User::with('latestBorrower')->find($id);
+        $pengajuan = Borrower::where('email', Auth::user()->email)->latest()->first();
 
         $data = array(
             'title' => "Aminah | Profile",
             'active' => 'profile',
             'user' => $user,
+            'pengajuan' => isset($pengajuan) ? $pengajuan : null,
         );
 
         return view('pages.borrower.profile_borrower', $data);
