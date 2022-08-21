@@ -18,3 +18,6 @@ yarn-error.log
 /public/pendaftaran/*.jpg
 /public/pendaftaran/*.png
 /public/pendaftaran/*.jpeg
+/public/profile/*.jpg
+/public/profile/*.png
+/public/profile/*.jpeg
