@@ -102,6 +102,10 @@ class CartController extends Controller
 
     public function checkOut()
     {
+        if (Auth::user()->checkProfile == null) {
+            return redirect()->route('cart.list');
+        }
+
         $userID = Auth::user()->id;
         $cartItems = \Cart::session($userID)->getContent();
         foreach ($cartItems as $cartItem) {
