@@ -17,13 +17,13 @@
                 <a href="/mitra/profile" class="btn btn-outline-success mb-2 col-12"> Tarik Saldo</a>
             </div>
             <div class="col-lg-6 col-12">
-                <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12" {{ $user->borrower->status == 'pending' ? 'disabled' : '' }}> Ajukan Pendanaan</a>
+                <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12"> Ajukan Pendanaan</a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
-                <img src="{{ asset('') }}/img/{{ isset($user->borrower) ? $user->borrower->business_image : 'user.png' }}" class="img-thumbnail" alt="{{ isset($user->borrower) ? $user->borrower->business_name : '-' }}" width="200">
+                <img src="{{ isset($user->borrower) ? $user->borrower->business_image : 'user.png' }}" class="img-thumbnail" alt="{{ isset($user->borrower) ? $user->borrower->business_name : '-' }}" width="200">
                 <h4><b>{{ isset($user->borrower) ? $user->borrower->business_name : '-' }}</b></h4>
                 <dl class="row">
                     <dt class="col-sm-5">Nama Pemilik Usaha</dt>
