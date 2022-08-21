@@ -8,7 +8,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('pages/login/login_lender_borrower');
+        return view('pages.login.user');
     }
     public function login_admin()
     {
