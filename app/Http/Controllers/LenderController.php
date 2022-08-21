@@ -75,7 +75,7 @@ class LenderController extends Controller
         $id = Auth::user()->id;
         $user = User::with('lender')->find($id);
         // dd($user->lender);
-        dd(Auth::user()->checkProfile != null);
+        // dd(Auth::user()->checkProfile != null);
 
         $data = array(
             'title' => "Aminah | Profile",
