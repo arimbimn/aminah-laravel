@@ -8,7 +8,6 @@ use App\Models\Borrower;
 use App\Models\Lender;
 use App\Models\LenderStatusType;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LenderController extends Controller
@@ -76,6 +75,7 @@ class LenderController extends Controller
         $id = Auth::user()->id;
         $user = User::with('lender')->find($id);
         // dd($user->lender);
+        dd(Auth::user()->checkProfile != null);
 
         $data = array(
             'title' => "Aminah | Profile",
@@ -83,20 +83,20 @@ class LenderController extends Controller
             'user' => $user,
         );
 
-        return view('pages.lender.profile_lender', $data);
+        return view('pages.lender.profile.index', $data);
     }
 
-    public function input_profile()
+    public function editProfile()
     {
         $data = array(
             'title' => "Aminah | Form Lengkapi Profile",
             'active' => 'profile',
         );
 
-        return view('pages.lender.input_profile', $data);
+        return view('pages.lender.profile.edit', $data);
     }
 
-    public function storeLender(Request $request)
+    public function updateProfile(Request $request)
     {
         $this->validate($request, [
             'nama'                  => 'required',
@@ -130,6 +130,7 @@ class LenderController extends Controller
 
         $lender = new lender();
         $lender->name = $request->input('nama');
+        $lender->email = Auth::user()->email;
         $lender->jenis_kelamin = $request->input('jenisKelamin');
         $lender->tempat_lahir = $request->input('tempatLahir');
         $lender->tanggal_lahir = $request->input('tanggalLahir');
@@ -148,7 +149,7 @@ class LenderController extends Controller
             return redirect()
                 ->to('/lender/profile')
                 ->with([
-                    'success' => 'Berhasil mengajukan pendanaan'
+                    'success' => 'Berhasil mengubah profil'
                 ]);
         } else {
             return redirect()
