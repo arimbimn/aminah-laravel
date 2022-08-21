@@ -198,6 +198,7 @@ return [
         // custom providers
         Mews\Captcha\CaptchaServiceProvider::class, // captcha
         Darryldecode\Cart\CartServiceProvider::class, // cart
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // ide-helper
 
     ],
 
