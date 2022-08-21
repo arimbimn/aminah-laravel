@@ -147,7 +147,7 @@
               <div class="col-6">
                 <form action="{{ route('cart.checkout') }}" method="POST">
                   @csrf
-                  <button class="btn btn-outline-success col-12"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                  <button class="btn btn-outline-success col-12 {{ Auth::user()->checkProfile == null ? 'disabled' : '' }}"><i class="fa fa-shopping-cart"></i> Checkout</button>
                 </form>
               </div>
             </div>
