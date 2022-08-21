@@ -14,10 +14,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Tanggal Uang Masuk</th>
-                                    <th scope="col">Nama Mitra</th>
-                                    <th scope="col">Nama Pemilik Mitra</th>
-                                    <th scope="col">Nomor Rekening</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Status Transaksi</th>
+                                    <th scope="col">Jenis Transaksi</th>
+                                    <th scope="col">Nama Pengirim</th>
                                     <th scope="col">Jumlah Dana</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -28,12 +28,12 @@
                             @endphp
                                     <tr>
                                         <th>@php $i++ @endphp</th>
-                                        <td>*tanggal pembayaran*</td>
-                                        <td>*nama mitra*</td>
-                                        <td>*nama pemilik mitra*</td>
-                                        <td>*nomor rekening*</td>
-                                        <td>*jumlah dana*</td>
-                                        <td><a href="/admin/data-keuangan/detail" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
+                                        <td>transaction_date</td>
+                                        <td>status</td>
+                                        <td>transaction_type</td>
+                                        <td>sender_name</td>
+                                        <td>transaction_amount</td>
+                                        <td><a href="/admin/transaksi/detail" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
                                     </tr>
                                 
                             </tbody>

@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/data-keuangan" class="nav-link {{ $title === 'keuangan' ? 'active' : '' }}">
+                    <a href="/admin/transaksi" class="nav-link {{ $title === 'keuangan' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Data Keuangan Aminah

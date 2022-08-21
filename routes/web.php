@@ -68,8 +68,8 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/admin/pendanaan', [PendanaanController::class, 'index'])->name('admin.funding');
     Route::get('/admin/rincian-pendanaan/detail/{funding}', [PendanaanController::class, 'detail']);
-    Route::get('/admin/data-keuangan', [KeuanganController::class, 'index']);
-    Route::get('/admin/data-keuangan/detail', [KeuanganController::class, 'detail']);
+    Route::get('/admin/transaksi', [KeuanganController::class, 'index']);
+    Route::get('/admin/transaksi/detail', [KeuanganController::class, 'detail']);
 });
 
 // mitra
@@ -87,8 +87,6 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
     Route::get('/lender/profile/edit', [LenderController::class, 'editProfile'])->name('lender.profile.edit');
     Route::post('/lender/profile/update', [LenderController::class, 'updateProfile'])->name('lender.profile.update');
-
-    Route::get('/lender/profile/invoice', [TransactionController::class, 'index'])->name('lender.profile.invoice');
 
 
     Route::get('/lender/keranjang', [CartController::class, 'cartList'])->name('cart.list');
@@ -109,3 +107,6 @@ Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
+
+// invoice
+Route::get('/lender/detail-transaksi', [TransactionController::class, 'index'])->name('lender.invoice');
