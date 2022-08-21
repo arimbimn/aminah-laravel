@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Borrower;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Funding;
+use App\Models\Borrower;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -65,14 +66,22 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory()
-            ->count(500)
+            ->count(100)
             ->state(['role' => 'borrower'])
             ->has(
                 Borrower::factory()
                     ->count(1)
                     ->state(function (array $attributes, User $user) {
-                        return ['name' => $user->name, 'account_name' => $user->name];
-                    }),
+                        return ['name' => $user->name, 'account_name' => $user->name, 'status' => 'Accepted'];
+                    })
+                    ->has(
+                        Funding::factory()
+                            ->count(1)
+                            ->state(function (array $attributes, Borrower $borrower) {
+                                return ['borrower_id' => $borrower->id, 'accepted_fund' => $borrower->borrower_first_submission, 'status' => 'Active'];
+                            }),
+                        'funding'
+                    ),
                 'borrower'
             )
             ->create();
