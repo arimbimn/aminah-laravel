@@ -85,9 +85,8 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/profile', [LenderController::class, 'profile'])->name('lender.profile');
     Route::get('/lender/mitra', [LenderController::class, 'mitra'])->name('lender.mitra');
     Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
-    Route::get('/lender/profile/lengkapi-profile', [LenderController::class, 'input_profile'])->name('lender.profile.lengkapi-profile');
-
-    Route::post('/lender/data', [LenderController::class, 'storeLender']);
+    Route::get('/lender/profile/edit', [LenderController::class, 'editProfile'])->name('lender.profile.edit');
+    Route::post('/lender/profile/update', [LenderController::class, 'updateProfile'])->name('lender.profile.update');
 
     Route::get('/lender/profile/invoice', [TransactionController::class, 'index'])->name('lender.profile.invoice');
 
