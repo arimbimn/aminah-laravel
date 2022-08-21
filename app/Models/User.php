@@ -57,8 +57,30 @@ class User extends Authenticatable
         return $this->hasOne(Borrower::class, 'email', 'email')->latest();
     }
 
+    public function checkProfile()
+    {
+        return $this->hasOne(Lender::class, 'email', 'email')
+            ->where('name', '!=', null)
+            ->where('jenis_kelamin', '!=', null)
+            ->where('tempat_lahir', '!=', null)
+            ->where('tanggal_lahir', '!=', null)
+            ->where('hp_number', '!=', null)
+            ->where('nik', '!=', null)
+            ->where('address', '!=', null);
+    }
+
     public function scopeAdmin($query)
     {
         $query->where('role', 'admin');
+    }
+
+    public function scopeLender($query)
+    {
+        $query->where('role', 'lender');
+    }
+
+    public function scopeBorrower($query)
+    {
+        $query->where('role', 'borrower');
     }
 }
