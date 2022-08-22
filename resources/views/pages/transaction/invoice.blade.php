@@ -99,71 +99,41 @@
                     <form class="row g-3" action="/lender/check" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-2">
-                                <div class="card-body text-dark">
-                                    <p class="card-title"><b>No. Rekening Pembayaran</b></p>
-                                </div>
-                            </div>
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-4">
                                 <div class="card-body text-dark">
                                     <p class="card-title"><b>Total Jumlah Pendanaan</b></p>
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="card-body text-dark">
                                     <p class="card-title"><b>Metode Pembayaran</b></p>
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="card-body text-dark">
-                                    <p class="card-title"><b>Unggah Bukti Transaksi</b></p>
+                                    <p class="card-title">Bayar</p>
                                 </div>
                             </div>
 
-                            <div class="col-lg-2">
-                                <div class="card-body text-dark">
-                                    <p class="card-title">aksi</p>
-                                </div>
-                            </div>
-
-                        
-                            <div class="col-lg-2">
-                                <div class="card-body text-dark">
-                                    <p class="card-title"><b>AMINAH</b></p>
-                                    <p class="card-title"><small>Rekening : 123456</small></p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-2">
+                            <div class="col-lg-4">
                                 <div class="card-body text-dark">
                                     <p class="card-title">*total jumlah pendanaan*</p>
                                 </div>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="card-body text-dark">
                                     <select class="form-select col-3 form-control" aria-label="Default select example" name="jenisKelamin">
                                         <option selected>Pilih metode pembayaran</option>
-                                        <option value="1">Transfer Bank</option>
+                                        <option value="1">Dompet Digital</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
-                                <div class="card-body text-dark">
-                                    <input class="form-control" name="file-bukti-transaksi" type="file" id="file-bukti-transaksi">
-                                    @error('file-bukti-transaksi')
-                                        <div class="text text-danger">
-                                            <small>{{ $message }}</small>
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-2">
+                            <div class="col-lg-4">
                                 <div class="card-body text-dark">
                                     <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-check-square-o"></i> Bayar Sekarang!</button>
                                 </div>
