@@ -3,7 +3,7 @@
     <p class="alert alert-warning text text-center">Profil kamu belum lengkap, lengkapi profil kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
   </div>
 @endif
-@if (!Auth::user()->checkProfile)
+@if (!Auth::user()->checkTransaction)
   <div class="row">
     <p class="alert alert-danger text text-center">Ada pembayaran belum selesai, silahkan selesaikan pembayaran kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
   </div>
