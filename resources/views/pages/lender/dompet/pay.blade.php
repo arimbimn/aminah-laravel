@@ -38,6 +38,9 @@
                     @if ($item->status == 'pending')
                       <span class="badge badge-warning">menunggu</span>
                     @endif
+                    @if ($item->status == 'success')
+                      <span class="badge badge-success">berhasil</span>
+                    @endif
                   </td>
                   <td> {{ strtoupper($item->trx_hash) }} </td>
                   <td> Rp.{{ number_format($item->transaction_amount, 0, ',', '.') }} </td>
@@ -73,6 +76,11 @@
     .badge-warning {
       background-color: yellow;
       color: black;
+    }
+
+    .badge-success {
+      background-color: green;
+      color: white;
     }
   </style>
 @endpush
