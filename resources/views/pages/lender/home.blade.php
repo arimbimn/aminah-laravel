@@ -10,6 +10,7 @@
   </div><!-- End Breadcrumbs -->
 
   <div class="container mt-4">
+    @include('layouts.user.notification');
     <div class="row">
       <div class="col">
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">

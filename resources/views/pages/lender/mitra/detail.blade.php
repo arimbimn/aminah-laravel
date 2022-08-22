@@ -10,6 +10,7 @@
   <!-- End Breadcrumbs -->
 
   <div class="container mt-4 mb-4">
+    @include('layouts.user.notification')
     <div class="row">
       <div class="col-6">
         <img class="product-image" src="{{ isset($mitra->borrower) ? asset('pendaftaran/' . $funding->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
