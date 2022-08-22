@@ -25,7 +25,7 @@
           <dd class="col-sm-6">{{ isset($user->lender) ? $user->lender->account_name : '-' }}</dd>
 
           <dt class="col-sm-6">Saldo</dt>
-          <dd class="col-sm-6">Rp 0</dd>
+          <dd class="col-sm-6">Rp.{{ number_format($user->sumAmount(), 0, ',', '.') }}</dd>
 
           <dt class="col-sm-6">Nama Bank</dt>
           <dd class="col-sm-6">{{ isset($user->lender) ? $user->lender->bank_name : '-' }}</dd>
