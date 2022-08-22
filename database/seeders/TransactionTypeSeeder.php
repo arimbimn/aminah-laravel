@@ -39,5 +39,10 @@ class TransactionTypeSeeder extends Seeder
             'name' => 'Penarikan Dana Admin',
             'code' => '5',
         ]);
+
+        TransactionType::create([
+            'name' => 'Pembayaran Pendanaan Lender',
+            'code' => '6',
+        ]);
     }
 }
