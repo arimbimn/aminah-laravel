@@ -10,6 +10,11 @@
   </div><!-- End Breadcrumbs -->
 
   <div class="container mt-4">
+    @if (!Auth::user()->checkProfile)
+      <div class="row">
+        <p class="alert alert-warning text text-center">Profil kamu harus lengkap untuk melakukan checkout. Profil kamu belum lengkap, lengkapi profil kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
+      </div>
+    @endif
     <div class="row">
       <div class="col-12">
         @if ($message = Session::get('success'))
@@ -28,7 +33,6 @@
         @endif
       </div>
     </div>
-    {{--  --}}
     <div class="row">
       <div class="col-12">
         <div class="card mb-5 mt-5">

@@ -11,6 +11,11 @@
   <!-- End Breadcrumbs -->
 
   <div class="container mt-4 mb-4">
+    @if (!Auth::user()->checkProfile)
+      <div class="row">
+        <p class="alert alert-warning text text-center">Profil kamu belum lengkap, lengkapi profil kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
+      </div>
+    @endif
     <div class="row">
       <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
         <img src="{{ asset('') }}/img/testimonials.jpg" class="img-thumbnail" alt="lender" width="200">
