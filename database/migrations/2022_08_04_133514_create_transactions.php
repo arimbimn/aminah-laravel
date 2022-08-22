@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('funding_id');
-            $table->foreignId('lender_id');
-            $table->foreignId('borrower_id');
+            $table->string('transaction_type')->nullable();
             $table->string('status')->nullable();
+            $table->foreignId('funding_id')->nullable();
+            $table->foreignId('lender_id')->nullable();
+            $table->foreignId('borrower_id')->nullable();
             $table->date('transaction_date')->nullable();
             $table->timestamp('transaction_datetime')->nullable();
             $table->string('transaction_approval')->nullable();
-            $table->string('transaction_type')->nullable();
             $table->integer('transaction_amount')->nullable();
             $table->string('recepient_name')->nullable();
             $table->string('sender_name')->nullable();
