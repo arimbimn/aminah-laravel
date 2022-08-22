@@ -28,7 +28,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach (Auth::user()->checkWaiting as $index => $item)
+              @foreach (Auth::user()->lenderRecharge as $index => $item)
                 <tr>
                   <th>{{ $index + 1 }}</th>
                   <td>
