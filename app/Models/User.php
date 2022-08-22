@@ -84,14 +84,14 @@ class User extends Authenticatable
     public function checkIncome()
     {
         return $this->hasMany(Transaction::class)
-            ->where('status', 'accepted')
+            ->whereIn('status', ['accepted', 'success'])
             ->whereIn('transaction_type', ['1', '2']);
     }
 
     public function checkExpense()
     {
         return $this->hasMany(Transaction::class)
-            ->where('status', 'accepted')
+            ->whereIn('status', ['accepted', 'success'])
             ->whereIn('transaction_type', [3]);
     }
 

@@ -69,7 +69,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/pendanaan', [PendanaanController::class, 'index'])->name('admin.funding');
     Route::get('/admin/rincian-pendanaan/detail/{funding}', [PendanaanController::class, 'detail']);
     Route::get('/admin/transaksi', [KeuanganController::class, 'index']);
-    Route::get('/admin/transaksi/detail', [KeuanganController::class, 'detail']);
+    Route::get('/admin/transaksi/detail/{trx_hash}', [KeuanganController::class, 'detail']);
+    Route::get('/admin/transaksi/terima/{trx_hash}', [KeuanganController::class, 'approve']);
+    Route::get('/admin/transaksi/tolak/{trx_hash}', [KeuanganController::class, 'reject']);
 });
 
 // mitra
