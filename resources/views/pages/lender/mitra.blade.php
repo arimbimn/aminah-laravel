@@ -14,12 +14,11 @@
   <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
         @if (isset($mitra) && $mitra != null)
           @foreach ($mitra as $index => $mitra)
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="course-item" id="{{ $mitra->id }}">
-                <img class="product-image" src="{{ isset($mitra->borrower) ? asset('pendaftaran/' . $mitra->borrower->business_image) : asset('img/testimonials.jpg') }}" class="img-fluid" alt="gambar" width="100%">
+                <img class="product-image" src="{{ isset($mitra->borrower) ? asset('pendaftaran/' . $mitra->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
                 <div class="course-content">
                   <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4>{{ isset($mitra->business_type) ? $business_type : 'Lain-lain' }}</h4>

@@ -12,7 +12,7 @@
   <div class="container mt-4 mb-4">
     <div class="row">
       <div class="col-6">
-        <img src="{{ asset('') }}/img/aminahImg1.jpg" class="img-thumbnail" alt="lender">
+        <img class="product-image" src="{{ isset($mitra->borrower) ? asset('pendaftaran/' . $funding->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
         <h4><b>{{ isset($funding->borrower->business_name) ? $funding->borrower->business_name : 'UMKM' }}</b></h4>
         <h5>Alamat UMKM : {{ isset($funding->borrower->business_address) ? $funding->borrower->business_address : '-' }}</h5>
         <h5>Deskripsi & Jenis UMKM</h5>
@@ -71,3 +71,13 @@
     </div>
   </div>
 @endsection
+
+@push('page_scripts')
+  <script>
+    $(document).ready(function() {
+      $(".product-image").on("error", function() {
+        $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
+      });
+    });
+  </script>
+@endpush
