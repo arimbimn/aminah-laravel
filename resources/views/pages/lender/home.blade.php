@@ -122,10 +122,8 @@
 
 @push('page_scripts')
   <script>
-    $(document).ready(function() {
-      $(".product-image").on("error", function() {
-        $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
-      });
+    $(".product-image").on("error", function() {
+      $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
     });
   </script>
 @endpush

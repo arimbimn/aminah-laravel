@@ -32,7 +32,7 @@ class BorrowerFactory extends Factory
             'status' => 'Pending',
             'ktp_image' => '20220812064922100_ktp.JPG',
             'business_name' => $business_name,
-            'business_image' => 'aminahImg4.JPG',
+            'business_image' => null,
             'business_address' => $city,
             'business_type' => 'Lainnya',
             'siu_image' => '20220812064922100_siu.JPG',
