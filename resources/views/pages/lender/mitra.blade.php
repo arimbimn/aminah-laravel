@@ -13,6 +13,7 @@
 
   <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
+      @include('layouts.user.notification')
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
         @if (isset($mitra) && $mitra != null)
           @foreach ($mitra as $index => $mitra)
@@ -58,6 +59,15 @@
     </div>
   </section>
 @endsection
+
+@push('page_css')
+  <style>
+    .courses {
+      margin-top: 1.5rem;
+      padding-top: 0px;
+    }
+  </style>
+@endpush
 
 @push('page_scripts')
   <script>

@@ -11,11 +11,7 @@
   <!-- End Breadcrumbs -->
 
   <div class="container mt-4 mb-4">
-    @if (!Auth::user()->checkProfile)
-      <div class="row">
-        <p class="alert alert-warning text text-center">Profil kamu belum lengkap, lengkapi profil kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
-      </div>
-    @endif
+    @include('layouts.user.notification')
     <div class="row">
       <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
         <img src="{{ asset('') }}/img/testimonials.jpg" class="img-thumbnail" alt="lender" width="200">
@@ -29,7 +25,7 @@
           <dd class="col-sm-6">{{ isset($user->lender) ? $user->lender->account_name : '-' }}</dd>
 
           <dt class="col-sm-6">Saldo</dt>
-          <dd class="col-sm-6">Rp 0</dd>
+          <dd class="col-sm-6">Rp.{{ number_format($user->sumAmount(), 0, ',', '.') }}</dd>
 
           <dt class="col-sm-6">Nama Bank</dt>
           <dd class="col-sm-6">{{ isset($user->lender) ? $user->lender->bank_name : '-' }}</dd>
@@ -44,7 +40,7 @@
           <button class="btn btn-outline-danger col-12"><i class="fa fa-download"></i> Tarik Saldo</button>
         </div>
         <div class="col-12 mt-2">
-          <a href="/lender/profile/invoice" class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</a>
+          <a href="/lender/dompet/isi" class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</a>
         </div>
 
       </div>

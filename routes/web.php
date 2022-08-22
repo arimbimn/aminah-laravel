@@ -95,6 +95,9 @@ Route::middleware('lender')->group(function () {
     Route::post('/remove', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
+    Route::get('/lender/dompet/isi', [TransactionController::class, 'recharge'])->name('lender.recharge');
+    Route::post('/lender/dompet/isi', [TransactionController::class, 'storeRecharge'])->name('lender.recharge.store');
 });
 
 Route::get('/', [HomeController::class, 'index']);

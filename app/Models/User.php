@@ -69,6 +69,36 @@ class User extends Authenticatable
             ->where('address', '!=', null);
     }
 
+    public function checkTransaction()
+    {
+        return $this->hasMany(Transaction::class)
+            ->where('status', 'waiting');
+    }
+
+    public function checkIncome()
+    {
+        return $this->hasMany(Transaction::class)
+            ->where('status', 'accepted')
+            ->whereIn('transaction_type', ['1', '2']);
+    }
+
+    public function checkExpense()
+    {
+        return $this->hasMany(Transaction::class)
+            ->where('status', 'accepted')
+            ->whereIn('transaction_type', [3]);
+    }
+
+    public function sumAmount()
+    {
+        return $this->checkIncome->sum('transaction_amount') - $this->checkExpense->sum('transaction_amount');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function scopeAdmin($query)
     {
         $query->where('role', 'admin');
