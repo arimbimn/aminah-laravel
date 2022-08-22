@@ -69,6 +69,12 @@ class User extends Authenticatable
             ->where('address', '!=', null);
     }
 
+    public function lenderRecharge()
+    {
+        return $this->hasMany(Transaction::class)
+            ->where('transaction_type', 1);
+    }
+
     public function checkWaiting()
     {
         return $this->hasMany(Transaction::class)

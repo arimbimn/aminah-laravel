@@ -11,7 +11,7 @@
   {{-- End Breadcrumbs --}}
 
   <div class="container">
-    @if (isset(Auth::user()->checkWaiting))
+    @if (isset(Auth::user()->lenderRecharge))
       <div class="row mt-4">
         {{-- TABEL PEMBAYARAN --}}
         <div class="col">
@@ -32,7 +32,12 @@
                 <tr>
                   <th>{{ $index + 1 }}</th>
                   <td>
-                    <span class="badge badge-danger">belum bayar</span>
+                    @if ($item->status == 'waiting')
+                      <span class="badge badge-danger">belum bayar</span>
+                    @endif
+                    @if ($item->status == 'pending')
+                      <span class="badge badge-warning">menunggu</span>
+                    @endif
                   </td>
                   <td> {{ strtoupper($item->trx_hash) }} </td>
                   <td> Rp.{{ number_format($item->transaction_amount, 0, ',', '.') }} </td>
@@ -44,6 +49,8 @@
           </table>
         </div>
       </div>
+    @else
+      <p>Belum ada data</p>
     @endif
   </div>
 @endsection
@@ -61,6 +68,11 @@
     .badge-danger {
       background-color: red;
       color: white;
+    }
+
+    .badge-warning {
+      background-color: yellow;
+      color: black;
     }
   </style>
 @endpush

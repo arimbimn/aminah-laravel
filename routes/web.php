@@ -99,6 +99,8 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/dompet/isi', [TransactionController::class, 'recharge'])->name('lender.recharge');
     Route::post('/lender/dompet/isi', [TransactionController::class, 'storeRecharge'])->name('lender.recharge.store');
     Route::get('/lender/dompet/bayar', [TransactionController::class, 'pay'])->name('lender.recharge.pay');
+    Route::get('/lender/dompet/bayar/detail/{trx_hash}', [TransactionController::class, 'payDetail'])->name('lender.recharge.detail');
+    Route::post('/lender/dompet/bayar', [TransactionController::class, 'payStore'])->name('lender.recharge.pay.store');
 });
 
 Route::get('/', [HomeController::class, 'index']);

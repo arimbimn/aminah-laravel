@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('recepient_account_number')->nullable();
             $table->string('sender_account_number')->nullable();
             $table->string('description')->nullable();
+            $table->string('file_image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
