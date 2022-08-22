@@ -21,3 +21,6 @@ yarn-error.log
 /public/profile/*.jpg
 /public/profile/*.png
 /public/profile/*.jpeg
+/public/pembayaran/*.jpg
+/public/pembayaran/*.png
+/public/pembayaran/*.jpeg
