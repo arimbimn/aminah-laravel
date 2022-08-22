@@ -98,6 +98,7 @@ Route::middleware('lender')->group(function () {
 
     Route::get('/lender/dompet/isi', [TransactionController::class, 'recharge'])->name('lender.recharge');
     Route::post('/lender/dompet/isi', [TransactionController::class, 'storeRecharge'])->name('lender.recharge.store');
+    Route::get('/lender/dompet/bayar', [TransactionController::class, 'pay'])->name('lender.recharge.pay');
 });
 
 Route::get('/', [HomeController::class, 'index']);
