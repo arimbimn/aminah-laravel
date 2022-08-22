@@ -15,6 +15,11 @@
         <p class="alert alert-warning text text-center">Profil kamu harus lengkap untuk melakukan checkout. Profil kamu belum lengkap, lengkapi profil kamu <a href="/lender/profile/edit"><strong>disini</strong></a></p>
       </div>
     @endif
+    @if (\Cart::session(Auth::user()->id)->getTotal() > (float) Auth::user()->sumAmount())
+      <div class="row">
+        <p class="alert alert-danger text text-center">Saldo anda tidak cukup, isi saldo <a href="/lender/dompet/isi"><strong>disini</strong></a></p>
+      </div>
+    @endif
     <div class="row">
       <div class="col-12">
         @if ($message = Session::get('success'))

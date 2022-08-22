@@ -102,11 +102,16 @@ class CartController extends Controller
 
     public function checkOut()
     {
+        $userID = Auth::user()->id;
         if (Auth::user()->checkProfile == null) {
+            session()->flash('error', 'Harap lengkapi profil anda terlebih dahulu!');
+            return redirect()->route('cart.list');
+        }
+        if (\Cart::session($userID)->getTotal() > (float)Auth::user()->sumAmount()) {
+            session()->flash('error', 'Maaf, saldo tidak cukup!');
             return redirect()->route('cart.list');
         }
 
-        $userID = Auth::user()->id;
         $cartItems = \Cart::session($userID)->getContent();
         foreach ($cartItems as $cartItem) {
             for ($i = 1; $i <= $cartItem->quantity; $i++) {
