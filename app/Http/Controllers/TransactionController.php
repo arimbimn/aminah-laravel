@@ -58,7 +58,7 @@ class TransactionController extends Controller
         ]);
 
         $trx_hash = $request->input('trx_hash');
-        $fileTrx = $request->input('file_trx');
+        $fileTrx = $request->file('file_trx');
 
         $transaction = Transaction::where('trx_hash', $trx_hash)->first();
 
