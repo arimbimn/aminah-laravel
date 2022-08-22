@@ -45,7 +45,11 @@
                   <td> {{ strtoupper($item->trx_hash) }} </td>
                   <td> Rp.{{ number_format($item->transaction_amount, 0, ',', '.') }} </td>
                   <td> {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </td>
-                  <td><a class="btn btn-success col-12" href="/lender/dompet/bayar/detail/{{ $item->trx_hash }}"><i class="fa fa-credit-card"></i> Bayar</a></td>
+                  <td>
+                    @if ($item->status != 'success')
+                      <a class="btn btn-success col-12" href="/lender/dompet/bayar/detail/{{ $item->trx_hash }}"><i class="fa fa-credit-card"></i> Bayar</a>
+                    @endif
+                  </td>
                 </tr>
               @endforeach
             </tbody>
