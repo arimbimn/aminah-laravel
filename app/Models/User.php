@@ -69,6 +69,17 @@ class User extends Authenticatable
             ->where('address', '!=', null);
     }
 
+    public function checkTransaction()
+    {
+        return $this->hasMany(Transaction::class)
+            ->where('status', 'waiting');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function scopeAdmin($query)
     {
         $query->where('role', 'admin');
