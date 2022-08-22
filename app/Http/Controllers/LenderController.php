@@ -61,6 +61,7 @@ class LenderController extends Controller
             $funding->dana_terkumpul = $dana_terkumpul;
             $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
         }
+
         $data = array(
             "title" => "Aminah | Detail Mitra",
             'active' => 'mitra',

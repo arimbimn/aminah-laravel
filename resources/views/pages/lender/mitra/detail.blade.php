@@ -58,6 +58,7 @@
         <p>Estimasi bagi hasil: {{ $funding->borrower->profit_sharing_estimate }} %. Sisa *x* unit</p>
         <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block mb-2">
           <form action="/cart" method="post">
+            @csrf
             <input type="hidden" value="{{ $funding->borrower->id }}" name="id">
             <input type="hidden" value="{{ $funding->borrower->business_name }}" name="name">
             <input type="hidden" value="100000" name="price">

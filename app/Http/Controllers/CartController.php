@@ -22,8 +22,8 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+        // dd($request);
         $userID = Auth::user()->id;
-
         $funding = Funding::find($request->id);
 
         \Cart::session($userID)->add([
