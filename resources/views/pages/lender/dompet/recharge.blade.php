@@ -3,8 +3,8 @@
 @section('content')
   <div class="breadcrumbs" data-aos="fade-in">
     <div class="container">
-      <h2>{{ isset($funding->borrower->business_name) ? $funding->borrower->business_name : 'Isi Dompet' }}</h2>
-      <p>{{ isset($funding->borrower->buniness_type) ? $funding->borrower->buniness_type : 'Halaman isi dompet akun anda' }}</p>
+      <h2>{{ 'Isi Dompet' }}</h2>
+      <p>{{ 'Halaman isi dompet akun anda' }}</p>
     </div>
   </div>
   <!-- End Breadcrumbs -->

@@ -18,6 +18,16 @@ class TransactionController extends Controller
         return view('pages.transaction.invoice', $data);
     }
 
+    public function pay()
+    {
+        $data = array(
+            'title' => 'Aminah | Pembayaran',
+            'active' => 'profile',
+            'page' => 'Pembayaran',
+        );
+        return view('pages.lender.dompet.pay', $data);
+    }
+
     public function recharge()
     {
         $data = array(

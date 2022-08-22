@@ -69,7 +69,7 @@ class User extends Authenticatable
             ->where('address', '!=', null);
     }
 
-    public function checkTransaction()
+    public function checkWaiting()
     {
         return $this->hasMany(Transaction::class)
             ->where('status', 'waiting');
