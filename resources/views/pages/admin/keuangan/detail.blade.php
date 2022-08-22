@@ -36,10 +36,10 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4">
-                        <button type="button" class="btn btn-danger col-lg-12 reject-button">Tolak</button>
+                        <button type="button" class="btn btn-danger col-lg-12 reject-button">Gagal</button>
                     </div>
                     <div class="col mb-4">
-                        <button type="button" class="btn btn-success col-lg-12 approve-button">Terima</button>
+                        <button type="button" class="btn btn-success col-lg-12 approve-button">Berhasil</button>
                     </div>
                 </div>
             </div>
