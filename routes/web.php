@@ -97,6 +97,7 @@ Route::middleware('lender')->group(function () {
     Route::post('/remove', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::get('/lender/checkout/invoice', [CartController::class, 'invoice'])->name('cart.invoice');
 
     Route::get('/lender/dompet/isi', [TransactionController::class, 'recharge'])->name('lender.recharge');
     Route::post('/lender/dompet/isi', [TransactionController::class, 'storeRecharge'])->name('lender.recharge.store');
@@ -115,6 +116,3 @@ Route::get('/recovery-password', [LoginController::class, 'recovery_password']);
 Route::get('/rincian-pendanaan/detail', [AdminController::class, 'detail_rincian_pendanaan']);
 Route::get('/data-keuangan', [AdminController::class, 'data_keuangan']);
 Route::get('/data-keuangan/detail', [AdminController::class, 'detail_keuangan']);
-
-// invoice
-Route::get('/lender/detail-transaksi', [TransactionController::class, 'index'])->name('lender.invoice');
