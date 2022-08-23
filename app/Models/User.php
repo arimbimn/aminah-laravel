@@ -92,7 +92,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class)
             ->whereIn('status', ['accepted', 'success'])
-            ->whereIn('transaction_type', [3]);
+            ->whereIn('transaction_type', ['3', '6']);
     }
 
     public function sumAmount()

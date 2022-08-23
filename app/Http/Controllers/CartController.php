@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Funding;
 use App\Models\FundingLender;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -133,6 +134,16 @@ class CartController extends Controller
             $fundingLender->trx_hash = md5($userID . $cartItem->id . now());
             $fundingLender->save();
         }
+        $transaction = new Transaction();
+        $transaction->trx_hash = md5($userID . now());
+        $transaction->transaction_type = '6';
+        $transaction->status = 'success';
+        $transaction->user_id = $userID;
+        $transaction->transaction_date = now();
+        $transaction->transaction_datetime = now();
+        $transaction->transaction_amount = \Cart::session($userID)->getTotal();
+        $transaction->save();
+
         \Cart::session($userID)->clear();
         session()->flash('success', 'Berhasil checkout !');
 
