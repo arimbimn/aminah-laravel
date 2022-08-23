@@ -13,10 +13,12 @@ class CartController extends Controller
     public function cartList()
     {
         $userID = Auth::user()->id;
+
+        $cart = \Cart::session($userID)->getContent();
         $data = array(
             'title' => 'Aminah | Keranjang',
             'active' => 'cart',
-            'cartItems' => \Cart::session($userID)->getContent(),
+            'cartItems' => $cart,
         );
         return view('pages.lender.cart', $data);
     }
@@ -117,8 +119,26 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
 
-    public function checkOut()
+    public function invoice()
     {
+        $userID = Auth::user()->id;
+        $cart = \Cart::session($userID)->getContent();
+
+        $data = array(
+            'title' => 'Aminah | Detail Transaksi',
+            'active' => 'cart',
+            'page' => 'Detail Transaksi',
+            'items' => $cart,
+        );
+        return view('pages.transaction.invoice', $data);
+    }
+
+    public function checkOut(Request $request)
+    {
+        $this->validate($request, [
+            'metodePembayaran' => 'required',
+        ]);
+
         $userID = Auth::user()->id;
         if (Auth::user()->checkProfile == null) {
             session()->flash('error', 'Harap lengkapi profil anda terlebih dahulu!');
@@ -130,12 +150,17 @@ class CartController extends Controller
         }
 
         $cartItems = \Cart::session($userID)->getContent();
+        if ($cartItems->count() <= 0) {
+            session()->flash('error', 'Maaf, tidak ada item di keranjang!');
+            return redirect()->route('cart.list');
+        }
+
         foreach ($cartItems as $cartItem) {
             $fundingLender = new FundingLender();
             $fundingLender->status = 'waiting';
             $fundingLender->funding_id = $cartItem->id;
             $fundingLender->lender_id = $userID;
-            $fundingLender->amount = $cartItem->quantity . env('HARGA_UNIT', 100000);
+            $fundingLender->amount = floatval($cartItem->quantity) * floatval(env('HARGA_UNIT', 100000));
             $fundingLender->unit_amount = $cartItem->quantity;
             $fundingLender->trx_hash = md5($userID . $cartItem->id . now());
             $fundingLender->save();
@@ -152,7 +177,6 @@ class CartController extends Controller
 
         \Cart::session($userID)->clear();
         session()->flash('success', 'Berhasil checkout !');
-
-        return redirect()->route('cart.list');
+        return redirect()->to('lender/profile');
     }
 }

@@ -154,10 +154,10 @@
                 </form>
               </div>
               <div class="col-6">
-                <form action="{{ route('cart.checkout') }}" method="POST">
-                  @csrf
-                  <button class="btn btn-outline-success col-12 {{ Auth::user()->checkProfile == null ? 'disabled' : '' }}"><i class="fa fa-shopping-cart"></i> Checkout</button>
-                </form>
+                {{-- <form action="{{ route('cart.checkout') }}" method="POST"> --}}
+                {{-- @csrf --}}
+                <a href="/lender/checkout/invoice" class="btn btn-outline-success col-12 {{ Auth::user()->checkProfile == null ? 'disabled' : '' }}"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                {{-- </form> --}}
               </div>
             </div>
           </div>
