@@ -55,7 +55,7 @@ class LenderController extends Controller
         // dd($funding);
         // dd($borrower->fundings[0]->accepted_fund);
         if ($funding) {
-            $totalUnitTerjual = $funding->fundinglenders->count();
+            $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;

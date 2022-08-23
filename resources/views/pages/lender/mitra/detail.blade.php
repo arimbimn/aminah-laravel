@@ -65,7 +65,7 @@
             <input type="hidden" value="100000" name="price">
             <input type="hidden" value="{{ $funding->borrower->business_image }}" name="image">
             <input type="hidden" value="1" name="quantity">
-            <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-check-square" {{ $funding->borrower->dana_terkumpul_persen == 100 ? 'disabled' : '' }}></i> Danai mitra sekarang!</button>
+            <button type="submit" class="btn btn-outline-success col-12" {{ $funding->dana_terkumpul_persen == 100 ? 'disabled' : '' }}><i class="fa fa-check-square" {{ $funding->borrower->dana_terkumpul_persen == 100 ? 'disabled' : '' }}></i> Danai mitra sekarang!</button>
           </form>
         </div>
       </div>
