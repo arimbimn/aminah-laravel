@@ -26,6 +26,19 @@ class CartController extends Controller
         $userID = Auth::user()->id;
         $funding = Funding::find($request->id);
 
+        $existCart = \Cart::session($userID)->get($request->id);
+        if ($existCart) {
+            $booked = $funding->fundinglenders->sum('unit_amount');
+            $acceptedFund = $funding->accepted_fund;
+            $hargaUnit = env('HARGA_UNIT', 100000);
+            $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
+
+            if ($sisaUnit <= $existCart->quantity) {
+                session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
+                return redirect()->route('cart.list');
+            }
+        }
+
         \Cart::session($userID)->add([
             'id' => $request->id,
             'name' => $request->name,
@@ -36,8 +49,7 @@ class CartController extends Controller
             ),
             'associatedModel' => $funding,
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
-
+        session()->flash('success', 'Berhasil tambah ke keranjang !');
         return redirect()->route('cart.list');
     }
 
@@ -47,7 +59,7 @@ class CartController extends Controller
 
         $funding = Funding::find($request->id);
         if ($funding) {
-            $booked = $funding->fundinglenders->count();
+            $booked = $funding->fundinglenders->sum('unit_amount');
             $acceptedFund = $funding->accepted_fund;
             $hargaUnit = env('HARGA_UNIT', 100000);
             $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
@@ -64,12 +76,10 @@ class CartController extends Controller
                         ],
                     ]
                 );
-                session()->flash('success', 'Keranjang berhasil di update !');
-
+                session()->flash('success', 'Berhasil update keranjang !');
                 return redirect()->route('cart.list');
             } else {
-                session()->flash('error', 'Jumlah unit tidak cukup !');
-
+                session()->flash('error', 'Jumlah unit tidak cukup, gagal update keranjang !');
                 return redirect()->route('cart.list');
             }
         }
@@ -84,7 +94,7 @@ class CartController extends Controller
         $userID = Auth::user()->id;
 
         \Cart::session($userID)->remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
+        session()->flash('success', 'Berhasil hapus unit dari keranjang !');
 
         return redirect()->route('cart.list');
     }
@@ -95,7 +105,7 @@ class CartController extends Controller
 
         \Cart::session($userID)->clear();
 
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+        session()->flash('success', 'Berhasil hapus keranjang !');
 
         return redirect()->route('cart.list');
     }
@@ -114,16 +124,17 @@ class CartController extends Controller
 
         $cartItems = \Cart::session($userID)->getContent();
         foreach ($cartItems as $cartItem) {
-            for ($i = 1; $i <= $cartItem->quantity; $i++) {
-                $fundingLender = new FundingLender();
-                $fundingLender->status = 'waiting';
-                $fundingLender->funding_id = $cartItem->id;
-                $fundingLender->lender_id = $userID;
-                $fundingLender->save();
-            }
+            $fundingLender = new FundingLender();
+            $fundingLender->status = 'waiting';
+            $fundingLender->funding_id = $cartItem->id;
+            $fundingLender->lender_id = $userID;
+            $fundingLender->amount = $cartItem->quantity . env('HARGA_UNIT', 100000);
+            $fundingLender->unit_amount = $cartItem->quantity;
+            $fundingLender->trx_hash = md5($userID . $cartItem->id . now());
+            $fundingLender->save();
         }
         \Cart::session($userID)->clear();
-        session()->flash('success', 'Checkout success !');
+        session()->flash('success', 'Berhasil checkout !');
 
         return redirect()->route('cart.list');
     }

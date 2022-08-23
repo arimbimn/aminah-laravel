@@ -16,7 +16,7 @@ class LenderController extends Controller
     {
         $fundings = Funding::where('is_finished', '0')->active()->limit(2)->latest()->get();
         foreach ($fundings as $funding) {
-            $totalUnitTerjual = $funding->fundinglenders->count();
+            $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;
@@ -35,7 +35,7 @@ class LenderController extends Controller
     {
         $fundings = Funding::where('is_finished', '0')->active()->latest()->get();
         foreach ($fundings as $funding) {
-            $totalUnitTerjual = $funding->fundinglenders->count();
+            $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;

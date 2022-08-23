@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('funding_id');
             $table->foreignId('lender_id');
             $table->string('trx_hash')->nullable();
-            $table->float('amount')->nullable();
+            $table->float('amount', 255, 2)->nullable();
+            $table->integer('unit_amount')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
