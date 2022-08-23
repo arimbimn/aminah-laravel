@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Lender;
 use App\Models\Funding;
 use App\Models\Borrower;
-use App\Models\Lender;
-use App\Models\LenderStatusType;
 use Illuminate\Http\Request;
+use App\Models\FundingLender;
+use App\Models\LenderStatusType;
 use Illuminate\Support\Facades\Auth;
 
 class LenderController extends Controller
@@ -73,13 +74,15 @@ class LenderController extends Controller
 
     public function profile()
     {
-        $id = Auth::user()->id;
-        $user = User::with('lender')->find($id);
+        $userID = Auth::user()->id;
+        $user = User::with('lender')->find($userID);
+        $userFundings = FundingLender::where('lender_id', $userID)->latest()->get();
 
         $data = array(
             'title' => "Aminah | Profile",
             'active' => 'profile',
             'user' => $user,
+            'userFundigs' => $userFundings,
         );
 
         return view('pages.lender.profile.index', $data);

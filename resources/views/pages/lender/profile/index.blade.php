@@ -60,18 +60,21 @@
               </tr>
             </thead>
             <tbody>
-              @php
-                $i = 1;
-              @endphp
-
-              <tr>
-                <th scope="row">@php $i++ @endphp</th>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-              </tr>
-
+              @foreach ($userFundigs as $index => $item)
+                <tr>
+                  <th scope="row">{{ $index + 1 }}</th>
+                  <td>
+                    <span class="badge badge-warning">menunggu</span>
+                  </td>
+                  <td>
+                    {{ \Carbon\Carbon::parse($item->created_at)->toDateString() }}
+                  </td>
+                  <td>
+                    <a href="/lender/mitra/detail/{{ $item->funding->id }}">{{ $item->funding->borrower->business_name }}</a>
+                  </td>
+                  <td> - </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -79,3 +82,30 @@
     @endif
   </div>
 @endsection
+
+@push('page_css')
+  <style>
+    .badge {
+      background-color: whitesmoke;
+      color: black;
+      padding: 4px 8px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .badge-danger {
+      background-color: red;
+      color: white;
+    }
+
+    .badge-warning {
+      background-color: yellow;
+      color: black;
+    }
+
+    .badge-success {
+      background-color: green;
+      color: white;
+    }
+  </style>
+@endpush
