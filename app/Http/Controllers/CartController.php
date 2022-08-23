@@ -26,18 +26,24 @@ class CartController extends Controller
         // dd($request);
         $userID = Auth::user()->id;
         $funding = Funding::find($request->id);
-
-        $existCart = \Cart::session($userID)->get($request->id);
-        if ($existCart) {
+        if ($funding) {
             $booked = $funding->fundinglenders->sum('unit_amount');
             $acceptedFund = $funding->accepted_fund;
             $hargaUnit = env('HARGA_UNIT', 100000);
             $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
+        }
 
+        $existCart = \Cart::session($userID)->get($request->id);
+        if ($existCart) {
             if ($sisaUnit <= $existCart->quantity) {
                 session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
                 return redirect()->route('cart.list');
             }
+        }
+
+        if ($sisaUnit <= $request->quantity) {
+            session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
+            return redirect()->route('cart.list');
         }
 
         \Cart::session($userID)->add([
