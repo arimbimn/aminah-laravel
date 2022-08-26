@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\FundingLender;
 use App\Models\LenderStatusType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class LenderController extends Controller
 {
@@ -32,15 +33,22 @@ class LenderController extends Controller
 
         return view('pages.lender.home', $data);
     }
-    public function mitra()
+    public function mitra(Request $request)
     {
-        $fundings = Funding::where('is_finished', '0')->active()->latest()->get();
+        $fundings = Funding::where('is_finished', '0')->active()->latest()->paginate(6);
         foreach ($fundings as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;
             $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
+        }
+        $borrowers = '';
+        if ($request->ajax()) {
+            foreach ($fundings as $funding) {
+                $borrowers .= View::make("components.card.borrower")->with('mitra', $funding)->render();
+            }
+            return $borrowers;
         }
 
         $data = array(

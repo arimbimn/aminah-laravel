@@ -14,10 +14,10 @@
   <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
       @include('layouts.user.notification')
-      <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row" id="content-item" data-aos="zoom-in" data-aos-delay="100">
         @if (isset($mitra) && $mitra != null)
           @foreach ($mitra as $index => $mitra)
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            {{-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="course-item" id="{{ $mitra->id }}">
                 <img class="product-image" src="{{ isset($mitra->borrower->business_image) ? asset('pendaftaran/' . $mitra->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
                 <div class="course-content">
@@ -50,11 +50,20 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
+            {{-- <x-card.borrower :mitra=$mitra /> --}}
           @endforeach
         @else
           <p class="text text-center">belum ada data mitra.</p>
         @endif
+      </div>
+      <!-- Data Loader -->
+      <div class="auto-load text-center">
+        <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+          <path fill="#000" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+          </path>
+        </svg>
       </div>
     </div>
   </section>
@@ -93,5 +102,42 @@
     $(".product-image").on("error", function() {
       $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
     });
+  </script>
+@endpush
+
+{{-- load more javascript --}}
+@push('page_scripts')
+  <script>
+    var ENDPOINT = "{{ url('/') }}";
+    var page = 1;
+    infinteLoadMore(page);
+    $(window).scroll(function() {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        page++;
+        infinteLoadMore(page);
+      }
+    });
+
+    function infinteLoadMore(page) {
+      $.ajax({
+          url: ENDPOINT + "/lender/mitra?page=" + page,
+          datatype: "html",
+          type: "get",
+          beforeSend: function() {
+            $('.auto-load').show();
+          }
+        })
+        .done(function(response) {
+          if (response.length == 0) {
+            $('.auto-load').html("We don't have more data to display :(");
+            return;
+          }
+          $('.auto-load').hide();
+          $("#content-item").append(response);
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError) {
+          console.log('Server error occured');
+        });
+    }
   </script>
 @endpush
