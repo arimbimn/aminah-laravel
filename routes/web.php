@@ -79,6 +79,7 @@ Route::middleware('borrower')->group(function () {
     Route::get('/mitra/profile', [BorrowerController::class, 'index'])->name('borrower.profile');
     Route::get('/mitra/profile/ajukan-pendanaan', [BorrowerController::class, 'pengajuan_pendanaan'])->name('borrower.profile.ajukan-pendanaan');
     Route::post('/mitra/pengajuan', [BorrowerController::class, 'storeBorrower']);
+    Route::get('/mitra/tarik-saldo/invoice', [BorrowerController::class, 'penarikan_dana'])->name('borrower.penarikan_dana');
 });
 
 // lender

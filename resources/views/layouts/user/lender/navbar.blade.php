@@ -15,12 +15,20 @@
                 <a href="#" class="notification"><i class="fa fa-bell"></i></a>
                 <a href="/lender/keranjang" class="cart {{ isset($active) && $active == 'cart' ? 'active' : '' }}">{{ \Cart::session(Auth::user()->id)->getContent()->count() >= 0? \Cart::session(Auth::user()->id)->getContent()->count(): '' }}<i class="fa fa-shopping-cart"></i></a>
 
+                <li class="dropdown"><a href="#">{{ Auth::user()->name }}<i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown">Logout<i class="fa fa-sign-out"></i></a></li>
+                        <form id="logout-form" action="@if (Route::has('logout')) {{ route('logout') }} @endif" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
         </nav><!-- .navbar -->
 
-        <form action="/logout" method="post">
+        {{-- <form action="/logout" method="post">
             @csrf
             <button type="submit" class="get-started-btn">Keluar</button>
-        </form>
+        </form> --}}
 
     </div>
 </header><!-- End Header -->

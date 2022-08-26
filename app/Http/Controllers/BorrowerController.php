@@ -117,4 +117,14 @@ class BorrowerController extends Controller
                 ]);
         }
     }
+
+    public function penarikan_dana()
+    {
+
+        $data = array(
+            'title' => "Aminah | Invoice Penarikan dana",
+            'active' => 'profile',
+        );
+        return view('pages.borrower.invoice', $data);
+    }
 }
