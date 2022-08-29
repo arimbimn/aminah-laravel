@@ -13,6 +13,7 @@ class BorrowerController extends Controller
 {
     public function index()
     {
+        // dd(Auth::user()->latestBorrower->unfinishedFundings->count());
         $id = Auth::user()->id;
         $user = User::with('latestBorrower')->find($id);
         $pengajuan = Borrower::where('email', Auth::user()->email)->latest()->first();

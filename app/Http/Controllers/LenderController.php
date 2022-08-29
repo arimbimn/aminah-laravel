@@ -35,11 +35,10 @@ class LenderController extends Controller
     }
     public function mitra(Request $request)
     {
-        $fundings = Funding::where('is_finished', '0')->active()->latest()->paginate(6);
+        $fundings = Funding::where('is_finished', '0')->active()->latest()->paginate(9);
         foreach ($fundings as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
-            $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
-            $dana_terkumpul = $danaTerkumpul;
+            $dana_terkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $funding->dana_terkumpul = $dana_terkumpul;
             $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
         }
@@ -65,10 +64,10 @@ class LenderController extends Controller
         // dd($borrower->fundings[0]->accepted_fund);
         if ($funding) {
             $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
-            $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
-            $dana_terkumpul = $danaTerkumpul;
+            $dana_terkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $funding->dana_terkumpul = $dana_terkumpul;
             $funding->dana_terkumpul_persen = ($dana_terkumpul != 0) ? $dana_terkumpul / $funding->accepted_fund * 100 : 0;
+            $funding->sisa_unit = ($funding->accepted_fund - $dana_terkumpul) / env('HARGA_UNIT', 100000);
         }
 
         $data = array(
