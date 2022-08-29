@@ -159,6 +159,7 @@ class CartController extends Controller
             $sub_total = floatval($cartItem->quantity) * floatval(env('HARGA_UNIT', 100000));
             $funding_id = $cartItem->id;
             $borrower_id = $cartItem->associatedModel->borrower_id;
+            $borrower_user_id = isset($cartItem->associatedModel->borrower->user->id) ? $cartItem->associatedModel->borrower->user->id : null;
 
             $fundingLender = new FundingLender();
             $fundingLender->status = 'waiting';
@@ -168,19 +169,23 @@ class CartController extends Controller
             $fundingLender->amount = $sub_total;
             $fundingLender->unit_amount = $cartItem->quantity;
             $fundingLender->trx_hash = md5($userID . $cartItem->id . now());
-            $fundingLender->save();
 
             $transaction = new Transaction();
             $transaction->trx_hash = md5($userID . now());
             $transaction->transaction_type = '6';
             $transaction->status = 'success';
-            $transaction->user_id = $userID;
             $transaction->funding_id = $funding_id;
+            $transaction->user_id = $userID;
+            $transaction->borrower_user_id = isset($borrower_user_id) ? $borrower_user_id : null;
             $transaction->borrower_id = $borrower_id;
             $transaction->transaction_date = now();
             $transaction->transaction_datetime = now();
             $transaction->transaction_amount = $sub_total;
             $transaction->save();
+
+            $transaction_id = $transaction->id;
+            $fundingLender->transaction_id = $transaction_id;
+            $fundingLender->save();
         }
 
         \Cart::session($userID)->clear();
