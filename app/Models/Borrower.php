@@ -59,6 +59,16 @@ class Borrower extends Model
         return $this->hasOne(Funding::class, 'borrower_id', 'id');
     }
 
+    public function finishedFundings()
+    {
+        return $this->fundings()->where('is_finished', '1');
+    }
+
+    public function unfinishedFundings()
+    {
+        return $this->fundings()->where('is_finished', '0');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'email', 'email');

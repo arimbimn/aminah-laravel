@@ -50,4 +50,9 @@ class Funding extends Model
     {
         $query->where('status', 'Inactive');
     }
+
+    public function scopeUnfinished($query)
+    {
+        $query->where('is_finished', '0');
+    }
 }
