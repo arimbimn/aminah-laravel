@@ -45,7 +45,7 @@
           <dd class="col-sm-7">: {{ isset($pengajuan) ? $pengajuan->account_number : '-' }}</dd>
 
           <dt class="col-sm-5">Saldo</dt>
-          <dd class="col-sm-7">:*saldo milik borrower*</dd>
+          <dd class="col-sm-7">: Rp.{{ number_format(Auth::user()->borrowerAmount()) }},-</dd>
         </dl>
       </div>
       <div class="card col-lg-6 order-2 order-lg-2 border-dark mb-3" style="max-width: 50rem;">
