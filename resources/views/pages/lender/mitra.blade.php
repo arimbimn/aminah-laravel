@@ -57,6 +57,11 @@
           <p class="text text-center">belum ada data mitra.</p>
         @endif
       </div>
+      <div class="text-center">
+        <button id="load-more" class="btn btn-outline-secondary my-3">
+          Lihat Lebih Banyak
+        </button>
+      </div>
       <!-- Data Loader -->
       <div class="auto-load text-center">
         <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -78,33 +83,6 @@
   </style>
 @endpush
 
-@push('page_scripts')
-  <script>
-    $('.course-item').on('click', function(e) {
-      var id = $(this).attr("id");
-      window.location.href = '/lender/mitra/detail/' + id;
-      // $('.course-item a').click();
-    });
-    $('.cart-button, a').on('click', function(e) {
-      e.stopPropagation();
-    });
-  </script>
-@endpush
-
-@push('page_scripts')
-  <script>
-    $('.course-item').css('cursor', 'pointer');
-  </script>
-@endpush
-
-@push('page_scripts')
-  <script>
-    $(".product-image").on("error", function() {
-      $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
-    });
-  </script>
-@endpush
-
 {{-- load more javascript --}}
 @push('page_scripts')
   <script>
@@ -116,6 +94,11 @@
         page++;
         infinteLoadMore(page);
       }
+    });
+
+    $('#load-more').on('click', function() {
+      page++;
+      infinteLoadMore(page);
     });
 
     function infinteLoadMore(page) {
@@ -140,4 +123,47 @@
         });
     }
   </script>
+@endpush
+
+@push('page_scripts')
+  <script>
+    $('.course-item').on('click', function(e) {
+      var id = $(this).attr("id");
+      window.location.href = '/lender/mitra/detail/' + id;
+    });
+    $('.cart-button, a').on('click', function(e) {
+      e.stopPropagation();
+    });
+  </script>
+@endpush
+
+@push('page_scripts')
+  <script>
+    $(document).on('click', '.course-item', function(e) {
+      var id = $(this).attr("id");
+      window.location.href = '/lender/mitra/detail/' + id;
+    });
+  </script>
+@endpush
+
+@push('page_scripts')
+  <script>
+    $('.course-item').css('cursor', 'pointer');
+  </script>
+@endpush
+
+@push('page_scripts')
+  <script>
+    $(".product-image").on("error", function() {
+      $(this).attr('src', 'https://via.placeholder.com/1080x720.png?text=Business%20Image');
+    });
+  </script>
+@endpush
+
+@push('page_css')
+  <style>
+    .course-item {
+      cursor: pointer;
+    }
+  </style>
 @endpush
