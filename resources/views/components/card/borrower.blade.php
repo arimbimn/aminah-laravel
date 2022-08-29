@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+<div class="col-lg-4 col-md-6 mt-4 d-flex align-items-stretch">
   <div class="course-item" id="{{ $mitra->id }}">
     <img class="product-image" src="{{ isset($mitra->borrower->business_image) ? asset('pendaftaran/' . $mitra->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
     <div class="course-content">
