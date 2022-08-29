@@ -186,6 +186,20 @@ class CartController extends Controller
             $transaction_id = $transaction->id;
             $fundingLender->transaction_id = $transaction_id;
             $fundingLender->save();
+
+            $funding = Funding::find($funding_id);
+            if ($funding) {
+                $booked = $funding->fundinglenders->sum('unit_amount');
+                $acceptedFund = $funding->accepted_fund;
+                $hargaUnit = env('HARGA_UNIT', 100000);
+                $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
+                if ($sisaUnit <= 0) {
+                    foreach ($funding->fundinglenders as $fl) {
+                        $fl->status = 'on progress';
+                        $fl->save();
+                    }
+                }
+            }
         }
 
         \Cart::session($userID)->clear();
