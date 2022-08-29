@@ -22,31 +22,31 @@
       </div>
       <div class="col-6">
         <h3><b>Rincian Pendanaan dari {{ $funding->borrower->business_name }}</b></h3>
-        <h5><small>*x* hari lagi</small></h5>
+        <h5><small>{{ \Carbon\Carbon::parse($funding->due_date)->diff(now())->days != null ? \Carbon\Carbon::parse($funding->due_date)->diff(now())->days : '-' }} hari lagi</small></h5>
         <h5>terkumpul {{ $funding->dana_terkumpul_persen }}%</h5>
-        <h5>terkumpul Rp.{{ $funding->dana_terkumpul }} dari Rp. {{ $funding->accepted_fund }}</h5>
+        <h5>terkumpul Rp.{{ $funding->dana_terkumpul }},- dari Rp.{{ number_format($funding->accepted_fund) }},-</h5>
         <div class="progress">
           <div class="progress-bar" role="progressbar" style="width:{{ $funding->dana_terkumpul_persen }}%;" aria-valuenow="{{ $funding->dana_terkumpul_persen }}" aria-valuemin="0" aria-valuemax="100">{{ $funding->dana_terkumpul_persen }} %</div>
         </div>
         <hr>
         <dl class="row">
           <dt class="col-sm-6">Nilai per unit pendanaan</dt>
-          <dd class="col-sm-6">Rp 100.000</dd>
+          <dd class="col-sm-6">Rp.100.000,-</dd>
 
           <dt class="col-sm-6">Estimasi Bagi hasil</dt>
           <dd class="col-sm-6">{{ $funding->borrower->profit_sharing_estimate }}%</dd>
 
           <dt class="col-sm-6">Lama pendanaan</dt>
-          <dd class="col-sm-6">{{ $funding->borrower->duration }}</dd>
+          <dd class="col-sm-6">{{ $funding->borrower->duration }} Bulan</dd>
 
           <dt class="col-sm-6">Siklus bagi hasil</dt>
-          <dd class="col-sm-6">Per 1 bulan</dd>
+          <dd class="col-sm-6">Per 1 Bulan</dd>
 
           <dt class="col-sm-6">Periode bagi hasil</dt>
-          <dd class="col-sm-6">{{ $funding->borrower->duration }}</dd>
+          <dd class="col-sm-6">{{ $funding->borrower->duration }} Bulan</dd>
 
           <dt class="col-sm-6">Jaminan</dt>
-          <dd class="col-sm-6">*BPKB Motor*</dd>
+          <dd class="col-sm-6">-</dd>
 
           <dt class="col-sm-6">Akad</dt>
           <dd class="col-sm-6">-</dd>
@@ -56,7 +56,7 @@
 
         <h4>Danai sebesar:</h4>
         <h3><b>Rp100.000</b></h3>
-        <p>Estimasi bagi hasil: {{ $funding->borrower->profit_sharing_estimate }} %. Sisa *x* unit</p>
+        <p>Estimasi bagi hasil: {{ $funding->borrower->profit_sharing_estimate }}%. Sisa {{ $funding->sisa_unit }} unit</p>
         <div class="col-md-12 mb-0 d-flex d-none d-md-block d-lg-block mb-2">
           <form action="/cart" method="post">
             @csrf
