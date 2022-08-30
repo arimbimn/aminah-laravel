@@ -98,7 +98,7 @@
               <p class="card-text">{{ isset($pengajuan) ? $pengajuan->profit_sharing_estimate : '-' }} %</p>
 
               <p class="card-title"><b>Jumlah Lender Terkumpul</b></p>
-              <p class="card-text">{{ $pengajuan->funding->fundinglenders->count() }}</p>
+              <p class="card-text">{{ isset($pengajuan->funding->fundinglenders) ? $pengajuan->funding->fundinglenders->count() : '0' }}</p>
 
             </div>
           </div>
