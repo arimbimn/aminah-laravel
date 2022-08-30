@@ -100,6 +100,26 @@ class User extends Authenticatable
         return $this->checkIncome->sum('transaction_amount') - $this->checkExpense->sum('transaction_amount');
     }
 
+    public function borrowerIncome()
+    {
+        return $this->hasMany(Transaction::class, 'borrower_user_id')
+            ->whereHas('fundingLender', function ($query) {
+                $query->whereIn('status', ['success', 'on progress']);
+            });
+    }
+
+    public function borrowerExpense()
+    {
+        return $this->hasMany(Transaction::class, 'borrower_user_id')
+            ->whereIn('status', ['waiting', 'accepted', 'success'])
+            ->whereIn('transaction_type', ['4']);
+    }
+
+    public function borrowerAmount()
+    {
+        return $this->borrowerIncome->sum('transaction_amount') - $this->borrowerExpense->sum('transaction_amount');
+    }
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class);

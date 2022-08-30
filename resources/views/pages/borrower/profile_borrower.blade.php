@@ -17,7 +17,7 @@
         <a href="/mitra/tarik-saldo/invoice" class="btn btn-outline-success mb-2 col-12"> Tarik Pendanaan</a>
       </div>
       <div class="col-lg-6 col-12">
-        <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12"> Ajukan Pendanaan</a>
+        <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12 @if (Auth::user()->latestBorrower->unfinishedFundings->count() > 0) disabled @endif"> Ajukan Pendanaan</a>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
           <dd class="col-sm-7">: {{ isset($pengajuan) ? $pengajuan->account_number : '-' }}</dd>
 
           <dt class="col-sm-5">Saldo</dt>
-          <dd class="col-sm-7">:*saldo milik borrower*</dd>
+          <dd class="col-sm-7">: Rp.{{ number_format(Auth::user()->borrowerAmount()) }},-</dd>
         </dl>
       </div>
       <div class="card col-lg-6 order-2 order-lg-2 border-dark mb-3" style="max-width: 50rem;">
@@ -54,10 +54,10 @@
           <div class="col-lg-6">
             <div class="card-body text-dark">
               <p class="card-title"><b>Dana Pengajuan Awal</b></p>
-              <p class="card-text">Rp {{ isset($pengajuan) ? $pengajuan->borrower_first_submission : '-' }}</p>
+              <p class="card-text">Rp {{ isset($pengajuan) ? number_format($pengajuan->borrower_first_submission) : '0' }},-</p>
 
               <p class="card-title"><b>Dana Disetujui</b></p>
-              <p class="card-text">Rp 0</p>
+              <p class="card-text">Rp {{ isset($pengajuan->funding->accepted_fund) ? number_format($pengajuan->funding->accepted_fund) : '0' }},-</p>
 
             </div>
           </div>
@@ -79,20 +79,26 @@
           <div class="col-lg-6">
             <div class="card-body text-dark">
               <p class="card-title"><b>Status Pengajuan</b></p>
-              <p class="card-text">{{ isset($pengajuan) ? $pengajuan->status : '-' }}</p>
-
-              <p class="card-title"><b>Jangka Waktu Pengajuan</b></p>
-              <p class="card-text">{{ isset($pengajuan) ? $pengajuan->duration : '-' }}</p>
+              <p class="card-text">
+                @if (isset($pengajuan->status) && $pengajuan->status == 'Accepted')
+                  Diterima
+                @else
+                  -
+                @endif
+              </p>
+              <p class="card-title"><b>Jangka
+                  Waktu Pengajuan</b></p>
+              <p class="card-text">{{ isset($pengajuan) ? $pengajuan->duration : '-' }} Bulan</p>
 
             </div>
           </div>
           <div class="col-lg-6">
             <div class="card-body text-dark">
               <p class="card-title"><b>Estimasi Bagi Hasil</b></p>
-              <p class="card-text">{{ isset($pengajuan) ? $pengajuan->profit_sharing_estimate : '-' }}</p>
+              <p class="card-text">{{ isset($pengajuan) ? $pengajuan->profit_sharing_estimate : '-' }} %</p>
 
               <p class="card-title"><b>Jumlah Lender Terkumpul</b></p>
-              <p class="card-text">-</p>
+              <p class="card-text">{{ $pengajuan->funding->fundinglenders->count() }}</p>
 
             </div>
           </div>
