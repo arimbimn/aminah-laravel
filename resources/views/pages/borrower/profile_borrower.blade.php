@@ -63,7 +63,7 @@
           </div>
           <div class="col-lg-6">
             <div class="card-body text-dark">
-              <p class="card-title"><b>Pendanan Lunas</b></p>
+              <p class="card-title"><b>Pendanaan Lunas</b></p>
               <p class="card-text">Rp 0</p>
 
               <p class="card-title"><b>Pendanaan Belum Lunas</b></p>
