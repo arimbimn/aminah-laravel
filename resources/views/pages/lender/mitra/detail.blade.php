@@ -45,11 +45,8 @@
           <dt class="col-sm-6">Periode bagi hasil</dt>
           <dd class="col-sm-6">{{ $funding->borrower->duration }} Bulan</dd>
 
-          <dt class="col-sm-6">Jaminan</dt>
-          <dd class="col-sm-6">-</dd>
-
           <dt class="col-sm-6">Akad</dt>
-          <dd class="col-sm-6">-</dd>
+          <dd class="col-sm-6">Mudharabah</dd>
         </dl>
 
         <hr>

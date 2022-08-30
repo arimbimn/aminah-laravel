@@ -78,30 +78,26 @@
                       </a>
                     </td>
                     <td>
-                      <p class=" mb-2">*isinya tujuan pengajuan yg ada
-                        di form waktu borrower isi buat ajukan pendanaan*</p>
+                      <p class=" mb-2">{{ $item->associatedModel->borrower->purpose }}</p>
                     </td>
                     <td>
                       <p class=" mb-2">
                       <dl class="row">
 
                         <dt class="col-sm-6"><small>Estimasi Bagi hasil</small></dt>
-                        <dd class="col-sm-6">5 %</dd>
+                        <dd class="col-sm-6">{{ $item->associatedModel->profit_sharing_estimate}} %</dd>
 
                         <dt class="col-sm-6"><small>Lama pendanaan</small></dt>
-                        <dd class="col-sm-6">12 bulan</dd>
+                        <dd class="col-sm-6">{{ $item->associatedModel->funding_period}} bulan</dd>
 
                         <dt class="col-sm-6"><small>Siklus bagi hasil</small></dt>
                         <dd class="col-sm-6">Per 1 bulan</dd>
 
                         <dt class="col-sm-6"><small>Periode bagi hasil</small></dt>
-                        <dd class="col-sm-6">12 bulan</dd>
-
-                        <dt class="col-sm-6"><small>Jaminan</small></dt>
-                        <dd class="col-sm-6">*BPKB Motor*</dd>
+                        <dd class="col-sm-6">{{ $item->associatedModel->funding_period}} bulan</dd>
 
                         <dt class="col-sm-6"><small>Akad</small></dt>
-                        <dd class="col-sm-6">-</dd>
+                        <dd class="col-sm-6">Mudharabah</dd>
                       </dl>
                       </p>
                     </td>
