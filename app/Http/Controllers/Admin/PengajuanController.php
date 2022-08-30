@@ -127,15 +127,11 @@ class PengajuanController extends Controller
             $funding = new Funding();
             $funding->borrower_id = $borrower->id;
             $funding->accepted_fund = $acceptedFunding;
+            $funding->funding_start_date = now();
+            $funding->due_date = now()->addDays(7);
+            $funding->funding_period = $borrower->duration;
             $funding->status = 'Active';
             $funding->save();
-
-            // $user = new User();
-            // $user->name = $borrower->name;
-            // $user->email = $borrower->email;
-            // $user->password = bcrypt('123456');
-            // $user->role = 'borrower';
-            // $user->save();
 
             return response()->json([
                 'status' => true,

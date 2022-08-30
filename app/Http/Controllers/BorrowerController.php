@@ -32,6 +32,13 @@ class BorrowerController extends Controller
     {
         $jenis = BusinessType::all();
 
+        if ((isset(Auth::user()->latestBorrower->unfinishedFundings) && Auth::user()->latestBorrower->unfinishedFundings->count() > 0) || (isset(Auth::user()->waitingBorrower) && Auth::user()->waitingBorrower->count() > 0)) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'error' => 'Proses pengajuan pendanaan sedang berlangsung'
+                ]);
+        }
+
         $data = array(
             'title' => "Aminah | Form Pengajuan Pendanaan",
             'jenis' => $jenis,
@@ -104,8 +111,7 @@ class BorrowerController extends Controller
         $saving = $borrower->save();
 
         if ($saving) {
-            return redirect()
-                ->to('/mitra/profile')
+            return redirect('/mitra/profile')
                 ->with([
                     'success' => 'Berhasil mengajukan pendanaan'
                 ]);

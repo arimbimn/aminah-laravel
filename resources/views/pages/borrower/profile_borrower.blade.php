@@ -17,7 +17,7 @@
         <a href="/mitra/tarik-saldo/invoice" class="btn btn-outline-success mb-2 col-12"> Tarik Pendanaan</a>
       </div>
       <div class="col-lg-6 col-12">
-        <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12 @if (isset(Auth::user()->latestBorrower->unfinishedFundings) && Auth::user()->latestBorrower->unfinishedFundings->count() > 0) disabled @endif"> Ajukan Pendanaan</a>
+        <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12 @if ((isset(Auth::user()->latestBorrower->unfinishedFundings) && Auth::user()->latestBorrower->unfinishedFundings->count() > 0) || (isset(Auth::user()->waitingBorrower) && Auth::user()->waitingBorrower->count() > 0)) disabled @endif"> Ajukan Pendanaan</a>
       </div>
     </div>
 
