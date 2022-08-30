@@ -24,7 +24,7 @@
         <h3><b>Rincian Pendanaan dari {{ $funding->borrower->business_name }}</b></h3>
         <h5><small>{{ \Carbon\Carbon::parse($funding->due_date)->diff(now())->days != null ? \Carbon\Carbon::parse($funding->due_date)->diff(now())->days : '-' }} hari lagi</small></h5>
         <h5>terkumpul {{ $funding->dana_terkumpul_persen }}%</h5>
-        <h5>terkumpul Rp.{{ $funding->dana_terkumpul }},- dari Rp.{{ number_format($funding->accepted_fund) }},-</h5>
+        <h5>terkumpul Rp.{{ number_format($funding->dana_terkumpul) }},- dari Rp.{{ number_format($funding->accepted_fund) }},-</h5>
         <div class="progress">
           <div class="progress-bar" role="progressbar" style="width:{{ $funding->dana_terkumpul_persen }}%;" aria-valuenow="{{ $funding->dana_terkumpul_persen }}" aria-valuemin="0" aria-valuemax="100">{{ $funding->dana_terkumpul_persen }} %</div>
         </div>

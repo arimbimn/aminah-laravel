@@ -33,19 +33,19 @@ class CartController extends Controller
             $acceptedFund = $funding->accepted_fund;
             $hargaUnit = env('HARGA_UNIT', 100000);
             $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
-        }
 
-        $existCart = \Cart::session($userID)->get($request->id);
-        if ($existCart) {
-            if ($sisaUnit <= $existCart->quantity) {
+            $existCart = \Cart::session($userID)->get($request->id);
+            if ($existCart) {
+                if ($sisaUnit <= $existCart->quantity) {
+                    session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
+                    return redirect()->route('cart.list');
+                }
+            }
+
+            if ($sisaUnit <= $request->quantity) {
                 session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
                 return redirect()->route('cart.list');
             }
-        }
-
-        if ($sisaUnit <= $request->quantity) {
-            session()->flash('error', 'Jumlah unit tidak cukup, gagal tambah keranjang !');
-            return redirect()->route('cart.list');
         }
 
         \Cart::session($userID)->add([
