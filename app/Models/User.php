@@ -52,6 +52,12 @@ class User extends Authenticatable
         return $this->hasMany(Borrower::class, 'email', 'email');
     }
 
+    public function waitingBorrower()
+    {
+        return $this->hasMany(Borrower::class, 'email', 'email')
+            ->where('status', 'Pending');
+    }
+
     public function latestBorrower()
     {
         return $this->hasOne(Borrower::class, 'email', 'email')->latest();

@@ -66,7 +66,7 @@ class Borrower extends Model
 
     public function unfinishedFundings()
     {
-        return $this->fundings()->where('is_finished', '0');
+        return $this->fundings()->where('is_finished', '0')->where('status', 'Active');
     }
 
     public function user()
