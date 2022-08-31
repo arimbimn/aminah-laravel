@@ -21,7 +21,7 @@
           Rincian Penarikan Saldo
         </div>
         <div class="card-body">
-          <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+          <form class="row g-3" action="/mitra/saldo/tarik" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
               <div class="col-lg-4">
@@ -49,6 +49,13 @@
               </div>
 
               <div class="col-4">
+                <div class="card-body text-dark">
+                  <div class="form-group">
+                    <x-basic.label for="bankName" value="Nama Bank" required="true" />
+                    <x-basic.input exist="{{ Auth::user()->latestBorrower->bank_name }}" type="text" name="bankName" :error="$errors->first('bankName')" placeholder="masukkan nama bank rekening anda..." />
+                  </div>
+                </div>
+
                 <div class="card-body text-dark">
                   <div class="form-group">
                     <x-basic.label for="pemilikRekeningName" value="Nama Pemilik Rekening" required="true" />
