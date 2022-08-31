@@ -174,7 +174,7 @@ class BorrowerController extends Controller
         $transaction->transaction_amount = $withdrawalAmount;
         $transaction->recepient_name = $accountName;
         $transaction->recepient_account_number = $accountNumber;
-        $transaction->bank_name = $bankName;
+        $transaction->recepient_bank_name = $bankName;
         $saving = $transaction->save();
 
         if ($saving) {
