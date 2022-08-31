@@ -12,7 +12,7 @@ class PendanaanController extends Controller
     {
         $records = Funding::paginate(50);
         foreach ($records as $funding) {
-            $totalUnitTerjual = $funding->fundinglenders->count();
+            $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
             $dana_terkumpul = $danaTerkumpul;
             $funding->dana_terkumpul = $dana_terkumpul;
