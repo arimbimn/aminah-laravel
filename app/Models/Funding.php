@@ -43,7 +43,7 @@ class Funding extends Model
 
     public function scopeActive($query)
     {
-        $query->where('status', 'Active');
+        $query->where('is_active', '1');
     }
 
     public function scopeInactive($query)
