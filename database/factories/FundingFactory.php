@@ -21,11 +21,13 @@ class FundingFactory extends Factory
             'borrower_id' => Borrower::all()->random()->id,
             'accepted_fund' => '1000000',
             'funding_start_date' => now(),
-            'due_date' => now()->addMonth(),
-            'funding_period' => '1',
+            'due_date' => now()->addDays(7),
+            'funding_period' => fake()->numberBetween(1, 12),
             'profit_sharing_estimate' => '10',
             'payment_amount' => 0,
+            'status' => '1',
             'is_finished' => 0,
+            'is_active' => 1,
             'created_at' => now(),
         ];
     }
