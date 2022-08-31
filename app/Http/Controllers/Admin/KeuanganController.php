@@ -24,9 +24,12 @@ class KeuanganController extends Controller
         ];
 
         $transactions = Transaction::whereIn('transaction_type', ['1', '6', '7'])->orderBy('transaction_date', 'desc')->get();
-        // $transactions = $transactions->filter(function $item){
+        $transactions = $transactions->filter(function ($item) {
+            if (!($item->transaction_type == '7' && $item->status == 'waiting')) {
+                return $item;
+            }
+        });
 
-        // }
 
         $data = array(
             'title' => 'Aminah | Data Keuangan Aminah',
