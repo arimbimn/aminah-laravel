@@ -18,13 +18,15 @@ return new class extends Migration
             $table->foreignId('borrower_id');
             $table->string('accepted_fund')->nullable();
             $table->date('funding_start_date')->nullable();
+            $table->date('funding_full_date')->nullable();
             $table->date('due_date')->nullable();
             $table->string('funding_period')->nullable();
             $table->integer('profit_sharing_estimate')->nullable();
             $table->integer('payment_amount')->nullable();
+            $table->string('status')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_finished')->default(0);
-            $table->string('status')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
