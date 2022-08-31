@@ -44,5 +44,10 @@ class TransactionTypeSeeder extends Seeder
             'name' => 'Pembayaran Pendanaan Lender',
             'code' => '6',
         ]);
+
+        TransactionType::create([
+            'name' => 'Pengembalian Pendanaan',
+            'code' => '7',
+        ]);
     }
 }
