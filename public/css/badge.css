@@ -1,0 +1,27 @@
+.badge {
+  background-color: whitesmoke;
+  color: black;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.badge-danger {
+  background-color: red;
+  color: white;
+}
+
+.badge-warning {
+  background-color: yellow;
+  color: black;
+}
+
+.badge-success {
+  background-color: green;
+  color: white;
+}
+
+.badge-info {
+  background-color: lightseagreen;
+  color: white;
+}
