@@ -23,7 +23,7 @@ class KeuanganController extends Controller
             ],
         ];
 
-        $transactions = Transaction::whereIn('transaction_type', ['1', '6', '7'])->orderBy('transaction_date', 'desc')->get();
+        $transactions = Transaction::whereIn('transaction_type', ['1', '6', '7'])->orderBy('transaction_datetime', 'desc')->get();
         $transactions = $transactions->filter(function ($item) {
             if (!($item->transaction_type == '7' && $item->status == 'waiting')) {
                 return $item;
@@ -73,6 +73,7 @@ class KeuanganController extends Controller
         $transaction->status = 'success';
         $saving = $transaction->save();
 
+        // bakal bug kalo terus2an diterima
         if ($transaction->transaction_type == '7') {
             $danaBagiHasil = $transaction->transaction_amount;
             $funding = $transaction->funding;
@@ -88,6 +89,7 @@ class KeuanganController extends Controller
                 $new_transaction->transaction_date = now();
                 $new_transaction->transaction_datetime = now();
                 $new_transaction->transaction_amount = $item->unit_amount * $valuePerUnit;
+                $new_transaction->transaction_id_ref = $transaction->id;
                 $new_transaction->save();
             }
         }

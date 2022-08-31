@@ -229,6 +229,7 @@ class CartController extends Controller
                         $transaction->borrower_user_id = $funding->borrower->user->id;
                         $transaction->borrower_id = $funding->borrower->id;
                         $transaction->transaction_date = $item;
+                        $transaction->transaction_datetime = $item;
                         $transaction->transaction_amount = $roundUpFinal;
                         $transaction->save();
                     }
