@@ -14,7 +14,7 @@
 
     <div class="row mb-4">
       <div class="col-lg-6 col-12">
-        <a href="/mitra/tarik-saldo/invoice" class="btn btn-outline-success mb-2 col-12"> Tarik Pendanaan</a>
+        <a href="/mitra/saldo/tarik/invoice" class="btn btn-outline-success mb-2 col-12"> Tarik Pendanaan</a>
       </div>
       <div class="col-lg-6 col-12">
         <a href="/mitra/profile/ajukan-pendanaan" class="btn btn-outline-warning mb-2 col-12 @if ((isset(Auth::user()->latestBorrower->unfinishedFundings) && Auth::user()->latestBorrower->unfinishedFundings->count() > 0) || (isset(Auth::user()->waitingBorrower) && Auth::user()->waitingBorrower->count() > 0)) disabled @endif"> Ajukan Pendanaan</a>
@@ -82,8 +82,9 @@
               <p class="card-text">
                 @if (isset($pengajuan->status) && $pengajuan->status == 'Accepted')
                   Diterima
-                @else
-                  -
+                @endif
+                @if (isset($pengajuan->status) && $pengajuan->status == 'Pending')
+                  Pending
                 @endif
               </p>
               <p class="card-title"><b>Jangka
@@ -120,7 +121,7 @@
 
     <hr>
 
-    @if ($pengajuan)
+    @if ($fundings)
       <div class="row">
         {{-- TABEL PENDANAAN --}}
         <div class="col">
@@ -138,16 +139,30 @@
               </tr>
             </thead>
             <tbody>
-              @php $i = 1; @endphp
-              <tr>
-                <th>@php $i++ @endphp</th>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td><a class="btn btn-success" href="/bayar"> Bayar</a></td>
-              </tr>
+              @foreach ($fundings as $index => $funding)
+                <tr>
+                  <th>{{ $index + 1 }}</th>
+                  <td>
+                    @if ($funding->status == '1')
+                      <span class="badge badge-warning">proses pencarian lender</span>
+                    @endif
+                    @if ($funding->status == '2')
+                      <span class="badge badge-success">proses pendanaan</span>
+                    @endif
+                  </td>
+                  <td>
+                    Tanggal {{ \Carbon\Carbon::parse($funding->due_date)->day }}
+                  </td>
+                  <td> - </td>
+                  <td>
+                    Rp.{{ number_format($funding->accepted_fund * (1 + $funding->profit_sharing_estimate / 100)) }},-
+                  </td>
+                  <td>
+                    {{ \Carbon\Carbon::parse($funding->due_date)->diffForHumans() }}
+                  </td>
+                  <td><a class="btn btn-success" href="/mitra/pendanaan/bayar/{{ $funding->id }}"> Bayar</a></td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -157,4 +172,8 @@
 @endsection
 
 @push('page_scripts')
+@endpush
+
+@push('page_css')
+  <link rel="stylesheet" href="{{ asset('css/badge.css') }}">
 @endpush
