@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankAccount;
 use App\Models\User;
 use App\Models\Funding;
 use App\Models\Borrower;
@@ -213,10 +214,69 @@ class BorrowerController extends Controller
 
     public function returnFundingDetail($trx_hash)
     {
-        dd($trx_hash);
+        $transaction = Transaction::where('trx_hash', $trx_hash)->where('transaction_type', '7')->first();
+        if (!$transaction) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'error' => 'Maaf, data transaksi tidak ditemukan'
+                ]);
+        }
+        if ($transaction->user_id != Auth::user()->id) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'error' => 'Maaf, anda berusaha akses data orang lain'
+                ]);
+        }
+
+        $bankAccounts = BankAccount::all();
+
+        $data = array(
+            'title' => "Aminah | Pengembalian pendanaan",
+            'active' => 'profile',
+            'transaction' => $transaction,
+            'bankAccounts' => $bankAccounts,
+        );
+        return view('pages.borrower.return_funding_detail', $data);
     }
 
     public function storeReturnFunding(Request $request)
     {
+        $this->validate($request, [
+            'file_trx' => 'required|file|mimes:jpg,jpeg,png,pdf',
+        ]);
+
+        $trx_hash = $request->input('trx_hash');
+        $fileTrx = $request->file('file_trx');
+
+        $transaction = Transaction::where('trx_hash', $trx_hash)->first();
+
+        if (!$transaction) {
+            return redirect()->back()->withErrors('Gagal')->withInput();
+        }
+
+        $current = date('Ymdhis');
+        $rand = rand(1, 100);
+        $fileName = $current . $rand;
+        $fileName = $fileName . '_bukti.' . $fileTrx->getClientOriginalExtension();
+        $fileTrx->move('pembayaran', $fileName);
+
+        $transaction->status = 'waiting approval';
+        $transaction->file_image = $fileName;
+        $saving = $transaction->save();
+
+        if ($saving) {
+            return redirect()
+                ->to('/mitra/profile')
+                ->with([
+                    'success' => 'Berhasil upload bukti pembayaran'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
     }
 }

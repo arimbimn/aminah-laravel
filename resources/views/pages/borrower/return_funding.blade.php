@@ -48,8 +48,8 @@
                       @if ($item->status == 'failed')
                         <span class="badge badge-danger">gagal bayar</span>
                       @endif
-                      @if ($item->status == 'approval')
-                        <span class="badge badge-info">gagal bayar</span>
+                      @if ($item->status == 'waiting approval')
+                        <span class="badge badge-info">menunggu konfirmasi</span>
                       @endif
                     </td>
                     <td>
