@@ -1,42 +1,62 @@
 @extends('layouts.admin.template_admin')
 
 @section('content')
-    <div class="container-fluid">
-        @include('layouts.admin.navigation')
-        <div class="row">
-            <div class="col mt-4">
-                <div class="card">
-                    <div class="card-header">
-                        <x-table.card-header tableName="{{ isset($tableName) ? $tableName : 'Tabel Data' }}" />
-                    </div>
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-wrap">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Nama Borrower</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Sisa Periode Pendanaan</th>
-                                    <th scope="col">Jumlah Total Pendanaan</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($records as $index => $record)
-                                    <tr>
-                                        <th scope="row">{{ $index + 1 }}</th>
-                                        <td>{{ $record->borrower->name }}</td>
-                                        <td>{{ $record->borrower->status }}</td>
-                                        <td>*sisa Periode Pendanaan*</td>
-                                        <td>Rp.{{ number_format($record->dana_terkumpul, 0, ',', '.') }},-</td>
-                                        <td><a href="/admin/rincian-pendanaan/detail/{{ $record->id }}" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+  <div class="container-fluid">
+    @include('layouts.admin.navigation')
+    <div class="row">
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-header">
+            <x-table.card-header tableName="{{ isset($tableName) ? $tableName : 'Tabel Data' }}" />
+          </div>
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-wrap">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Nama Borrower</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Sisa Periode Pendanaan</th>
+                  <th scope="col">Jumlah Total Pendanaan</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($records as $index => $item)
+                  <tr>
+                    <th scope="row">{{ $index + 1 }}</th>
+                    <td>{{ $item->borrower->name }}</td>
+                    <td>
+                      @switch($item->status)
+                        @case(1)
+                          <span class="badge badge-info">Pencarian lender</span>
+                        @break
+
+                        @case(2)
+                          <span class="badge badge-success">Proses pendanaan</span>
+                        @break
+
+                        @default
+                      @endswitch
+                    </td>
+                    <td>{{ \Carbon\Carbon::parse($item->due_date)->diffForHumans() }}</td>
+                    <td>Rp.{{ number_format($item->dana_terkumpul, 0, ',', '.') }},-</td>
+                    <td><a href="/admin/rincian-pendanaan/detail/{{ $item->id }}" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center align-items-center">
+                {{ $records->links() }}
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 @endsection

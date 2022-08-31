@@ -70,8 +70,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/rincian-pendanaan/detail/{funding}', [PendanaanController::class, 'detail']);
     Route::get('/admin/transaksi', [KeuanganController::class, 'index']);
     Route::get('/admin/transaksi/detail/{trx_hash}', [KeuanganController::class, 'detail']);
-    Route::get('/admin/transaksi/terima/{trx_hash}', [KeuanganController::class, 'approve']);
-    Route::get('/admin/transaksi/tolak/{trx_hash}', [KeuanganController::class, 'reject']);
+    Route::post('/admin/transaksi/terima', [KeuanganController::class, 'approve']);
+    Route::post('/admin/transaksi/tolak', [KeuanganController::class, 'reject']);
 });
 
 // mitra
@@ -94,7 +94,6 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
     Route::get('/lender/profile/edit', [LenderController::class, 'editProfile'])->name('lender.profile.edit');
     Route::post('/lender/profile/update', [LenderController::class, 'updateProfile'])->name('lender.profile.update');
-
 
     Route::get('/lender/keranjang', [CartController::class, 'cartList'])->name('cart.list');
     Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.store');

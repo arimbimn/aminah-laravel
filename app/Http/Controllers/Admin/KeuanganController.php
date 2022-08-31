@@ -28,7 +28,7 @@ class KeuanganController extends Controller
             if (!($item->transaction_type == '7' && $item->status == 'waiting')) {
                 return $item;
             }
-        });
+        })->values();
 
 
         $data = array(
@@ -61,8 +61,9 @@ class KeuanganController extends Controller
         return view('pages.admin.keuangan.detail', $data);
     }
 
-    public function approve($trx_id)
+    public function approve(Request $request)
     {
+        $trx_id = $request->input('id');
         $transaction = Transaction::where('trx_hash', $trx_id)->first();
 
         if (!$transaction) {
@@ -72,24 +73,41 @@ class KeuanganController extends Controller
         $transaction->status = 'success';
         $saving = $transaction->save();
 
+        if ($transaction->transaction_type == '7') {
+            $danaBagiHasil = $transaction->transaction_amount;
+            $funding = $transaction->funding;
+            $totalUnit = $funding->accepted_fund / env('HARGA_UNIT', 100000);
+            $valuePerUnit = $danaBagiHasil / $totalUnit;
+            $fundingLenders = $funding->fundingLenders;
+            foreach ($fundingLenders as $item) {
+                $new_transaction = new Transaction();
+                $new_transaction->transaction_type = '2';
+                $new_transaction->trx_hash = md5(rand(1, 9999) . now());
+                $new_transaction->status = 'success';
+                $new_transaction->user_id = $item->lender_user_id;
+                $new_transaction->transaction_date = now();
+                $new_transaction->transaction_datetime = now();
+                $new_transaction->transaction_amount = $item->unit_amount * $valuePerUnit;
+                $new_transaction->save();
+            }
+        }
+
         if ($saving) {
-            return redirect()
-                ->to('/admin/transaksi')
-                ->with([
-                    'success' => 'Berhasil terima transaksi'
-                ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'success'
+            ], 200);
         } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Maaf gagal, coba lagi nanti'
-                ]);
+            return response()->json([
+                'status' => false,
+                'message' => 'error'
+            ], 400);
         }
     }
 
-    public function reject($trx_id)
+    public function reject(Request $request)
     {
+        $trx_id = $request->input('id');
         $transaction = Transaction::where('trx_hash', $trx_id)->first();
 
         if (!$transaction) {
@@ -100,18 +118,15 @@ class KeuanganController extends Controller
         $saving = $transaction->save();
 
         if ($saving) {
-            return redirect()
-                ->to('/admin/transaksi')
-                ->with([
-                    'success' => 'Berhasil menolak transaksi'
-                ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'success'
+            ], 200);
         } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Maaf gagal, coba lagi nanti'
-                ]);
+            return response()->json([
+                'status' => false,
+                'message' => 'error'
+            ], 400);
         }
     }
 }

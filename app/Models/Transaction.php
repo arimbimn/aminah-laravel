@@ -40,4 +40,9 @@ class Transaction extends Model
     {
         return $this->hasOne(FundingLender::class);
     }
+
+    public function funding()
+    {
+        return $this->belongsTo(Funding::class, 'funding_id', 'id');
+    }
 }

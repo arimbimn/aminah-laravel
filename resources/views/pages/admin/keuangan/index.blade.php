@@ -27,7 +27,7 @@
                 @foreach ($transactions as $index => $item)
                   <tr>
                     <th>{{ $index + 1 }}</th>
-                    <td>{{ $item->transaction_date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->transaction_datetime)->toDateString() }}</td>
                     <td>
                       @if ($item->status == 'pending')
                         <span class="badge badge-warning">menunggu konfirmasi</span>
