@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funding;
-use App\Models\FundingLender;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\FundingLender;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -193,10 +194,43 @@ class CartController extends Controller
                 $acceptedFund = $funding->accepted_fund;
                 $hargaUnit = env('HARGA_UNIT', 100000);
                 $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
+                // kalo pendanaan tercapai
                 if ($sisaUnit <= 0) {
+                    $funding->funding_full_date = now();
+                    $funding_period = isset($funding->funding_period) ? $funding->funding_period : 12;
+                    $funding->due_date = now()->addMonths($funding_period);
+                    $funding->status = '2';
+                    $funding->save();
                     foreach ($funding->fundinglenders as $fl) {
                         $fl->status = 'on progress';
                         $fl->save();
+                    }
+                    // add return schema to transaction table
+                    $tanggalJatuhTempo = Carbon::parse($funding->due_date);
+                    $listJatuhTempo = [];
+                    for ($i = 1; $i <= $funding->funding_period; $i++) {
+                        array_push($listJatuhTempo, $tanggalJatuhTempo->toDateString());
+                        $tanggalJatuhTempo = $tanggalJatuhTempo->subMonths(1);
+                    }
+                    $listJatuhTempo = array_reverse($listJatuhTempo);
+                    foreach ($listJatuhTempo as $item) {
+                        $billPerMonth = ($funding->accepted_fund * (1 + $funding->profit_sharing_estimate / 100)) / $funding->funding_period;
+                        $roundUp = ceil($billPerMonth);
+                        $roundUpFinal = round($roundUp, -2, PHP_ROUND_HALF_UP);
+                        if ($roundUpFinal < $roundUp) {
+                            $roundUpFinal += 100;
+                        }
+                        $transaction = new Transaction();
+                        $transaction->trx_hash = md5(rand(1, 9999) . now());
+                        $transaction->transaction_type = '7';
+                        $transaction->status = 'waiting';
+                        $transaction->funding_id = $funding->id;
+                        $transaction->user_id = $funding->borrower->user->id;
+                        $transaction->borrower_user_id = $funding->borrower->user->id;
+                        $transaction->borrower_id = $funding->borrower->id;
+                        $transaction->transaction_date = $item;
+                        $transaction->transaction_amount = $roundUpFinal;
+                        $transaction->save();
                     }
                 }
             }

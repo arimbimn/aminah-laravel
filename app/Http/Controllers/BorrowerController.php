@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Funding;
 use App\Models\Borrower;
-use App\Models\BorrowerStatusType;
+use App\Models\Transaction;
 use App\Models\BusinessType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\BorrowerStatusType;
 use Illuminate\Support\Facades\Auth;
 
 class BorrowerController extends Controller
@@ -17,15 +20,18 @@ class BorrowerController extends Controller
         $id = Auth::user()->id;
         $user = User::with('latestBorrower')->find($id);
         $pengajuan = Borrower::where('email', Auth::user()->email)->latest()->first();
+        $borrowers = Borrower::where('email', Auth::user()->email)->get();
+        $fundings = Funding::whereIn('borrower_id', $borrowers->pluck('id'))->get();
 
         $data = array(
             'title' => "Aminah | Profile",
             'active' => 'profile',
             'user' => $user,
             'pengajuan' => isset($pengajuan) ? $pengajuan : null,
+            'fundings' => isset($fundings) ? $fundings : null,
         );
 
-        return view('pages.borrower.profile_borrower', $data);
+        return view('pages.borrower.profile', $data);
     }
 
     public function pengajuan_pendanaan()
@@ -125,13 +131,92 @@ class BorrowerController extends Controller
         }
     }
 
-    public function penarikan_dana()
+    public function withdrawal()
     {
+        if (Auth::user()->borrowerAmount() == 0) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'error' => 'Saldo anda kosong'
+                ]);
+        }
 
         $data = array(
             'title' => "Aminah | Invoice Penarikan dana",
             'active' => 'profile',
         );
         return view('pages.borrower.invoice', $data);
+    }
+
+    public function storeWithdrawal(Request $request)
+    {
+        $user_amount = Auth::user()->borrowerAmount();
+        $user_id = Auth::user()->id;
+
+        $this->validate($request, [
+            'bankName' => 'required',
+            'pemilikRekeningName' => 'required',
+            'nomorRekening' => 'required',
+            'jumlahSaldo' => "required|numeric|max:$user_amount",
+        ]);
+
+        $bankName = $request->input('bankName');
+        $accountName = $request->input('pemilikRekeningName');
+        $accountNumber = $request->input('nomorRekening');
+        $withdrawalAmount = $request->input('jumlahSaldo');
+
+        $transaction = new Transaction();
+        $transaction->trx_hash = md5($user_id . now());
+        $transaction->transaction_type = '4';
+        $transaction->status = 'waiting';
+        $transaction->user_id = $user_id;
+        $transaction->borrower_user_id = $user_id;
+        $transaction->transaction_amount = $withdrawalAmount;
+        $transaction->recepient_name = $accountName;
+        $transaction->recepient_account_number = $accountNumber;
+        $transaction->bank_name = $bankName;
+        $saving = $transaction->save();
+
+        if ($saving) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'success' => 'Berhasil mengajukan permintaan penarikan saldo'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
+    }
+
+    public function returnFunding(Funding $funding)
+    {
+        // block disini kalo akses data orang lain
+        if ($funding->borrower->user->id != Auth::user()->id) {
+            return redirect('/mitra/profile')
+                ->with([
+                    'error' => 'Maaf, anda berusaha akses data orang lain'
+                ]);
+        }
+        $transactions = Transaction::where('transaction_type', '7')->where('user_id', Auth::user()->id)->orderBy('transaction_date', 'Asc')->get();
+
+        $data = array(
+            'title' => "Aminah | Pengembalian pendanaan",
+            'active' => 'profile',
+            'funding' => $funding,
+            'transactions' => $transactions,
+        );
+        return view('pages.borrower.return_funding', $data);
+    }
+
+    public function returnFundingDetail($trx_hash)
+    {
+        dd($trx_hash);
+    }
+
+    public function storeReturnFunding(Request $request)
+    {
     }
 }
