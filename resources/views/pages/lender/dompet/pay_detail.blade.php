@@ -73,7 +73,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="card-body text-dark">
-                  <p class="card-title"><b>Upload Bukti Transfer</b></p>
+                  <p class="card-title"><b>Upload Bukti Bayar</b></p>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -96,7 +96,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="card-body text-dark">
-                  <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-sack-dollar"></i> Konfirmasi Bayar!</button>
+                  <button type="submit" class="btn btn-outline-success col-12"><i class="fa fa-sack-dollar"></i> Upload Bukti Bayar!</button>
                 </div>
               </div>
 
