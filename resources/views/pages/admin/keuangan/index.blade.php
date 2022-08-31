@@ -32,9 +32,20 @@
                       @if ($item->status == 'pending')
                         <span class="badge badge-warning">menunggu konfirmasi</span>
                       @endif
+                      @if ($item->status == 'waiting')
+                        <span class="badge badge-warning">menunggu konfirmasi</span>
+                      @endif
+                      @if ($item->status == 'waiting approval')
+                        <span class="badge badge-warning">menunggu konfirmasi</span>
+                      @endif
+                      @if ($item->status == 'success')
+                        <span class="badge badge-success">berhasil</span>
+                      @endif
                     </td>
                     <td>
                       {{ $item->transaction_type == '1' ? 'Pengisian dana lender' : '' }}
+                      {{ $item->transaction_type == '6' ? 'Pendanaan lender' : '' }}
+                      {{ $item->transaction_type == '7' ? 'Pengembalian pendanaan' : '' }}
                     </td>
                     <td>{{ $item->user->name }}</td>
                     <td>Rp.{{ number_format($item->transaction_amount, 0, ',', '.') }},-</td>

@@ -23,7 +23,10 @@ class KeuanganController extends Controller
             ],
         ];
 
-        $transactions = Transaction::latest()->get();
+        $transactions = Transaction::whereIn('transaction_type', ['1', '6', '7'])->orderBy('transaction_date', 'desc')->get();
+        // $transactions = $transactions->filter(function $item){
+
+        // }
 
         $data = array(
             'title' => 'Aminah | Data Keuangan Aminah',
