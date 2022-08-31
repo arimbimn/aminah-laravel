@@ -79,7 +79,11 @@ Route::middleware('borrower')->group(function () {
     Route::get('/mitra/profile', [BorrowerController::class, 'index'])->name('borrower.profile');
     Route::get('/mitra/profile/ajukan-pendanaan', [BorrowerController::class, 'pengajuan_pendanaan'])->name('borrower.profile.ajukan-pendanaan');
     Route::post('/mitra/pengajuan', [BorrowerController::class, 'storeBorrower']);
-    Route::get('/mitra/tarik-saldo/invoice', [BorrowerController::class, 'penarikan_dana'])->name('borrower.penarikan_dana');
+    Route::get('/mitra/saldo/tarik/invoice', [BorrowerController::class, 'withdrawal'])->name('borrower.withdrawal');
+    Route::post('/mitra/saldo/tarik', [BorrowerController::class, 'storeWithdrawal'])->name('borrower.withdrawal.store');
+    Route::get('/mitra/pendanaan/bayar/{funding}', [BorrowerController::class, 'returnFunding'])->name('borrower.return');
+    Route::get('/mitra/pendanaan/bayar/detail/{trx_hash}', [BorrowerController::class, 'returnFundingDetail'])->name('borrower.return.detail');
+    Route::post('/mitra/pendanaan/bayar', [BorrowerController::class, 'storeReturnFunding'])->name('borrower.return.store');
 });
 
 // lender
