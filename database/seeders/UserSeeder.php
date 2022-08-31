@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
                         Funding::factory()
                             ->count(1)
                             ->state(function (array $attributes, Borrower $borrower) {
-                                return ['borrower_id' => $borrower->id, 'accepted_fund' => $borrower->borrower_first_submission, 'status' => 'Active'];
+                                return ['borrower_id' => $borrower->id, 'accepted_fund' => $borrower->borrower_first_submission, 'funding_period' => $borrower->duration, 'profit_sharing_estimate' => $borrower->profit_sharing_estimate, 'status' => '1'];
                             }),
                         'funding'
                     ),
