@@ -60,11 +60,26 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($userFundigs as $index => $item)
+              @foreach ($userFundings as $index => $item)
                 <tr>
                   <th scope="row">{{ $index + 1 }}</th>
                   <td>
-                    <span class="badge badge-warning">menunggu</span>
+                    @switch($item->status)
+                      @case('on progress')
+                        <span class="badge badge-info">sedang berlangsung</span>
+                      @break
+
+                      @case('waiting')
+                        <span class="badge badge-warning">menunggu</span>
+                      @break
+
+                      @case('failed')
+                        <span class="badge badge-danger">gagal</span>
+                      @break
+
+                      @default
+                        <span class="badge badge-info">{{ $item->status }}</span>
+                    @endswitch
                   </td>
                   <td>
                     {{ \Carbon\Carbon::parse($item->created_at)->toDateString() }}
@@ -84,28 +99,5 @@
 @endsection
 
 @push('page_css')
-  <style>
-    .badge {
-      background-color: whitesmoke;
-      color: black;
-      padding: 4px 8px;
-      text-align: center;
-      border-radius: 5px;
-    }
-
-    .badge-danger {
-      background-color: red;
-      color: white;
-    }
-
-    .badge-warning {
-      background-color: yellow;
-      color: black;
-    }
-
-    .badge-success {
-      background-color: green;
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ asset('css/badge.css') }}">
 @endpush
