@@ -55,7 +55,7 @@ class CartController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(
-                'image' => $request->image,
+                'image' => asset('pendaftaran/' . $request->image),
             ),
             'associatedModel' => $funding,
         ]);
@@ -74,8 +74,6 @@ class CartController extends Controller
             $hargaUnit = env('HARGA_UNIT', 100000);
             $sisaUnit = ($acceptedFund / $hargaUnit) - $booked;
 
-            // dd($sisaUnit);
-            // dd($request->quantity);
             if ($sisaUnit >= $request->quantity) {
                 \Cart::session($userID)->update(
                     $request->id,
