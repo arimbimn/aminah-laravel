@@ -16,7 +16,7 @@ class LenderController extends Controller
 {
     public function index()
     {
-        $fundings = Funding::where('is_finished', '0')->active()->limit(2)->latest()->get();
+        $fundings = Funding::where('is_finished', '0')->active()->inRandomOrder()->limit(2)->get();
         foreach ($fundings as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);
@@ -89,7 +89,7 @@ class LenderController extends Controller
             'title' => "Aminah | Profile",
             'active' => 'profile',
             'user' => $user,
-            'userFundigs' => $userFundings,
+            'userFundings' => $userFundings,
         );
 
         return view('pages.lender.profile.index', $data);
