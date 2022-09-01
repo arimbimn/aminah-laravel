@@ -8,7 +8,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('pages.login.user');
+        return view('pages.login.index');
     }
     public function login_admin()
     {
