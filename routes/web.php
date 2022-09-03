@@ -94,6 +94,10 @@ Route::middleware('lender')->group(function () {
     Route::get('/lender/mitra/detail/{funding}', [LenderController::class, 'detailMitra'])->name('lender.mitra.detail');
     Route::get('/lender/profile/edit', [LenderController::class, 'editProfile'])->name('lender.profile.edit');
     Route::post('/lender/profile/update', [LenderController::class, 'updateProfile'])->name('lender.profile.update');
+    //tarik saldo
+    Route::get('/lender/saldo/tarik/invoice', [LenderController::class, 'withdrawal'])->name('lender.withdrawal');
+    Route::post('/lender/saldo/tarik', [LenderController::class, 'storeWithdrawal'])->name('lender.withdrawal.store');
+
 
     Route::get('/lender/keranjang', [CartController::class, 'cartList'])->name('cart.list');
     Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.store');

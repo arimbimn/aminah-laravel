@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Lender;
 use App\Models\Funding;
 use App\Models\Borrower;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\FundingLender;
 use App\Models\LenderStatusType;
@@ -159,6 +160,68 @@ class LenderController extends Controller
                 ->to('/lender/profile')
                 ->with([
                     'success' => 'Berhasil mengubah profil'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
+    }
+
+    //invoice view
+    public function withdrawal()
+    {
+        if (Auth::user()->sumAmount() == 0) {
+            return redirect('/lender/profile')
+                ->with([
+                    'error' => 'Saldo anda kosong'
+                ]);
+        }
+
+        $data = array(
+            'title' => "Aminah | Invoice Penarikan dana",
+            'active' => 'profile',
+        );
+        return view('pages.lender.profile.invoice_tarik', $data);
+    }
+
+    //klik tarik saldo di view invoice
+    public function storeWithdrawal(Request $request)
+    {
+        $user_amount = Auth::user()->sumAmount();
+        $user_id = Auth::user()->id;
+
+        $this->validate($request, [
+            'bankName' => 'required',
+            'pemilikRekeningName' => 'required',
+            'nomorRekening' => 'required',
+            'jumlahSaldo' => "required|numeric|max:$user_amount",
+        ]);
+
+        $bankName = $request->input('bankName');
+        $accountName = $request->input('pemilikRekeningName');
+        $accountNumber = $request->input('nomorRekening');
+        $withdrawalAmount = $request->input('jumlahSaldo');
+
+        $transaction = new Transaction();
+        $transaction->trx_hash = md5($user_id . now());
+        $transaction->transaction_type = '3';
+        $transaction->status = 'waiting';
+        $transaction->user_id = $user_id;
+        $transaction->lender_id = $user_id;
+        $transaction->transaction_amount = $withdrawalAmount;
+        $transaction->recepient_name = $accountName;
+        $transaction->recepient_account_number = $accountNumber;
+        $transaction->recepient_bank_name = $bankName;
+        $saving = $transaction->save();
+
+        if ($saving) {
+            return redirect('/lender/profile')
+                ->with([
+                    'success' => 'Berhasil mengajukan permintaan penarikan saldo'
                 ]);
         } else {
             return redirect()

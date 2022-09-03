@@ -37,7 +37,7 @@
           <a href="/lender/profile/edit" class="btn btn-outline-success col-12"><i class="fa fa-edit"></i> Edit Profil</a>
         </div>
         <div class="col-12 mt-2">
-          <button class="btn btn-outline-danger col-12"><i class="fa fa-download"></i> Tarik Saldo</button>
+          <a href="/lender/saldo/tarik/invoice" class="btn btn-outline-danger col-12"><i class="fa fa-download"></i> Tarik saldo</a>
         </div>
         <div class="col-12 mt-2">
           <a href="/lender/dompet/isi" class="btn btn-outline-primary col-12"><i class="fa fa-upload"></i> Isi Saldo</a>
