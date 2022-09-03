@@ -84,7 +84,8 @@ class User extends Authenticatable
     public function checkWaiting()
     {
         return $this->hasMany(Transaction::class)
-            ->where('status', 'waiting');
+            ->whereIn('transaction_type', ['1'])
+            ->whereIn('status', ['waiting']);
     }
 
     public function checkIncome()
