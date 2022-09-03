@@ -98,7 +98,7 @@ class User extends Authenticatable
     public function checkExpense()
     {
         return $this->hasMany(Transaction::class)
-            ->whereIn('status', ['accepted', 'success'])
+            ->whereIn('status', ['accepted', 'success', 'requested'])
             ->whereIn('transaction_type', ['3', '6']);
     }
 
