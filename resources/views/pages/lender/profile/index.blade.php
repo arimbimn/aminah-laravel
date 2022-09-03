@@ -14,7 +14,7 @@
     @include('layouts.user.notification')
     <div class="row">
       <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
-        <img src="{{ asset('') }}/img/testimonials.jpg" class="img-thumbnail" alt="lender" width="200">
+        <img src="{{ isset($user->lender) ? asset('profile/' . $user->lender->lender_image) : asset('img/user.jpg') }}" class="img-fluid" alt="{{ isset($user->lender) ? $user->lender->name : '-' }}" width="50%">
         <h4><b>{{ $user->name }}</b></h4>
         <h5>{{ $user->email }}</h5>
         <h5>{{ isset($user->lender) ? $user->lender->hp_number : '-' }}</h5>
