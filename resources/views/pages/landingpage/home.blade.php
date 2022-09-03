@@ -93,30 +93,48 @@
                     <p>MITRA KAMI</p>
                 </div>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            <img src="{{ asset('') }}/img/aminahImg.jpg" class="img-fluid" alt="silkysip">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>minuman</h4>
-                                    <p class="price">12 bulan</p>
-                                </div>
-                                <h3><a href="/login">SilkySip</a></h3>
-                                <div class="row">
-                                    <dl>
-                                        <dt class="col-sm-6">Harga</dt>
-                                        <dd class="col-sm-6">0</dd>
-
-                                        <dt class="col-sm-6">Terkumpul</dt>
-                                        <dd class="col-sm-6">0</dd>
-                                    </dl>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                </div>
+                    @if (isset($mitra) && $mitra != null)
+                    @foreach ($mitra as $index => $mitra)
+                      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="course-item" id="{{ $mitra->id }}">
+                          <img src="{{ asset('') }}/img/user.png" class="img-fluid" alt="gambar" width="100%" onerror="this.onerror=null;this.scr='https://via.placeholder.com/1080x720.png?text=Business%20Image';">
+                          <div class="course-content">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                              <h4>{{ isset($mitra->business_type) ? $business_type : 'Lain-lain' }}</h4>
+                              <p class="price">{{ isset($mitra->borrower) && !is_null($mitra->borrower->duration) ? $mitra->borrower->duration . ' Bulan' : 'Jangka Waktu: -' }}</p>
                             </div>
+                            <h3><a href="/login">{{ isset($mitra->borrower) ? $mitra->borrower->business_name : 'Usaha' }}</a></h3>
+                            <div class="row">
+                              <dl>
+                                <dt class="col-sm-6">{{ 'Harga: Rp.100.000,-' }}</dt>
+                                <dd class="col-sm-6">dana dibutuhkan: {{ !is_null($mitra->accepted_fund) ? 'Rp.' . number_format($mitra->accepted_fund, 0, ',', '.') . ',-' : '' }}</dd>
+                                <dt class="col-sm-6">Terkumpul</dt>
+                                <dd class="col-sm-6">dana terkumpul: Rp.{{ isset($mitra->dana_terkumpul) ? number_format($mitra->dana_terkumpul, 0, ',', '.') . ',-' : '' }}</dd>
+                              </dl>
+                            </div>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" style="width: {{ $mitra->dana_terkumpul_persen }}%;" aria-valuenow="{{ $mitra->dana_terkumpul_persen }}" aria-valuemin="0" aria-valuemax="100">{{ $mitra->dana_terkumpul_persen }}%</div>
+                            </div>
+                            <div class="mt-3">
+                                <a href="/login" class="btn btn-outline-success col-12"><i class="fa fa-plus"></i> Tambah ke keranjang</a>
+                            </div>
+                          </div>
                         </div>
+                      </div>
+                    @endforeach
+                  @endif
+
+                  <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                      <h3>Ingin Lihat Mitra Lebih Banyak?</h3>
+                      <p>
+                        Kamu dapat memilih banyak mitra yang cocok bagi kamu untuk kamu danai disini.
+                      </p>
+                      <div class="text-center">
+                        <a href="/login" class="more-btn">Lihat Lebih Banyak <i class="bx bx-chevron-right"></i></a>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </section>
