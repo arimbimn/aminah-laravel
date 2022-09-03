@@ -209,7 +209,7 @@ class LenderController extends Controller
         $transaction = new Transaction();
         $transaction->trx_hash = md5($user_id . now());
         $transaction->transaction_type = '3';
-        $transaction->status = 'waiting';
+        $transaction->status = 'requested';
         $transaction->user_id = $user_id;
         $transaction->lender_id = $user_id;
         $transaction->transaction_amount = $withdrawalAmount;
