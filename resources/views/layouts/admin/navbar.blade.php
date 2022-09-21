@@ -7,7 +7,7 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             @if (Auth::user()->role == 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
+                <a href="{{ route('admin.borrower') }}" class="nav-link">Home</a>
             @endif
             @if (Auth::user()->role == 'unit')
                 <a href="{{ route('unit.dashboard') }}" class="nav-link">Home</a>
