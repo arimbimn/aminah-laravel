@@ -13,18 +13,15 @@
             <table class="table table-hover text-wrap">
               <thead>
                 <tr>
-                  <th scope="col">No.</th>
                   <th scope="col">Nama Borrower</th>
                   <th scope="col">Status</th>
                   <th scope="col">Sisa Periode Pendanaan</th>
                   <th scope="col">Jumlah Total Pendanaan</th>
-                  <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($records as $index => $item)
                   <tr>
-                    <th scope="row">{{ $index + 1 }}</th>
                     <td>{{ $item->borrower->name }}</td>
                     <td>
                       @switch($item->status)
@@ -40,9 +37,7 @@
                       @endswitch
                     </td>
                     <td>{{ \Carbon\Carbon::parse($item->due_date)->diffForHumans() }}</td>
-                    <td>Rp.{{ number_format($item->dana_terkumpul, 0, ',', '.') }},-</td>
-                    <td><a href="/admin/rincian-pendanaan/detail/{{ $item->id }}" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a></td>
-                  </tr>
+                    <td>Rp.{{ number_format($item->dana_terkumpul, 0, ',', '.') }},-</td></tr>
                 @endforeach
               </tbody>
             </table>

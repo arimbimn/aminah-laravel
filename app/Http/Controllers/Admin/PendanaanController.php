@@ -10,7 +10,8 @@ class PendanaanController extends Controller
 {
     public function index()
     {
-        $records = Funding::paginate(50);
+        $records = Funding::paginate(10);
+
         foreach ($records as $funding) {
             $totalUnitTerjual = $funding->fundinglenders->sum('unit_amount');
             $danaTerkumpul = $totalUnitTerjual * env('HARGA_UNIT', 100000);

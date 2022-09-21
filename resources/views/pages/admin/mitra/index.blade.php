@@ -13,7 +13,6 @@
                         <table class="table table-hover text-wrap">
                             <thead>
                                 <tr>
-                                    <th scope="col">No.</th>
                                     <th scope="col">Nama Usaha</th>
                                     <th scope="col">Nama Pemilik</th>
                                     <th scope="col">Detail</th>
@@ -22,7 +21,6 @@
                             <tbody>
                                 @foreach ($records as $index => $record)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
                                         <td>{{ $record->business_name }}</td>
                                         <td>{{ $record->name }}</td>
                                         <td><a href="/admin/mitra/detail/{{ $record->id }}" class="btn btn-info"><i class="fa fa-eye"></i> Detail Usaha</a></td>
@@ -32,7 +30,11 @@
                         </table>
                     </div>
                     <div class="card-footer">
-
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                              {{ $records->links() }}
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ class MitraController extends Controller
 {
     public function index()
     {
-        $records = Borrower::accepted()->paginate(50);
+        $records = Borrower::accepted()->paginate(10);
 
         $breadcrumbs = [
             [
