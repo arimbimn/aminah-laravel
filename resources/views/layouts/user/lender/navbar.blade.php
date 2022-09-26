@@ -12,7 +12,7 @@
                 <li><a class="{{ isset($active) && $active == 'mitra' ? 'active' : '' }}" href="/lender/mitra">Mitra</a></li>
                 <li><a class="{{ isset($active) && $active == 'profile' ? 'active' : '' }}" href="/lender/profile">Profile</a></li>
 
-                <a href="#" class="notification"><i class="fa fa-bell"></i></a>
+                {{-- <a href="#" class="notification"><i class="fa fa-bell"></i></a> --}}
                 <a href="/lender/keranjang" class="cart {{ isset($active) && $active == 'cart' ? 'active' : '' }}">{{ \Cart::session(Auth::user()->id)->getContent()->count() >= 0? \Cart::session(Auth::user()->id)->getContent()->count(): '' }}<i class="fa fa-shopping-cart"></i></a>
 
                 <li class="dropdown"><a href="#">{{ Auth::user()->name }}<i class="bi bi-chevron-down"></i></a>

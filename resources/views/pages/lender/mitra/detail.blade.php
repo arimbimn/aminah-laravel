@@ -16,8 +16,8 @@
         <img class="product-image" src="{{ isset($funding->borrower->business_image) ? asset('pendaftaran/' . $funding->borrower->business_image) : 'https://via.placeholder.com/1080x720.png?text=Business%20Image' }}" class="img-fluid" alt="gambar" width="100%">
         <h4><b>{{ isset($funding->borrower->business_name) ? $funding->borrower->business_name : 'UMKM' }}</b></h4>
         <h5>Alamat UMKM : {{ isset($funding->borrower->business_address) ? $funding->borrower->business_address : '-' }}</h5>
-        <h5>Deskripsi & Jenis UMKM</h5>
-        <p> {{ isset($funding->borrower->description) ? $funding->borrower->description : '-' }}</p>
+        {{-- <h5>Deskripsi & Jenis UMKM</h5>
+        <p> {{ isset($funding->borrower->description) ? $funding->borrower->description : '-' }}</p> --}}
         <h6>Jenis UMKM: {{ isset($funding->borrower->buniness_type) ? $funding->borrower->buniness_type : 'Lain-lain' }}</h6>
       </div>
       <div class="col-6">

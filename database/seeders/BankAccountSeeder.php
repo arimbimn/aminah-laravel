@@ -17,7 +17,7 @@ class BankAccountSeeder extends Seeder
     {
         BankAccount::create([
             'account_name' => 'Arimbi Mega Ningrum',
-            'account_number' => '123456789',
+            'account_number' => '785301006340',
             'bank_name' => 'BRI',
             'is_active' => 1,
         ]);

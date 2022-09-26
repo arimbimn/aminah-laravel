@@ -71,19 +71,19 @@
           <div class="form-group mb-3">
             <input type="text" name="captcha" id="captcha" class="form-control" placeholder="Captcha..." />
           </div>
-          <p class="mb-1">
+          {{-- <p class="mb-1">
             Lupa kata sandi/password?
             <a href="/forgot-password">Klik Disini</a>
-          </p>
+          </p> --}}
           <div class="row">
-            <div class="col-8 mb-2">
+            {{-- <div class="col-8 mb-2">
               <div class="icheck-primary">
                 <input type="checkbox" id="remember" name="remember">
                 <label for="remember">
                   Ingatkan Saya
                 </label>
               </div>
-            </div>
+            </div> --}}
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" class="btn btn-success btn-block">Masuk</button>
