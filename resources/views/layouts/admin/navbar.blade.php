@@ -27,9 +27,9 @@
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::user()->name }}</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                <li><a href="@if (Route::has('admin.profile')) {{ route('admin.profile') }} @else # @endif" class="dropdown-item">Profile </a></li>
+                {{-- <li><a href="@if (Route::has('admin.profile')) {{ route('admin.profile') }} @else # @endif" class="dropdown-item">Profile </a></li> --}}
                 {{-- <li><a href="@if (Route::has('admin.setting')) {{ route('admin.setting') }} @else # @endif" class="dropdown-item">Setting</a></li> --}}
-                <li class="dropdown-divider"></li>
+                {{-- <li class="dropdown-divider"></li> --}}
                 <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a></li>
                 <form id="logout-form" action="@if (Route::has('logout')) {{ route('logout') }} @endif" method="POST" class="d-none">
                     @csrf
