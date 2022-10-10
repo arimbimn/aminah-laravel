@@ -9,7 +9,9 @@
             <ul>
                 <li><a class="<?php echo isset($active) && $active == 'home' ? 'active' : ''; ?>" href="/">Home</a></li>
                 <li><a class="<?php echo isset($active) && $active == 'tentang-kami' ? 'active' : ''; ?>" href="/tentang-kami">Tentang Kami</a></li>
-                <li><a class="<?php echo isset($active) && $active == 'cara-kerja' ? 'active' : ''; ?>" href="/cara-kerja">Cara Kerja</a></li>
+                <li><a class="<?php echo isset($active) && $active == 'cara-kerja' ? 'active' : ''; ?>" href="/cara-kerja">Cara Kerja</a></li>  
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
 
         <a href="/login" class="get-started-btn">Masuk</a>
