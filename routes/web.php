@@ -56,6 +56,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // user
     Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
+    Route::get('admin/user/tambah', [UserController::class, 'createAdmin'])->name('admin.user.tambah');
+    Route::post('admin/tambah', [UserController::class, 'store'])->name('admin.tambah');
     // pengajuan
     Route::get('/admin/pengajuan', [PengajuanController::class, 'index'])->name('admin.borrower');
     Route::get('/admin/pengajuan/detail/{borrower}', [PengajuanController::class, 'detail'])->name('admin.borrower.detail');

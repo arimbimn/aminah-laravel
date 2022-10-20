@@ -17,7 +17,7 @@
                                     <th scope="col">Nama Admin</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Aksi</th>
+                                    {{-- <th scope="col">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,7 +33,7 @@
                                                 <span class="badge badge-danger">tidak aktif</span>
                                             @endif
                                         </td>
-                                        <td><a href="/admin/user/edit/{{ $user->id }}" class="btn btn-info"><i class="fa fa-edit"></i> edit</a></td>
+                                        {{-- <td><a href="/admin/user/edit/{{ $user->id }}" class="btn btn-info"><i class="fa fa-edit"></i> edit</a></td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
