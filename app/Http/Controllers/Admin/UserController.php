@@ -46,4 +46,51 @@ class UserController extends Controller
         );
         return view('pages.admin.user.index', $data);
     }
+
+    public function createAdmin()
+    {
+        $roles = array(
+            'admin' => 'Admin',
+        );
+
+        $data = array(
+            'title' => 'Aminah | Tambah Admin Aminah',
+            'active' => 'user',
+            'page' => 'Tambah Data Admin',
+            'roles' => $roles,
+        );
+        return view('pages.admin.user.create', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name'                  => 'required',
+            'email'                 => 'required',
+            'role'                  => 'required',
+            'password'              => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $saving = $user->save();
+
+        if ($saving) {
+            return redirect()
+                ->route('admin.user')
+                ->with([
+                    'success' => 'Berhasil menambahkan admin'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf gagal, coba lagi nanti'
+                ]);
+        }
+    }
 }
